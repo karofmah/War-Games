@@ -1,6 +1,7 @@
 package Units;
 
 public class RangedUnit extends Unit {
+    private int recievedAttack;
     /**
      * Constructor
      *
@@ -23,6 +24,11 @@ public class RangedUnit extends Unit {
 
     @Override
     public int getResistBonus() {
-        return 0;
+        int resistBonus=2;
+        for(int i=2;i>recievedAttack;i--){
+            resistBonus+=2;
+        }
+        recievedAttack++;
+        return resistBonus;
     }
 }
