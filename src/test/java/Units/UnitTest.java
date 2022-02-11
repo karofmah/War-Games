@@ -44,10 +44,21 @@ public class UnitTest {
         @Nested
         class Exceptions{
             @Test
-            public void ifHealthBelowZeroIsValid() {
-                assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("Footman", -100));
+            public void ifExceptionIsThrownWhenNameIsBlank(){
+                assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("",100));
             }
-            // TODO: 10.02.2022 : Add tests for the other exceptions 
+            @Test
+            public void ifExceptionIsThrownWhenHealthIsBelowZero() {
+                assertThrows(IllegalArgumentException.class,()-> new RangedUnit("Archer", -100));
+            }
+            @Test
+            public void ifExceptionIsThrownWhenAttackIsBelowZero(){
+                assertThrows(IllegalArgumentException.class,()-> new CavalryUnit("Knight",100,-20,12));
+            }
+            @Test
+            public void ExceptionIsThrownWhenAttackIsBelowZero(){
+                assertThrows(IllegalArgumentException.class,()-> new CommanderUnit("Knight",100, 25,-15));
+            }
         }
     }   
 }
