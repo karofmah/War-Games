@@ -14,7 +14,7 @@ public class UnitTest {
     CommanderUnit commander = new CommanderUnit("Mountain King", 100);
 
     @Nested
-    class validateData {
+    class testData {
 
         @Test
         public void ifAttackOpponentLowersTheirHealthByRightAmount() {
@@ -42,7 +42,7 @@ public class UnitTest {
             }
         }
         @Nested
-        class Exceptions{
+        class validateData{
             @Test
             public void ifExceptionIsThrownWhenNameIsBlank(){
                 assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("",100));
