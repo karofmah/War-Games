@@ -11,8 +11,8 @@ public class Army {
     private List<Unit> units;
 
     /**
-     *
-     * @param name
+     *Constructor for the class Army
+     * @param name of the Army, can not be blank
      */
     public Army(String name) {
         this.name = name;
@@ -23,28 +23,31 @@ public class Army {
     }
 
     /**
-     *
-     * @param name
-     * @param units
+     *Constructor for the class Army
+     * @param name of the Army, can not be blank
+     * @param units in the Army
      */
-    public Army(String name, List<Unit> units) {
+    public Army(String name, ArrayList<Unit> units) {
         this.name = name;
         if(name.isBlank()) {
             throw new IllegalArgumentException("Please enter a name");
         }
         this.units = units;
+        if(units.isEmpty()){
+              Army army=new Army(name);
+        }
     }
 
     /**
-     *
-     * @return
+     *Returns name
+     * @return name
      */
     public String getName() {
         return name;
     }
 
     /**
-     *
+     *Adds an unit to army
      * @param unit
      */
     public void add(Unit unit){
@@ -54,7 +57,7 @@ public class Army {
     }
 
     /**
-     *
+     *Adds all units from a list (units) to army
      * @param units
      */
     public void addAll(List<Unit> units) {
@@ -62,6 +65,11 @@ public class Army {
             this.add(unit);
         }
     }
+
+    /**
+     * Removes unit from army
+     * @param unit
+     */
     public void remove(Unit unit){
         if(units.contains(unit)){
             units.remove(unit);
@@ -69,8 +77,9 @@ public class Army {
     }
 
     /**
-     *
-     * @return
+     *Checks if the army has units
+     * @return boolean
+     * true or false depending on whether the army has units
      */
     public boolean hasUnits(){
         boolean hasUnits=true;
@@ -80,9 +89,13 @@ public class Army {
         return hasUnits;
     }
 
+
+    public List<Unit> getAllUnits(){
+        return units;
+    }
     /**
-     *
-     * @return
+     *Returns a random Unit in the army
+     * @return Unit
      */
     public Unit getRandom(){
         Random randomUnitIndex=new java.util.Random();
@@ -90,9 +103,10 @@ public class Army {
     }
 
     /**
-     *
+     *Compares to objects
      * @param o
-     * @return
+     * @return boolean
+     * true or false depending on whether the objects are equal or not
      */
     @Override
     public boolean equals(Object o) {
@@ -102,19 +116,13 @@ public class Army {
         return Objects.equals(name, army.name) && Objects.equals(units, army.units);
     }
 
-    /**
-     *
-     * @return
-     */
+
     @Override
     public int hashCode() {
         return Objects.hash(name, units);
     }
 
-    /**
-     *
-     * @return
-     */
+
     @Override
     public String toString() {
         return "Army{" +
@@ -123,8 +131,13 @@ public class Army {
                 '}';
     }
 
+    /**
+     * Returns size of the army
+     * @return units.size() as an int
+     */
     public int size() {
         return units.size();
     }
+
 }
 

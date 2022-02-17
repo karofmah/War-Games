@@ -18,12 +18,17 @@ public abstract class Unit {
         this.name = name;
         if(name.isBlank()) throw new IllegalArgumentException("Please enter a name");
         this.health = health;
-        if(health<0) throw new IllegalArgumentException("Unit can not have less than 0 health");
+        if(health<=0) throw new IllegalArgumentException("Unit can not have equal to, or less than 0 health");
         this.attack = attack;
         if(attack<0) throw new IllegalArgumentException("Unit can not have less than 0 attack");
         this.armor = armor;
         if(armor<0) throw new IllegalArgumentException("Unit can not have less than 0 armor");
     }
+
+    /**
+     * Attack opponent to lower their health
+     * @param opponent
+     */
     public void attack(Unit opponent){
         int opponentHealth=opponent.getHealth()-(this.getAttack() + this.getAttackBonus())+(opponent.getArmor() + opponent.getResistBonus());
         opponent.setHealth(opponentHealth);
@@ -66,6 +71,10 @@ public abstract class Unit {
         this.health = Math.max(health,0);
     }
 
+    /**
+     * ToString-Method
+     * @return Unit as String
+     */
     @Override
     public String toString() {
         return "Units.Unit{" +

@@ -1,12 +1,13 @@
 package Army;
 
 import Units.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ArmyTest {
 
@@ -17,7 +18,7 @@ public class ArmyTest {
 
     Army armyOne=new Army("Blue Side",new ArrayList<Unit>());
 
-    private void fillArmyWithData() {
+    private void fillArmyWithTestData() {
         for (int i = 0; i < 20; i++) {
             armyOne.add(new InfantryUnit("Footman", 100));
             armyOne.add(new RangedUnit("Archer", 100));
@@ -28,25 +29,44 @@ public class ArmyTest {
         }
     }
     @Nested
-    class testData{
+    class generalTest{
 
         @Test
-        public void ifUnitsAreAddedToArmy() {
-            fillArmyWithData();
+        public void unitsAreAddedToArmy() {
+            fillArmyWithTestData();
             assertEquals(60,armyOne.size());
         }
         @Test
-        public void ifArmyCanHaveSeveralOfSameUnit(){
+        public void armyCanRecieveSeveralOfSameUnit(){
             ArrayList<Unit> units=new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 units.add(infantry);
             }
             armyOne.addAll(units);
-            assertEquals(armyOne.size(),1);
+            assertEquals(1,armyOne.size());
         }
         @Test
-        public void ifUnitCanBeRemovedFromArmy(){
-
+        public void randomUnitIsRemovedFromArmy(){
+            fillArmyWithTestData();
+            armyOne.remove(armyOne.getRandom());
+            assertEquals(59,armyOne.size());
+        }
+        @Test
+        public void armyHasUnits(){
+            fillArmyWithTestData();
+            assertTrue( armyOne.hasUnits());
+        }
+        @Test
+        public void armyDoesNotHaveUnits(){
+            assertFalse(armyOne.hasUnits());
+        }
+        @Nested
+        class nameIsNotSupported{
+            @Test
+            public void nameIsBlank(){
+                assertThrows(IllegalArgumentException.class,()-> new Army(""));
+                assertThrows(IllegalArgumentException.class,()-> new Army("",new ArrayList<>()));
+            }
         }
     }
 }

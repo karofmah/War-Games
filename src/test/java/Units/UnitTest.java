@@ -13,50 +13,66 @@ public class UnitTest {
     RangedUnit ranged = new RangedUnit("Archer", 100);
     CommanderUnit commander = new CommanderUnit("Mountain King", 100);
 
+
     @Nested
-    class testData {
+    class generalTest {
 
         @Test
-        public void ifAttackOpponentLowersTheirHealthByRightAmount() {
+        public void attackOpponentLowersTheirHealthByRightAmount() {
             int infantryHealthBeforeAttack = infantry.getHealth();
             ranged.attack(infantry);
             int infantryHealthAfterAttack = infantry.getHealth();
-            assertTrue(infantryHealthAfterAttack==93);
+            assertEquals(93,infantryHealthAfterAttack);
         }
         @Test
-        public void ifHealthBelowZeroIsValid(){
+        public void ifSetHealthBelowZeroIsValidAfterAttack(){
+
             infantry.setHealth(-100);
             int infantryHealth = infantry.getHealth();
             assertTrue(infantryHealth==0);
         }
         @Test
-        public void ifResistBonusIsChangedByRightAmount(){
-            for (int i = 0; i < 7; i++) {
-                System.out.println(ranged.getResistBonus());
+        public void resistBonusIsChangedByRightAmount(){
+            for (int i = 0; i < 5; i++) {
+                if(i==0) {
+                    assertEquals(6,ranged.getResistBonus());
+                }
+                if(i==1){
+                    assertEquals(4,ranged.getResistBonus());
+                }
+                if (i>=2){
+                    assertEquals(2,ranged.getResistBonus());
+                }
             }
+
         }
         @Test
-        public void ifAttackBonusIsChangedByRightAmount(){
+        public void attackBonusIsChangedByRightAmount(){
             for (int i = 0; i < 7; i++) {
-                System.out.println(cavalry.getAttackBonus());
+                if(i==0) {
+                    assertEquals(6,cavalry.getAttackBonus());
+                }
+                if(i>=1){
+                    assertEquals(2,cavalry.getAttackBonus());
+                }
             }
         }
         @Nested
-        class validateData{
+        class nameOrHealthIsNotSupported{
             @Test
-            public void ifExceptionIsThrownWhenNameIsBlank(){
+            public void nameIsBlank(){
                 assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("",100));
             }
             @Test
-            public void ifExceptionIsThrownWhenHealthIsBelowZero() {
+            public void healthIsNegative() {
                 assertThrows(IllegalArgumentException.class,()-> new RangedUnit("Archer", -100));
             }
             @Test
-            public void ifExceptionIsThrownWhenAttackIsBelowZero(){
+            public void attackIsNegative(){
                 assertThrows(IllegalArgumentException.class,()-> new CavalryUnit("Knight",100,-20,12));
             }
             @Test
-            public void ExceptionIsThrownWhenAttackIsBelowZero(){
+            public void ArmorIsNegative(){
                 assertThrows(IllegalArgumentException.class,()-> new CommanderUnit("Knight",100, 25,-15));
             }
         }
