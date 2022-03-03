@@ -60,6 +60,15 @@ public class ArmyTest {
         public void armyDoesNotHaveUnits(){
             assertFalse(armyOne.hasUnits());
         }
+        @Test
+        public void representArmy(){
+            fillArmyWithTestData();
+            System.out.println(armyOne.toString());
+        }
+        @Test
+        public void representNameofArmy(){
+            System.out.println(armyOne.getName());
+        }
         @Nested
         class nameIsNotSupported{
             @Test

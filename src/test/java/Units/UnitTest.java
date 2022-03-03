@@ -16,7 +16,33 @@ public class UnitTest {
 
     @Nested
     class generalTest {
+        public void getCorrectInfantryStats(){
+            assertEquals(infantry.getArmor(),100);
+            assertEquals(infantry.getAttack(),15);
+            assertEquals(infantry.getArmor(),10);
+            assertEquals(infantry.getAttackBonus(),2);
+            assertEquals(infantry.getHealth(),1);
 
+        }
+        @Test
+        public void correctRangedStats(){
+            assertEquals(ranged.getHealth(),100);
+            assertEquals(ranged.getAttack(),15);
+            assertEquals(ranged.getArmor(),8);
+            assertEquals(ranged.getAttackBonus(),3);
+        }
+        public void correctCavalryStats(){
+            assertEquals(cavalry.getHealth(),100);
+            assertEquals(cavalry.getAttack(),20);
+            assertEquals(cavalry.getArmor(),12);
+            assertEquals(cavalry.getResistBonus(),1);
+        }
+        public void correctCommanderStats(){
+            assertEquals(commander.getHealth(),100);
+            assertEquals(commander.getAttack(),20);
+            assertEquals(commander.getArmor(),12);
+            assertEquals(commander.getResistBonus(),1);
+        }
         @Test
         public void attackOpponentLowersTheirHealthByRightAmount() {
             int infantryHealthBeforeAttack = infantry.getHealth();
@@ -32,7 +58,7 @@ public class UnitTest {
             assertTrue(infantryHealth==0);
         }
         @Test
-        public void resistBonusIsChangedByRightAmount(){
+        public void rangedResistBonusIsChangedByRightAmount(){
             for (int i = 0; i < 5; i++) {
                 if(i==0) {
                     assertEquals(6,ranged.getResistBonus());
@@ -47,7 +73,7 @@ public class UnitTest {
 
         }
         @Test
-        public void attackBonusIsChangedByRightAmount(){
+        public void cavalryAttackBonusIsChangedByRightAmount(){
             for (int i = 0; i < 7; i++) {
                 if(i==0) {
                     assertEquals(6,cavalry.getAttackBonus());
@@ -58,22 +84,34 @@ public class UnitTest {
             }
         }
         @Nested
-        class nameOrHealthIsNotSupported{
+        class inputNotSupported{
             @Test
             public void nameIsBlank(){
                 assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("",100));
+                assertThrows(IllegalArgumentException.class,()-> new RangedUnit("", 100));
+                assertThrows(IllegalArgumentException.class,()-> new CavalryUnit("", 100));
+                assertThrows(IllegalArgumentException.class,()-> new CommanderUnit("", 100));
             }
             @Test
             public void healthIsNegative() {
+                assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("Footman", -100));
                 assertThrows(IllegalArgumentException.class,()-> new RangedUnit("Archer", -100));
+                assertThrows(IllegalArgumentException.class,()-> new CavalryUnit("Knight", -100));
+                assertThrows(IllegalArgumentException.class,()-> new CommanderUnit("Mountain King", -100));
             }
             @Test
             public void attackIsNegative(){
+                assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("Footman", 100,-15,10));
+                assertThrows(IllegalArgumentException.class,()-> new RangedUnit("Archer",100,-15,8));
                 assertThrows(IllegalArgumentException.class,()-> new CavalryUnit("Knight",100,-20,12));
+                assertThrows(IllegalArgumentException.class,()-> new CommanderUnit("Mountain King",100,-20,12));
             }
             @Test
             public void ArmorIsNegative(){
-                assertThrows(IllegalArgumentException.class,()-> new CommanderUnit("Knight",100, 25,-15));
+                assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("Footman",100,15,-10));
+                assertThrows(IllegalArgumentException.class,()-> new RangedUnit("Archer",100,25,-8));
+                assertThrows(IllegalArgumentException.class,()-> new CavalryUnit("Knight",100,20,-12));
+                assertThrows(IllegalArgumentException.class,()-> new CommanderUnit("Mountain King",100,20,-12));
             }
         }
     }   
