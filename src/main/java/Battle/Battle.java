@@ -14,6 +14,7 @@ public class Battle {
      */
     public Battle(Army armyOne, Army armyTwo) {
         this.armyOne = armyOne;
+        if(armyOne.hasUnits())
         this.armyTwo = armyTwo;
     }
 
@@ -24,7 +25,7 @@ public class Battle {
     public Army simulate(){
         Army winner = null;
         int counter=0;
-        while(true) {
+        while(armyOne.hasUnits() && armyTwo.hasUnits()) {
             Unit armyOneUnit = armyOne.getRandom();
             Unit armyTwoUnit = armyTwo.getRandom();
             if(counter%2==0){
@@ -40,9 +41,6 @@ public class Battle {
             }
             if(armyOneUnit.getHealth()==0){
                 armyOne.remove(armyOneUnit);
-            }
-            if((!armyOne.hasUnits() || !armyTwo.hasUnits())){
-                break;
             }
 
         }

@@ -13,6 +13,8 @@ public class UnitTest {
     RangedUnit ranged = new RangedUnit("Archer", 100);
     CommanderUnit commander = new CommanderUnit("Mountain King", 100);
 
+//Add display name for all tests
+    //remove unnecessary asserts.
 
     @Nested
     class generalTest {
@@ -31,12 +33,14 @@ public class UnitTest {
             assertEquals(ranged.getArmor(),8);
             assertEquals(ranged.getAttackBonus(),3);
         }
+        @Test
         public void correctCavalryStats(){
             assertEquals(cavalry.getHealth(),100);
             assertEquals(cavalry.getAttack(),20);
             assertEquals(cavalry.getArmor(),12);
             assertEquals(cavalry.getResistBonus(),1);
         }
+        @Test
         public void correctCommanderStats(){
             assertEquals(commander.getHealth(),100);
             assertEquals(commander.getAttack(),20);

@@ -30,8 +30,11 @@ public abstract class Unit {
      * @param opponent
      */
     public void attack(Unit opponent){
-        int opponentHealth=opponent.getHealth()-(this.getAttack() + this.getAttackBonus())+(opponent.getArmor() + opponent.getResistBonus());
-        opponent.setHealth(opponentHealth);
+        if(opponent.getArmor()<=this.getAttack()) {
+            int opponentHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus());
+            opponent.setHealth(opponentHealth);
+        }
+
     }
 
     /**
