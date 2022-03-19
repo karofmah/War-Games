@@ -25,7 +25,7 @@ public class UnitTest {
 
     @Nested
     @DisplayName("Performs positive tests")
-    class inputSupported {
+    class inputIsSupported {
 
         @Test
         @DisplayName("Tests if the ressist bonus of a CommanderUnit is equal to 1")
@@ -78,27 +78,27 @@ public class UnitTest {
         }
         @Nested
         @DisplayName("Performs negative tests")
-        class inputNotSupported{
+        class inputIsNotSupported{
             @Test
-            @DisplayName("Tests if creating an InfantryUnit with blank name, will throw an exception")
+            @DisplayName("Tests if an IllegalArgumentException is thrown when creating an InfantryUnit with blank name")
             public void nameIsBlank(){
                 assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("",100));
 
             }
             @Test
-            @DisplayName("Tests if creating an InfantryUnit with negative health, will throw an exception")
+            @DisplayName("Tests if an IllegalArgumentException is thrown when creating an InfantryUnit with negative health")
             public void healthIsNegative() {
                 assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("Footman", -100));
 
             }
             @Test
-            @DisplayName("Tests if creating an InfantryUnit with negative attack, will throw an exception")
+            @DisplayName("Tests if an IllegalArgumentException is thrown when creating an InfantryUnit with negative attack")
             public void attackIsNegative(){
                 assertThrows(IllegalArgumentException.class,()-> new InfantryUnit("Footman", 100,-15,10));
 
             }
             @Test
-            @DisplayName("Tests if creating an InfantryUnit with negative armor, will throw an exception")
+            @DisplayName("Tests if an IllegalArgumentException is thrown when creating a CommanderUnit with negative armor")
             public void ArmorIsNegative(){
                 assertThrows(IllegalArgumentException.class,()-> new CommanderUnit("Mountain King",100,20,-12));
             }
