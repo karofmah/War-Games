@@ -15,10 +15,12 @@ public class ArmyTest {
     private CavalryUnit cavalry;
     private RangedUnit ranged;
     private CommanderUnit commander;
+
     private Army armyOne;
     private Army armyTwo;
 
     @BeforeEach
+    @DisplayName("Sets up necessary data before each test")
     public void setup() {
         this.infantry = new InfantryUnit("Footman", 100);
         this.cavalry = new CavalryUnit("Knight", 100);

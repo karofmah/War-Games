@@ -14,16 +14,21 @@ public class Battle {
      */
     public Battle(Army armyOne, Army armyTwo) {
         this.armyOne = armyOne;
-        if(armyOne.hasUnits())
+        if(!armyOne.hasUnits()){
+            throw new IllegalArgumentException("This army has no units. Please add units before starting battle");
+            }
         this.armyTwo = armyTwo;
+        if(!armyTwo.hasUnits()){
+            throw new IllegalArgumentException("This army has no units. Please add units before starting battle");
+        }
     }
 
     /**
      * Simulates the battle between army one and army two
-     * @return winner
+     * Returns the winner
+     * @return Army
      */
     public Army simulate(){
-        Army winner = null;
         int counter=0;
         while(armyOne.hasUnits() && armyTwo.hasUnits()) {
             Unit armyOneUnit = armyOne.getRandom();
@@ -34,6 +39,9 @@ public class Battle {
             }
             if(armyTwoUnit.getHealth()==0){
                 armyTwo.remove(armyTwoUnit);
+                if(!armyTwo.hasUnits()){
+                    break;
+                }
             }
             if(counter%2!=0){
                 armyTwoUnit.attack(armyOneUnit);
@@ -41,6 +49,9 @@ public class Battle {
             }
             if(armyOneUnit.getHealth()==0){
                 armyOne.remove(armyOneUnit);
+                if(!armyOne.hasUnits()) {
+                    break;
+                }
             }
 
         }
