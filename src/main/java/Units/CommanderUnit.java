@@ -17,13 +17,4 @@ public class CommanderUnit extends CavalryUnit{
         super(name, health,25,15);
     }
 
-    @Override
-    public int getAttackBonus() {
-        return super.getAttackBonus();
-    }
-
-    @Override
-    public int getResistBonus() {
-        return super.getResistBonus();
-    }
 }

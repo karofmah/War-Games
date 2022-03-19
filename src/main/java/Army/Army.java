@@ -82,11 +82,7 @@ public class Army {
      * true or false depending on whether the army has units
      */
     public boolean hasUnits(){
-        boolean hasUnits=true;
-        if(units.isEmpty()){
-            hasUnits=false;
-        }
-        return hasUnits;
+        return !units.isEmpty();
     }
 
 
@@ -98,7 +94,7 @@ public class Army {
      * @return Unit
      */
     public Unit getRandom(){
-        Random randomUnitIndex=new java.util.Random();
+        Random randomUnitIndex= new Random();
         return units.get(randomUnitIndex.nextInt(units.size()));
     }
 
