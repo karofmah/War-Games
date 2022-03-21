@@ -1,10 +1,12 @@
 package Army;
 
-import Units.Unit;
+import Units.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Army {
     private String name;
@@ -44,6 +46,40 @@ public class Army {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Returns list of infantry units in army
+     * @return infantryUnitList
+     */
+    public List<Unit> getInfantryUnits(){
+        return units.stream().filter(p->p instanceof InfantryUnit).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns list of ranged units in army
+     * @return RangedUnitList
+     */
+    public List<Unit> getRangedUnits(){
+        return units.stream().filter(p->p instanceof RangedUnit).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns list of cavalry units in army
+     * @return CavalryUnitsList
+     */
+    public List<Unit> getCavalryUnits(){
+
+        return units.stream().filter(p->p instanceof CavalryUnit).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns list of commander units in army
+     * @return CommanderUnitList
+     */
+    public List<Unit> getCommanderUnits(){
+
+        return units.stream().filter(p->p instanceof CommanderUnit).collect(Collectors.toList());
     }
 
     /**
