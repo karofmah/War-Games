@@ -1,7 +1,7 @@
 package Units;
 
 public class CavalryUnit extends Unit{
-    private int attacked;
+    private int attackCounter;
     /**
      * Constructor
      *
@@ -19,10 +19,11 @@ public class CavalryUnit extends Unit{
     @Override
     public int getAttackBonus() {
         int attack=2;
-        if(attacked==0){
+        if(attackCounter==0){
             attack+=4;
         }
-        attacked++;
+        attackCounter++;
+
         return attack;
     }
 

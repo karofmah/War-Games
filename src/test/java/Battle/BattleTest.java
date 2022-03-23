@@ -21,13 +21,13 @@ public class BattleTest {
     private RangedUnit ranged_1;
     private CommanderUnit commander_1;
 
-    private Army armyOne;
-    private Army armyTwo;
+    private Army army_1;
+    private Army army_2;
 
     private Battle battle;
     @BeforeEach
     @DisplayName("Sets up necessary data before each test")
-            public void setup() {
+    public void setup() {
         this.infantry = new InfantryUnit("Footman", 100);
         this.cavalry = new CavalryUnit("Knight", 100);
         this.ranged = new RangedUnit("Archer", 100);
@@ -38,23 +38,24 @@ public class BattleTest {
         this.ranged_1 = new RangedUnit("Spearman", 100);
         this.commander_1 = new CommanderUnit("Gul´dan", 100);
 
-        this.armyOne = new Army("Blue Side");
-        this.armyTwo=new Army("Red Side", new ArrayList<Unit>());
+        this.army_1 = new Army("Blue Side");
+        this.army_2 =new Army("Red Side", new ArrayList<Unit>());
 
-        for (int i =0 ; i < 20; i++) {
-            this.armyOne.add(new InfantryUnit("Footman", 100));
-            this.armyOne.add(new RangedUnit("Archer", 100));
-            this.armyTwo.add(new InfantryUnit("Grunt", 100));
-            this.armyTwo.add(new RangedUnit("Spearman", 100));
+        for (int i =0 ; i < 10; i++) {
+            this.army_1.add(new InfantryUnit("Footman", 100));
+            this.army_1.add(new RangedUnit("Archer", 100));
+            this.army_2.add(new InfantryUnit("Grunt", 100));
+            this.army_2.add(new RangedUnit("Spearman", 100));
 
-            if (i % 2 == 0) {
-                this.armyOne.add(new CavalryUnit("Knight", 100));
-                this.armyOne.add(new CommanderUnit("Mountain King", 100));
-                this.armyTwo.add(new CavalryUnit("Raider", 100));
-                this.armyTwo.add(new CommanderUnit("Gul´dan", 100));
-            }
+
         }
-        this.battle=new Battle(armyOne,armyTwo);
+        for (int i=0; i<5; i++) {
+            this.army_1.add(new CavalryUnit("Knight", 100));
+            this.army_1.add(new CommanderUnit("Mountain King", 100));
+            this.army_2.add(new CavalryUnit("Raider", 100));
+            this.army_2.add(new CommanderUnit("Gul´dan", 100));
+        }
+        this.battle=new Battle(army_1, army_2);
     }
 
     @Nested
@@ -69,11 +70,11 @@ public class BattleTest {
         @Test
         @DisplayName("Tests if the battle is performed properly ")
         public void testSimulation() {
-            for (int i = 0; i <100 ; i++) {
+            for (int i = 0; i <10 ; i++) {
                 setup();
                 System.out.println(battle.simulate());
-                System.out.println(armyOne.size());
-                System.out.println(armyTwo.size());
+                System.out.println(army_1.size());
+                System.out.println(army_2.size());
             }
         }
 
@@ -84,14 +85,14 @@ public class BattleTest {
         @Test
         @DisplayName("Tests if a battle can be created when armyOne is empty")
         public void armyOneIsEmpty(){
-            armyOne.getAllUnits().clear();
-            assertThrows(IllegalArgumentException.class,()->new Battle(armyOne,armyTwo));
+            army_1.getAllUnits().clear();
+            assertThrows(IllegalArgumentException.class,()->new Battle(army_1, army_2));
         }
         @Test
         @DisplayName("Test if a battle can be created when armyTwo is empty")
         public void armyTwoIsEmpty(){
-            armyTwo.getAllUnits().clear();
-            assertThrows(IllegalArgumentException.class,()->new Battle(armyOne,armyTwo));
+            army_2.getAllUnits().clear();
+            assertThrows(IllegalArgumentException.class,()->new Battle(army_1, army_2));
         }
 
     }

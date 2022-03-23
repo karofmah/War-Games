@@ -99,7 +99,7 @@ public class UnitTest {
             }
             @Test
             @DisplayName("Tests if an IllegalArgumentException is thrown when creating a CommanderUnit with negative armor")
-            public void ArmorIsNegative(){
+            public void armorIsNegative(){
                 assertThrows(IllegalArgumentException.class,()-> new CommanderUnit("Mountain King",100,20,-12));
             }
         }
