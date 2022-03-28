@@ -2,6 +2,10 @@ package Army;
 
 import Units.*;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,8 +13,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Army {
-    private String name;
-    private List<Unit> units;
+    private static String name;
+    private static List<Unit> units;
 
     /**
      *Constructor for the class Army
@@ -170,6 +174,16 @@ public class Army {
     public int size() {
         return units.size();
     }
+    public static void writeArmyToFile(File file){
+        try(PrintWriter writer=new PrintWriter(file)){
+            writer.println(name);
+            for (Unit unit:units){
+                writer.printf("%s, %d, %f\n", unit.getClass().getSimpleName(), unit.getName(), unit.getHealth());
+            }
 
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 }
 
