@@ -143,8 +143,14 @@ public class ArmyTest {
             assertEquals("[Units.Unit{name='Mountain King', health=100, attack=25, armor=15}]", army2.getCommanderUnits().toString());
         }
         @Test
+        @DisplayName("Tests if army1 is written to the file ArmyFile.csv")
         public void writeArmyToFile(){
             army1.writeArmyToFile(new File("src/main/resources/ArmyFile.csv"));//Assert
+        }
+        @Test
+        @DisplayName("Tests if the file armyFile.csv is read properly")
+        public void readArmyFromFile(){
+            army1.readArmyFromFile(new File("src/main/resources/ArmyFile.csv"));
         }
 
     }
