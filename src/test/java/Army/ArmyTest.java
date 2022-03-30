@@ -1,10 +1,7 @@
 package Army;
 
 import Units.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,123 +14,140 @@ public class ArmyTest {
     private RangedUnit ranged;
     private CommanderUnit commander;
 
-    private Army army_1;
-    private Army army_2;
+    private Army army1;
+    private Army army2;
 
     @BeforeEach
     @DisplayName("Sets up necessary data before each test")
     public void setup() {
-        this.infantry = new InfantryUnit("Footman", 100);
-        this.cavalry = new CavalryUnit("Knight", 100);
-        this.ranged = new RangedUnit("Archer", 100);
-        this.commander = new CommanderUnit("Mountain King", 100);
+        infantry = new InfantryUnit("Footman", 100);
+        cavalry = new CavalryUnit("Knight", 100);
+        ranged = new RangedUnit("Archer", 100);
+        commander = new CommanderUnit("Mountain King", 100);
 
-        this.army_1 = new Army("Blue Side");
-        this.army_2 =new Army("Red Side", new ArrayList<Unit>());
-        army_2.getAllUnits().clear();
+        army1 = new Army("Blue Side", new ArrayList<Unit>());
+        army2 = new Army("Red Side", new ArrayList<Unit>());
 
-        for (int i = 0; i < 10; i++) {
-            army_1.add(new InfantryUnit("Footman", 100));
-            army_1.add(new RangedUnit("Archer", 100));
-
-        }
         for (int i = 0; i < 5; i++) {
-            army_1.add(new CavalryUnit("Knight", 100));
-            army_1.add(new CommanderUnit("Mountain King", 100));
+            army1.add(new CavalryUnit("Knight", 100));
+            army1.add(new CommanderUnit("Mountain King", 100));
         }
-        System.out.println(army_2.getAllUnits().toString());
+        for (int i=0;i<10;i++){
+            army1.add(new InfantryUnit("Footman",100));
+            army1.add(new RangedUnit("Archer",100));
+        }
+
     }
+
     @Nested
     @DisplayName("Performs positive tests")
-    class inputIsSupported{
+    class inputIsSupported {
 
         @Test
         @DisplayName("Tests if units are added to armyOne")
         public void unitsAreAddedToArmy() {
-            assertEquals(30, army_1.size());
+            assertEquals(30, army1.size());
         }
+
         @Test
         @DisplayName("Tests if armyOne can recieve several of the same unit")
-        public void armyCanNotRecieveSeveralOfSameUnit(){
-            ArrayList<Unit> units=new ArrayList<>();
+        public void armyCanNotRecieveSeveralOfSameUnit() {
+            ArrayList<Unit> units = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 units.add(infantry);
             }
-            army_1.addAll(units);
-            assertEquals(31, army_1.size());
+            army1.addAll(units);
+            assertEquals(31, army1.size());
 
         }
+
         @Test
         @DisplayName("Tests if it is possible to remove a random unit from armyOne")
-        public void randomUnitIsRemovedFromArmy(){
-            army_1.remove(army_1.getRandom());
-            assertEquals(29, army_1.size());
+        public void randomUnitIsRemovedFromArmy() {
+            army1.remove(army1.getRandom());
+            assertEquals(29, army1.size());
         }
+
         @Test
-        @DisplayName("Tests if armyOne with units, has units")
-        public void armyHasUnits(){
-            assertTrue( army_1.hasUnits());
+        @DisplayName("Tests if army_1 with units, has units")
+        public void armyHasUnits() {
+            assertTrue(army1.hasUnits());
         }
+
         @Test
-        @DisplayName("Tests if armyTwo without units, has units")
-        public void armyDoesNotHaveUnits(){
-            assertFalse(army_2.hasUnits());
+        @DisplayName("Tests if army_2 without units, has units")
+        public void armyDoesNotHaveUnits() {
+            System.out.println(army2.getAllUnits().toString());
+            assertFalse(army2.hasUnits());
+
         }
+
         @Test
-        @DisplayName("Tests whether armyOne is represented properly or not")
-        public void representArmy(){
-            System.out.println(army_1.toString());
+        @DisplayName("Tests whether army_1 is represented properly or not")
+        public void representArmy() {
+            System.out.println(army1.toString());
         }
+
         @Test
-        @DisplayName("Tests whether the name of ArmyOne is 'Blue Side' ")
-        public void representNameofArmy(){
-            assertEquals("Blue Side", army_1.getName());
+        @DisplayName("Tests whether the name of army_1 is 'Blue Side' ")
+        public void representNameofArmy() {
+            assertEquals("Blue Side", army1.getName());
         }
 
         @Test
         @DisplayName("Tests if infantry units from the army are represented properly")
-        public void getInfantryUnits(){
+        public void getInfantryUnits() {
             for (int i = 0; i < 1; i++) {
-                army_2.add(new InfantryUnit("Footman",100));
-                army_2.add(new RangedUnit("Archer",100));
-                army_2.add(new CavalryUnit("Knight",100));
-                army_2.add(new CommanderUnit("Mountain King",100));
+                army2.add(new InfantryUnit("Footman", 100));
+                army2.add(new RangedUnit("Archer", 100));
+                army2.add(new CavalryUnit("Knight", 100));
+                army2.add(new CommanderUnit("Mountain King", 100));
             }
-            assertEquals("[Units.Unit{name='Footman', health=100, attack=15, armor=10}]", army_2.getInfantryUnits().toString());
+            assertEquals("[Units.Unit{name='Footman', health=100, attack=15, armor=10}]", army2.getInfantryUnits().toString());
         }
+
         @Test
         @DisplayName("Tests if ranged units from an army are represented properly")
-        public void getRangedUnits(){
+        public void getRangedUnits() {
             for (int i = 0; i < 1; i++) {
-                army_2.add(new InfantryUnit("Footman", 100));
-                army_2.add(new RangedUnit("Archer", 100));
-                army_2.add(new CavalryUnit("Knight", 100));
-                army_2.add(new CommanderUnit("Mountain King", 100));
+                army2.add(new InfantryUnit("Footman", 100));
+                army2.add(new RangedUnit("Archer", 100));
+                army2.add(new CavalryUnit("Knight", 100));
+                army2.add(new CommanderUnit("Mountain King", 100));
             }
-            assertEquals("[Units.Unit{name='Archer', health=100, attack=15, armor=8}]", army_2.getRangedUnits().toString());
+            assertEquals("[Units.Unit{name='Archer', health=100, attack=15, armor=8}]", army2.getRangedUnits().toString());
         }
+
         @Test
         @DisplayName("Tests if cavalry units from an army are represented properly")
         public void getCavalryUnits() {
+            System.out.println(army2.getCavalryUnits());
             for (int i = 0; i < 1; i++) {
-                army_2.add(new InfantryUnit("Footman", 100));
-                army_2.add(new RangedUnit("Archer", 100));
-                army_2.add(new CavalryUnit("Knight", 100));
-                army_2.add(new CommanderUnit("Mountain King", 100));
+                army2.add(new InfantryUnit("Footman", 100));
+                army2.add(new RangedUnit("Archer", 100));
+                army2.add(new CavalryUnit("Knight", 100));
+                army2.add(new CommanderUnit("Mountain King", 100));
             }
-            System.out.println(army_2.getCavalryUnits().toString());
+            assertEquals("[Units.Unit{name='Knight', health=100, attack=20, armor=12}, Units.Unit{name='Mountain King', health=100, attack=25, armor=15}]", army2.getCavalryUnits().toString());
         }
+
         @Test
         @DisplayName("Tests if commander units from an army are represented properly")
         public void getCommanderUnits() {
             for (int i = 0; i < 1; i++) {
-                army_2.add(new InfantryUnit("Footman", 100));
-                army_2.add(new RangedUnit("Archer", 100));
-                army_2.add(new CavalryUnit("Knight", 100));
-                army_2.add(new CommanderUnit("Mountain King", 100));
+                army2.add(new InfantryUnit("Footman", 100));
+                army2.add(new RangedUnit("Archer", 100));
+                army2.add(new CavalryUnit("Knight", 100));
+                army2.add(new CommanderUnit("Mountain King", 100));
             }
-            assertEquals("[Units.Unit{name='Mountain King', health=100, attack=25, armor=15}]", army_2.getCommanderUnits().toString());
+            assertEquals("[Units.Unit{name='Mountain King', health=100, attack=25, armor=15}]", army2.getCommanderUnits().toString());
         }
+        @Test
+        public void writeArmyToFile(){
+            army1.writeArmyToFile(new File("src/main/resources/ArmyFile.csv"));//Assert
+        }
+
+    }
 
         @Nested
         @DisplayName("Performs negative tests")
@@ -144,5 +158,5 @@ public class ArmyTest {
                 assertThrows(IllegalArgumentException.class,()-> new Army(""));
             }
         }
-    }
+
 }

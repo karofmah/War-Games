@@ -6,15 +6,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Army {
-    private static String name;
-    private static List<Unit> units;
+    private String name;
+    private List<Unit> units;
 
     /**
      *Constructor for the class Army
@@ -25,7 +22,7 @@ public class Army {
         if(name.isBlank()) {
             throw new IllegalArgumentException("Please enter a name");
         }
-        units=new ArrayList<>();
+        units=new ArrayList<Unit>();
     }
 
     /**
@@ -174,14 +171,25 @@ public class Army {
     public int size() {
         return units.size();
     }
-    public static void writeArmyToFile(File file){
+
+    public void writeArmyToFile( File file){
         try(PrintWriter writer=new PrintWriter(file)){
             writer.println(name);
-            for (Unit unit:units){
-                writer.printf("%s, %d, %f\n", unit.getClass().getSimpleName(), unit.getName(), unit.getHealth());
+            for (Unit unit : units){
+                writer.printf("%s,%s,%s\n", unit.getClass().getSimpleName(), unit.getName(), unit.getHealth());
             }
 
         }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void readArmyFromFile(File file){
+        try(Scanner scanner=new Scanner(file)){
+            while(scanner.hasNext()){
+                String line=scanner.nextLine();
+                System.out.println(line);
+            }
+        }catch (IOException e){
             e.printStackTrace();
         }
     }
