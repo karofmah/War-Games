@@ -144,9 +144,9 @@ public class ArmyTest {
             assertEquals("[Units.Unit{name='Mountain King', health=100, attack=25, armor=15}]", army2.getCommanderUnits().toString());
         }
         @Test
-        @DisplayName("Tests if army1 is written to the file ArmyFileTest.csv, which should be equal to AryFile.csv")
+        @DisplayName("Tests if army1 is written to the file ArmyFileTest.csv")
         public void writeAndReadArmyToFile(){
-            army1.writeArmyToFile(new File("src/main/resources/ArmyFileTest.csv"));//Assert
+            army1.writeArmyToFile(new File("src/main/resources/ArmyFileTest.csv"));
 
         }
         @Test
