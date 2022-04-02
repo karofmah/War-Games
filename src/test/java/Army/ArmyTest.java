@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class ArmyTest {
     private InfantryUnit infantry;
     private CavalryUnit cavalry;
@@ -143,14 +144,18 @@ public class ArmyTest {
             assertEquals("[Units.Unit{name='Mountain King', health=100, attack=25, armor=15}]", army2.getCommanderUnits().toString());
         }
         @Test
-        @DisplayName("Tests if army1 is written to the file ArmyFile.csv")
-        public void writeArmyToFile(){
-            army1.writeArmyToFile(new File("src/main/resources/ArmyFile.csv"));//Assert
+        @DisplayName("Tests if army1 is written to the file ArmyFileTest.csv, which should be equal to AryFile.csv")
+        public void writeAndReadArmyToFile(){
+            army1.writeArmyToFile(new File("src/main/resources/ArmyFileTest.csv"));//Assert
+
         }
         @Test
-        @DisplayName("Tests if the file armyFile.csv is read properly")
+        @DisplayName("Tests if the file armyFileTest.csv is read properly")
         public void readArmyFromFile(){
-            army1.readArmyFromFile(new File("src/main/resources/ArmyFile.csv"));
+            army1.readArmyFromFile(new File("src/main/resources/ArmyFileTest.csv"));
+
+
+
         }
 
     }
