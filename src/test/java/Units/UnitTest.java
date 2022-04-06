@@ -1,5 +1,6 @@
 package Units;
 
+import UnitFactory.UnitFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -17,6 +18,8 @@ public class UnitTest {
     @BeforeEach
     @DisplayName("Sets up the necessary data before each test")
     public void setup() {
+        /*UnitFactory factory=new UnitFactory();
+        infantry=factory.create(InfantryUnit,"Footman",100);*/
         this.infantry= new InfantryUnit("Footman", 100);
         this.cavalry = new CavalryUnit("Knight", 100);
         this.ranged = new RangedUnit("Archer", 100);
@@ -28,15 +31,14 @@ public class UnitTest {
     class inputIsSupported {
 
         @Test
-        @DisplayName("Tests if the ressist bonus of a CommanderUnit is equal to 1")
-        public void commanderRessistBonus(){
+        @DisplayName("Tests if the resist bonus of a CommanderUnit is equal to 1")
+        public void commanderResistBonus(){
             assertEquals(1,commander.getResistBonus());
 
         }
         @Test
         @DisplayName("Tests if an attack against the opponent lowers their health by right amount")
         public void attackOpponent() {
-            int infantryHealthBeforeAttack = infantry.getHealth();
             ranged.attack(infantry);
             int infantryHealthAfterAttack = infantry.getHealth();
             assertEquals(93,infantryHealthAfterAttack);
@@ -46,7 +48,7 @@ public class UnitTest {
         public void setHealthBelowZero(){
             infantry.setHealth(-100);
             int infantryHealth = infantry.getHealth();
-            assertTrue(infantryHealth==0);
+            assertEquals(0,infantryHealth);
         }
         @Test
         @DisplayName("Tests if the resist bonus of a RangedUnit is changed by right amount")
