@@ -39,7 +39,7 @@ public class UnitTest {
         @Test
         @DisplayName("Tests if an attack against the opponent lowers their health by right amount")
         public void attackOpponent() {
-            ranged.attack(infantry);
+            ranged.attack(infantry,"FOREST");
             int infantryHealthAfterAttack = infantry.getHealth();
             assertEquals(93,infantryHealthAfterAttack);
         }

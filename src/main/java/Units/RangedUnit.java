@@ -31,4 +31,34 @@ public class RangedUnit extends Unit {
         recievedAttack++;
         return resistBonus;
     }
+
+    @Override
+    public int getTerrainAttackBonus(String terrain) {
+        int attackBonus=0;
+        if (terrain.equals("HILL")){
+            attackBonus+=2;
+        }
+        return attackBonus;
+    }
+
+    @Override
+    public int getTerrainResistBonus(String terrain) {
+        return 0;
+    }
+
+    @Override
+    public int getTerrainAttackDefect(String terrain) {
+        int attackDefect=0;
+        if (terrain.equals("HILL")){
+            attackDefect-=2;
+        }
+        return attackDefect;
+    }
+
+    @Override
+    public int getTerrainResistDefect(String terrain) {
+        return 0;
+    }
+
+
 }

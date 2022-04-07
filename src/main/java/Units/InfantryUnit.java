@@ -42,4 +42,33 @@ public class InfantryUnit extends Unit {
     public int getResistBonus() {
         return 1;
     }
+
+    @Override
+    public int getTerrainAttackBonus(String terrain) {
+        int attackBonus=0;
+        if(terrain.equals("FOREST")) {
+            attackBonus+=2;
+        }
+        return attackBonus;
+    }
+
+    @Override
+    public int getTerrainResistBonus(String terrain) {
+        int resistBonus=0;
+        if(terrain.equals("FOREST")) {
+            resistBonus+=2;
+        }
+        return resistBonus;
+    }
+
+    @Override
+    public int getTerrainAttackDefect(String terrain) {
+        return 0;
+    }
+
+    @Override
+    public int getTerrainResistDefect(String terrain) {
+        return 0;
+    }
+
 }

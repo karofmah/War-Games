@@ -1,6 +1,7 @@
 package Battle;
 
 import Army.Army;
+import UnitFactory.UnitFactory;
 import Units.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,9 +26,12 @@ public class BattleTest {
     private Army army2;
 
     private Battle battle;
+
     @BeforeEach
     @DisplayName("Sets up necessary data before each test")
     public void setup() {
+        //UnitFactory factory=new UnitFactory();
+        //this.infantry= (InfantryUnit) factory.create("InfantryUnit","Footman",100);
         this.infantry = new InfantryUnit("Footman", 100);
         this.cavalry = new CavalryUnit("Knight", 100);
         this.ranged = new RangedUnit("Archer", 100);

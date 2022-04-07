@@ -29,9 +29,11 @@ public abstract class Unit {
      * Attack opponent to lower their health
      * @param opponent
      */
-    public void attack(Unit opponent){
+    public void attack(Unit opponent,String terrain){
         if(opponent.getArmor()<=this.getAttack()) {
-            int opponentHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()) + (opponent.getArmor() + opponent.getResistBonus());
+            int opponentHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()
+                    +this.getTerrainAttackBonus(terrain)+this.getTerrainAttackDefect(terrain)) +
+                    (opponent.getArmor() + opponent.getResistBonus()+opponent.getTerrainResistBonus(terrain)+getTerrainResistDefect(terrain));
             opponent.setHealth(opponentHealth);
         }
 
@@ -88,7 +90,17 @@ public abstract class Unit {
                 '}';
     }
 
+
     public abstract int getAttackBonus();
 
+
     public abstract int getResistBonus();
+
+    public abstract int getTerrainAttackBonus(String terrain);
+
+    public abstract int getTerrainResistBonus(String terrain);
+
+    public abstract int getTerrainAttackDefect(String terrain);
+
+    public abstract int getTerrainResistDefect(String terrain);
 }
