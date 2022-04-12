@@ -1,6 +1,6 @@
 package Units;
 
-import Units.Unit;
+
 
 public class InfantryUnit extends Unit {
     /**

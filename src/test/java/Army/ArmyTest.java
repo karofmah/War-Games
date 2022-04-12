@@ -21,12 +21,14 @@ public class ArmyTest {
     @BeforeEach
     @DisplayName("Sets up necessary data before each test")
     public void setup() {
+        factory=new UnitFactory();
+
         infantry = (InfantryUnit) factory.create("InfantryUnit","Footman", 100);
 
         army1 = new Army("Blue Side", new ArrayList<>());
         army2 = new Army("Red Side", new ArrayList<>());
 
-        factory=new UnitFactory();
+
         for (int i = 0; i < 5; i++) {
             army1.add(factory.create("CavalryUnit","Knight", 100));
             army1.add(factory.create("CommanderUnit","Mountain King", 100));
@@ -50,7 +52,7 @@ public class ArmyTest {
 
         @Test
         @DisplayName("Tests if armyOne can receive several of the same unit")
-        public void armyCanNotRecieveSeveralOfSameUnit() {
+        public void armyCanNotReceiveSeveralOfSameUnit() {
             ArrayList<Unit> units = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 units.add(infantry);
@@ -89,7 +91,7 @@ public class ArmyTest {
 
         @Test
         @DisplayName("Tests whether the name of army1 is 'Blue Side' ")
-        public void representNameofArmy() {
+        public void representNameOfArmy() {
             assertEquals("Blue Side", army1.getName());
         }
 
@@ -102,7 +104,7 @@ public class ArmyTest {
                 army2.add(factory.create("CavalryUnit","Knight", 100));
                 army2.add(factory.create("CommanderUnit","Mountain King", 100));
             }
-            assertEquals("[Units.Unit{name='Footman', health=100, attack=15, armor=10}]", army2.getInfantryUnits().toString());
+            assertEquals(factory.unitsOfSpecificType("InfantryUnit","Footman",100,1).toString(), army2.getInfantryUnits().toString());
         }
 
         @Test
@@ -114,20 +116,23 @@ public class ArmyTest {
                 army2.add(factory.create("CavalryUnit","Knight", 100));
                 army2.add(factory.create("CommanderUnit","Mountain King", 100));
             }
-            assertEquals("[Units.Unit{name='Archer', health=100, attack=15, armor=8}]", army2.getRangedUnits().toString());
+            assertEquals(factory.unitsOfSpecificType("RangedUnit","Archer",100,1).toString(), army2.getRangedUnits().toString());
         }
 
         @Test
         @DisplayName("Tests if cavalry units from an army are represented properly")
         public void getCavalryUnits() {
-            System.out.println(army2.getCavalryUnits());
+            ArrayList<Unit> cavalryUnits=new ArrayList<>();
             for (int i = 0; i < 1; i++) {
                 army2.add(factory.create("InfantryUnit","Footman", 100));
                 army2.add(factory.create("RangedUnit","Archer", 100));
                 army2.add(factory.create("CavalryUnit","Knight", 100));
                 army2.add(factory.create("CommanderUnit","Mountain King", 100));
             }
-            assertEquals("[Units.Unit{name='Knight', health=100, attack=20, armor=12}, Units.Unit{name='Mountain King', health=100, attack=25, armor=15}]", army2.getCavalryUnits().toString());
+            cavalryUnits.add(factory.unitsOfSpecificType("CavalryUnit","Knight",100,1).get(0));
+            cavalryUnits.add(factory.unitsOfSpecificType("CommanderUnit","Mountain King",100,1).get(0));
+
+            assertEquals(cavalryUnits.toString(),army2.getCavalryUnits().toString());
         }
 
         @Test
@@ -139,7 +144,7 @@ public class ArmyTest {
                 army2.add(factory.create("CavalryUnit","Knight", 100));
                 army2.add(factory.create("CommanderUnit","Mountain King", 100));
             }
-            assertEquals("[Units.Unit{name='Mountain King', health=100, attack=25, armor=15}]", army2.getCommanderUnits().toString());
+            assertEquals(factory.unitsOfSpecificType("CommanderUnit","Mountain King",100,1).toString(), army2.getCommanderUnits().toString());
         }
         @Test
         @DisplayName("Tests if army1 is written to the file ArmyFileTest.csv")
@@ -151,8 +156,6 @@ public class ArmyTest {
         @DisplayName("Tests if the file armyFileTest.csv is read properly")
         public void readArmyFromFile(){
             army1.readArmyFromFile(new File("src/main/resources/ArmyFileTest.csv"));
-
-
 
         }
 

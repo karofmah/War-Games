@@ -41,7 +41,7 @@ public class UnitTest {
         public void attackOpponent() {
             ranged.attack(infantry,"FOREST");
             int infantryHealthAfterAttack = infantry.getHealth();
-            assertEquals(93,infantryHealthAfterAttack);
+            assertEquals(95,infantryHealthAfterAttack);
         }
         @Test
         @DisplayName("Tests if it is possible to set health below zero")
