@@ -53,11 +53,7 @@ public class BattleTest {
         public void representArmies() {
             System.out.println(battle.toString());
         }
-        @Test
-        @DisplayName("Tests")
-        public void createWithFactory(){
-            System.out.println(factory.create("InfantryUnit","Footman",100));
-        }
+
 
         @Test
         @DisplayName("Tests if the battle is performed properly ")

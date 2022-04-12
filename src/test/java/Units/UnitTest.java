@@ -15,15 +15,15 @@ public class UnitTest {
     private RangedUnit ranged;
     private CommanderUnit commander;
 
+    UnitFactory factory;
     @BeforeEach
     @DisplayName("Sets up the necessary data before each test")
     public void setup() {
-        /*UnitFactory factory=new UnitFactory();
-        infantry=factory.create(InfantryUnit,"Footman",100);*/
-        this.infantry= new InfantryUnit("Footman", 100);
-        this.cavalry = new CavalryUnit("Knight", 100);
-        this.ranged = new RangedUnit("Archer", 100);
-        this.commander = new CommanderUnit("Mountain King", 100);
+        this.factory=new UnitFactory();
+        this.infantry= (InfantryUnit) factory.create("InfantryUnit","Footman", 100);
+        this.cavalry = (CavalryUnit) factory.create("CavalryUnit","Knight", 100);
+        this.ranged = (RangedUnit) factory.create("RangedUnit","Archer", 100);
+        this.commander = (CommanderUnit) factory.create("CommanderUnit","Mountain King", 100);
     }
 
     @Nested
@@ -77,6 +77,11 @@ public class UnitTest {
                     assertEquals(2,cavalry.getAttackBonus());
                 }
             }
+        }
+        @Test
+        @DisplayName("Tests if a Unit can be created through UnitFactory")
+        public void createUnitWithFactory(){
+            assertEquals("Units.Unit{name='Footman', health=100, attack=15, armor=10}",infantry.toString());
         }
         @Nested
         @DisplayName("Performs negative tests")
