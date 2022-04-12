@@ -2,62 +2,45 @@ package Battle;
 
 import Army.Army;
 import UnitFactory.UnitFactory;
-import Units.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class BattleTest {
-    private InfantryUnit infantry;
-    private CavalryUnit cavalry;
-    private RangedUnit ranged;
-    private CommanderUnit commander;
-    private InfantryUnit infantry1;
-    private CavalryUnit cavalry1;
-    private RangedUnit ranged1;
-    private CommanderUnit commander1;
+
 
     private Army army1;
     private Army army2;
 
     private Battle battle;
 
+    private UnitFactory factory;
+
     @BeforeEach
     @DisplayName("Sets up necessary data before each test")
     public void setup() {
-        //UnitFactory factory=new UnitFactory();
-        //this.infantry= (InfantryUnit) factory.create("InfantryUnit","Footman",100);
-        this.infantry = new InfantryUnit("Footman", 100);
-        this.cavalry = new CavalryUnit("Knight", 100);
-        this.ranged = new RangedUnit("Archer", 100);
-        this.commander = new CommanderUnit("Mountain King", 100);
-
-        this.infantry1 = new InfantryUnit("Grunt", 100);
-        this.cavalry1 = new CavalryUnit("Raider", 100);
-        this.ranged1 = new RangedUnit("Spearman", 100);
-        this.commander1 = new CommanderUnit("Gul´dan", 100);
-
-        this.army1 = new Army("Blue Side");
-        this.army2 =new Army("Red Side", new ArrayList<Unit>());
+        this.factory=new UnitFactory();
+        this.army1 =new Army("Blue Side");
+        this.army2 =new Army("Red Side", new ArrayList<>());
 
         for (int i =0 ; i < 10; i++) {
-            this.army1.add(new InfantryUnit("Footman", 100));
-            this.army1.add(new RangedUnit("Archer", 100));
-            this.army2.add(new InfantryUnit("Grunt", 100));
-            this.army2.add(new RangedUnit("Spearman", 100));
-
+            this.army1.add(factory.create("InfantryUnit","Footman",100));
+            this.army1.add(factory.create("RangedUnit","Archer", 100));
+            this.army2.add(factory.create("InfantryUnit","Grunt", 100));
+            this.army2.add(factory.create("RangedUnit","Spearman", 100));
 
         }
         for (int i=0; i<5; i++) {
-            this.army1.add(new CavalryUnit("Knight", 100));
-            this.army1.add(new CommanderUnit("Mountain King", 100));
-            this.army2.add(new CavalryUnit("Raider", 100));
-            this.army2.add(new CommanderUnit("Gul´dan", 100));
+            this.army1.add(factory.create("CavalryUnit","Knight", 100));
+            this.army1.add(factory.create("CommanderUnit","Mountain King", 100));
+            this.army2.add(factory.create("CavalryUnit","Raider", 100));
+            this.army2.add(factory.create("CommanderUnit","Gul´dan", 100));
         }
         this.battle=new Battle(army1, army2,"FOREST");
     }
@@ -70,10 +53,15 @@ public class BattleTest {
         public void representArmies() {
             System.out.println(battle.toString());
         }
+        @Test
+        @DisplayName("Tests")
+        public void createWithFactory(){
+            System.out.println(factory.create("InfantryUnit","Footman",100));
+        }
 
         @Test
         @DisplayName("Tests if the battle is performed properly ")
-        public void testSimulation() {
+        public void simulateBattle() {
             for (int i = 0; i <10 ; i++) {
                 setup();
                 System.out.println(battle.simulate());

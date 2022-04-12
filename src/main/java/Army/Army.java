@@ -131,8 +131,8 @@ public class Army {
      * @return Unit
      */
     public Unit getRandom(){
-        Random randomUnitIndex= new Random();
-        return units.get(randomUnitIndex.nextInt(units.size()));
+        Random randomIndexUnit= new Random();
+        return units.get(randomIndexUnit.nextInt(units.size()));
     }
 
     /**

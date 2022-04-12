@@ -4,17 +4,17 @@ import Army.Army;
 import Units.Unit;
 
 import java.util.ArrayList;
-import java.util.Locale;
+
 
 public class Battle {
-    private Army army1;
-    private Army army2;
-    private String terrain;
-    private ArrayList<String> terrains=new ArrayList<>();
+    private final Army army1;
+    private final Army army2;
+    private final String terrain;
+    private final ArrayList<String> terrains;
     /**
      *Constructor for the class Battle
-     * @param army1
-     * @param army2
+     * @param army1 one of the armies in a battle
+     * @param army2 the other armies in a battle
      */
     public Battle(Army army1, Army army2, String terrain) {
         this.army1 = army1;
@@ -25,6 +25,7 @@ public class Battle {
         if(!army2.hasUnits()){
             throw new IllegalArgumentException(army1.getName() + " This army has no units. Please add units before starting battle");
         }
+        this.terrains=new ArrayList<>();
         terrains.add("FOREST");
         terrains.add("HILL");
         terrains.add("PLAINS");
@@ -44,11 +45,10 @@ public class Battle {
     public Army simulate(){
         while(army1.hasUnits() && army2.hasUnits()) {
             for (int i = 0; i>=0;) {
-
                 Unit armyOneUnit = army1.getRandom();
                 Unit armyTwoUnit = army2.getRandom();
                 if (i % 2 == 0) {
-                    armyOneUnit.attack(armyTwoUnit);
+                    armyOneUnit.attack(armyTwoUnit,terrain);
                     i++;
                 }
                 if (armyTwoUnit.getHealth() == 0) {
@@ -58,7 +58,7 @@ public class Battle {
                     }
                 }
                 if (i % 2 != 0) {
-                    armyTwoUnit.attack(armyOneUnit);
+                    armyTwoUnit.attack(armyOneUnit,terrain);
                     i++;
                 }
                 if (armyOneUnit.getHealth() == 0) {
