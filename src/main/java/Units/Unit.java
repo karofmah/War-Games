@@ -33,7 +33,7 @@ public abstract class Unit {
         if(opponent.getArmor()<=this.getAttack()) {
             int opponentHealth = opponent.getHealth() - (this.getAttack() + this.getAttackBonus()
                     +this.getTerrainAttackBonus(terrain)+this.getTerrainAttackDefect(terrain)) +
-                    (opponent.getArmor() + opponent.getResistBonus()+opponent.getTerrainResistBonus(terrain)+getTerrainResistDefect(terrain));
+                    (opponent.getArmor() + opponent.getResistBonus()+opponent.getTerrainResistBonus(terrain)+opponent.getTerrainResistDefect(terrain));
             opponent.setHealth(opponentHealth);
         }
 

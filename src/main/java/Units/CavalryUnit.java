@@ -34,12 +34,10 @@ public class CavalryUnit extends Unit{
 
     @Override
     public int getTerrainAttackBonus(String terrain) {
-        int attackBonus=2;
+        int attackBonus=0;
         if(terrain.equals("PLAINS")){
-            if(attackCounter==0){
-                attackBonus+=2;
-            }
-            attackCounter++;
+            attackBonus=2;
+
         }
         return attackBonus;
     }

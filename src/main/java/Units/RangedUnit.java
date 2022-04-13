@@ -1,7 +1,7 @@
 package Units;
 
 public class RangedUnit extends Unit {
-    private int recievedAttack;
+    private int receivedAttack;
     /**
      * Constructor
      *
@@ -25,10 +25,10 @@ public class RangedUnit extends Unit {
     @Override
     public int getResistBonus() {
         int resistBonus=2;
-        for(int i=2;i>recievedAttack;i--){
+        for(int i = 2; i> receivedAttack; i--){
             resistBonus+=2;
         }
-        recievedAttack++;
+        receivedAttack++;
         return resistBonus;
     }
 
@@ -49,7 +49,7 @@ public class RangedUnit extends Unit {
     @Override
     public int getTerrainAttackDefect(String terrain) {
         int attackDefect=0;
-        if (terrain.equals("HILL")){
+        if (terrain.equals("FOREST")){
             attackDefect-=2;
         }
         return attackDefect;

@@ -44,12 +44,13 @@ public class Battle {
      */
     public Army simulate(){
         while(army1.hasUnits() && army2.hasUnits()) {
-            for (int i = 0; i>=0;) {
+            int numberOfAttacks=0;
+            while(numberOfAttacks>=0) {
                 Unit armyOneUnit = army1.getRandom();
                 Unit armyTwoUnit = army2.getRandom();
-                if (i % 2 == 0) {
+                if (numberOfAttacks % 2 == 0) {
                     armyOneUnit.attack(armyTwoUnit,terrain);
-                    i++;
+                    numberOfAttacks++;
                 }
                 if (armyTwoUnit.getHealth() == 0) {
                     army2.remove(armyTwoUnit);
@@ -57,9 +58,9 @@ public class Battle {
                         break;
                     }
                 }
-                if (i % 2 != 0) {
+                if (numberOfAttacks % 2 != 0) {
                     armyTwoUnit.attack(armyOneUnit,terrain);
-                    i++;
+                    numberOfAttacks++;
                 }
                 if (armyOneUnit.getHealth() == 0) {
                     army1.remove(armyOneUnit);

@@ -37,11 +37,29 @@ public class UnitTest {
 
         }
         @Test
-        @DisplayName("Tests if an attack against the opponent lowers their health by right amount")
-        public void attackOpponent() {
+        @DisplayName("Tests if an attack from a ranged unit to an infantry unit on a hill, lowers their health by right amount")
+        public void rangedAttacksInfantryInForest() {
             ranged.attack(infantry,"FOREST");
             int infantryHealthAfterAttack = infantry.getHealth();
-            assertEquals(95,infantryHealthAfterAttack);
+            assertEquals(97,infantryHealthAfterAttack);
+        }
+        @Test
+        @DisplayName("Tests if an attack from an infantry unit to an cavalry unit in a forest, lowers their health by right amount")
+        public void infantryAttacksCavalryInForest() {
+            infantry.attack(cavalry,"FOREST");
+            int cavalryHealthAfterAttack = cavalry.getHealth();
+            assertEquals(93,cavalryHealthAfterAttack);
+        }
+        @Test
+        @DisplayName("Tests if an attack from a cavalry unit to an ranged unit in plains, lowers their health by right amount")
+        public void cavalryAttacksRangedInPlains(){
+            cavalry.attack(ranged,"PLAINS");
+            int rangedHealthAfterAttack = ranged.getHealth();
+            assertEquals(86,rangedHealthAfterAttack);
+        }
+
+        public void getTerrainResistDefect(){
+            System.out.println(cavalry.getTerrainResistDefect("FOREST"));
         }
         @Test
         @DisplayName("Tests if it is possible to set health below zero")
