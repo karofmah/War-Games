@@ -1,5 +1,4 @@
-package Units;
-
+package wargames.model.Units;
 
 
 public class InfantryUnit extends Unit {

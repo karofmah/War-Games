@@ -1,6 +1,6 @@
-package Units;
+package wargames.model.Units;
 
-public class CavalryUnit extends Unit{
+public class CavalryUnit extends Unit {
     private int attackCounter;
     /**
      * Constructor

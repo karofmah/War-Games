@@ -1,4 +1,4 @@
-package Units;
+package wargames.model.Units;
 
 public class RangedUnit extends Unit {
     private int receivedAttack;

@@ -1,7 +1,7 @@
-package Battle;
+package wargames.model;
 
-import Army.Army;
-import Units.Unit;
+import wargames.model.Army;
+import wargames.model.Units.Unit;
 
 import java.util.ArrayList;
 

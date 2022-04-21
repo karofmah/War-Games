@@ -1,5 +1,4 @@
-package Units;
-
+package wargames.model.Units;
 public abstract class Unit {
     private String name; //name of the unit
     private int health; //health of the unit

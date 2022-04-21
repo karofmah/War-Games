@@ -1,11 +1,12 @@
 package Battle;
 
-import Army.Army;
-import UnitFactory.UnitFactory;
+import wargames.model.Army;
+import wargames.model.UnitFactory.UnitFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import wargames.model.Battle;
 
 import java.util.ArrayList;
 
