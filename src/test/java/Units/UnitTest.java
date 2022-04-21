@@ -19,11 +19,15 @@ public class UnitTest {
     @BeforeEach
     @DisplayName("Sets up the necessary data before each test")
     public void setup() {
-        this.factory=new UnitFactory();
-        this.infantry= (InfantryUnit) factory.create("InfantryUnit","Footman", 100);
-        this.cavalry = (CavalryUnit) factory.create("CavalryUnit","Knight", 100);
-        this.ranged = (RangedUnit) factory.create("RangedUnit","Archer", 100);
-        this.commander = (CommanderUnit) factory.create("CommanderUnit","Mountain King", 100);
+        try {
+            this.factory = new UnitFactory();
+            this.infantry = (InfantryUnit) factory.create("InfantryUnit", "Footman", 100);
+            this.cavalry = (CavalryUnit) factory.create("CavalryUnit", "Knight", 100);
+            this.ranged = (RangedUnit) factory.create("RangedUnit", "Archer", 100);
+            this.commander = (CommanderUnit) factory.create("CommanderUnit", "Mountain King", 100);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Nested

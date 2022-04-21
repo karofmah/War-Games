@@ -21,9 +21,10 @@ public class ArmyTest {
     @BeforeEach
     @DisplayName("Sets up necessary data before each test")
     public void setup() {
+        try{
         factory=new UnitFactory();
 
-        infantry = (InfantryUnit) factory.create("InfantryUnit","Footman", 100);
+        infantry = (InfantryUnit) factory.create("InfantryUnit", "Footman", 100);
 
         army1 = new Army("Blue Side", new ArrayList<>());
         army2 = new Army("Red Side", new ArrayList<>());
@@ -37,7 +38,9 @@ public class ArmyTest {
             army1.add(factory.create("InfantryUnit","Footman",100));
             army1.add(factory.create("RangedUnit","Archer",100));
         }
-
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Nested
@@ -98,11 +101,16 @@ public class ArmyTest {
         @Test
         @DisplayName("Tests if infantry units from the army are represented properly")
         public void getInfantryUnits() {
-            for (int i = 0; i < 1; i++) {
-                army2.add(factory.create("InfantryUnit","Footman", 100));
-                army2.add(factory.create("RangedUnit","Archer", 100));
-                army2.add(factory.create("CavalryUnit","Knight", 100));
-                army2.add(factory.create("CommanderUnit","Mountain King", 100));
+            try {
+                for (int i = 0; i < 1; i++) {
+                    army2.add(factory.create("InfantryUnit", "Footman", 100));
+                    army2.add(factory.create("RangedUnit", "Archer", 100));
+                    army2.add(factory.create("CavalryUnit", "Knight", 100));
+                    army2.add(factory.create("CommanderUnit", "Mountain King", 100));
+                }
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
             assertEquals(factory.unitsOfSpecificType("InfantryUnit","Footman",100,1).toString(), army2.getInfantryUnits().toString());
         }
@@ -110,11 +118,15 @@ public class ArmyTest {
         @Test
         @DisplayName("Tests if ranged units from an army are represented properly")
         public void getRangedUnits() {
-            for (int i = 0; i < 1; i++) {
-                army2.add(factory.create("InfantryUnit","Footman", 100));
-                army2.add(factory.create("RangedUnit","Archer", 100));
-                army2.add(factory.create("CavalryUnit","Knight", 100));
-                army2.add(factory.create("CommanderUnit","Mountain King", 100));
+            try {
+                for (int i = 0; i < 1; i++) {
+                    army2.add(factory.create("InfantryUnit", "Footman", 100));
+                    army2.add(factory.create("RangedUnit", "Archer", 100));
+                    army2.add(factory.create("CavalryUnit", "Knight", 100));
+                    army2.add(factory.create("CommanderUnit", "Mountain King", 100));
+                }
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
             assertEquals(factory.unitsOfSpecificType("RangedUnit","Archer",100,1).toString(), army2.getRangedUnits().toString());
         }
@@ -122,40 +134,49 @@ public class ArmyTest {
         @Test
         @DisplayName("Tests if cavalry units from an army are represented properly")
         public void getCavalryUnits() {
-            ArrayList<Unit> cavalryUnits=new ArrayList<>();
-            for (int i = 0; i < 1; i++) {
-                army2.add(factory.create("InfantryUnit","Footman", 100));
-                army2.add(factory.create("RangedUnit","Archer", 100));
-                army2.add(factory.create("CavalryUnit","Knight", 100));
-                army2.add(factory.create("CommanderUnit","Mountain King", 100));
-            }
-            cavalryUnits.add(factory.unitsOfSpecificType("CavalryUnit","Knight",100,1).get(0));
-            cavalryUnits.add(factory.unitsOfSpecificType("CommanderUnit","Mountain King",100,1).get(0));
+            ArrayList<Unit> cavalryUnits = new ArrayList<>();
+            try {
 
+                for (int i = 0; i < 1; i++) {
+                    army2.add(factory.create("InfantryUnit", "Footman", 100));
+                    army2.add(factory.create("RangedUnit", "Archer", 100));
+                    army2.add(factory.create("CavalryUnit", "Knight", 100));
+                    army2.add(factory.create("CommanderUnit", "Mountain King", 100));
+                }
+
+                cavalryUnits.add(factory.unitsOfSpecificType("CavalryUnit", "Knight", 100, 1).get(0));
+                cavalryUnits.add(factory.unitsOfSpecificType("CommanderUnit", "Mountain King", 100, 1).get(0));
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
             assertEquals(cavalryUnits.toString(),army2.getCavalryUnits().toString());
         }
 
         @Test
         @DisplayName("Tests if commander units from an army are represented properly")
         public void getCommanderUnits() {
-            for (int i = 0; i < 1; i++) {
-                army2.add(factory.create("InfantryUnit","Footman", 100));
-                army2.add(factory.create("RangedUnit","Archer", 100));
-                army2.add(factory.create("CavalryUnit","Knight", 100));
-                army2.add(factory.create("CommanderUnit","Mountain King", 100));
+            try {
+                for (int i = 0; i < 1; i++) {
+                    army2.add(factory.create("InfantryUnit", "Footman", 100));
+                    army2.add(factory.create("RangedUnit", "Archer", 100));
+                    army2.add(factory.create("CavalryUnit", "Knight", 100));
+                    army2.add(factory.create("CommanderUnit", "Mountain King", 100));
+                }
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
             assertEquals(factory.unitsOfSpecificType("CommanderUnit","Mountain King",100,1).toString(), army2.getCommanderUnits().toString());
         }
         @Test
         @DisplayName("Tests if army1 is written to the file ArmyFileTest.csv")
         public void writeAndReadArmyToFile(){
-            army1.writeArmyToFile(new File("src/main/resources/ArmyFileTest.csv"));
+            army1.writeArmyToFile(new File("src/test/resources/ArmyFileTest.csv"));
 
         }
         @Test
         @DisplayName("Tests if the file armyFileTest.csv is read properly")
         public void readArmyFromFile(){
-            army1.readArmyFromFile(new File("src/main/resources/ArmyFileTest.csv"));
+            army1.readArmyFromFile(new File("src/test/resources/ArmyFileTest.csv"));
 
         }
 

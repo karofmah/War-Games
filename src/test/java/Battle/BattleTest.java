@@ -25,24 +25,28 @@ public class BattleTest {
     @BeforeEach
     @DisplayName("Sets up necessary data before each test")
     public void setup() {
-        this.factory=new UnitFactory();
-        this.army1 =new Army("Blue Side");
-        this.army2 =new Army("Red Side", new ArrayList<>());
+        try {
+            this.factory = new UnitFactory();
+            this.army1 = new Army("Blue Side");
+            this.army2 = new Army("Red Side", new ArrayList<>());
 
-        for (int i =0 ; i < 10; i++) {
-            this.army1.add(factory.create("InfantryUnit","Footman",100));
-            this.army1.add(factory.create("RangedUnit","Archer", 100));
-            this.army2.add(factory.create("InfantryUnit","Grunt", 100));
-            this.army2.add(factory.create("RangedUnit","Spearman", 100));
+            for (int i = 0; i < 10; i++) {
+                this.army1.add(factory.create("InfantryUnit", "Footman", 100));
+                this.army1.add(factory.create("RangedUnit", "Archer", 100));
+                this.army2.add(factory.create("InfantryUnit", "Grunt", 100));
+                this.army2.add(factory.create("RangedUnit", "Spearman", 100));
 
+            }
+            for (int i = 0; i < 5; i++) {
+                this.army1.add(factory.create("CavalryUnit", "Knight", 100));
+                this.army1.add(factory.create("CommanderUnit", "Mountain King", 100));
+                this.army2.add(factory.create("CavalryUnit", "Raider", 100));
+                this.army2.add(factory.create("CommanderUnit", "Gul´dan", 100));
+            }
+            this.battle = new Battle(army1, army2, "FOREST");
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
-        for (int i=0; i<5; i++) {
-            this.army1.add(factory.create("CavalryUnit","Knight", 100));
-            this.army1.add(factory.create("CommanderUnit","Mountain King", 100));
-            this.army2.add(factory.create("CavalryUnit","Raider", 100));
-            this.army2.add(factory.create("CommanderUnit","Gul´dan", 100));
-        }
-        this.battle=new Battle(army1, army2,"FOREST");
     }
 
     @Nested
