@@ -27,7 +27,7 @@ public abstract class Unit {
 
     /**
      * Attack opponent to lower their health
-     * @param opponent
+     * @param opponent opponent that is attacked
      */
     public void attack(Unit opponent,String terrain){
         if(opponent.getArmor()<=this.getAttack()) {
@@ -70,7 +70,7 @@ public abstract class Unit {
 
     /**
      * Changes health
-     * @param health
+     * @param health health of the unit
      */
     public void setHealth(int health) {
         this.health = Math.max(health,0);
@@ -92,7 +92,6 @@ public abstract class Unit {
 
 
     public abstract int getAttackBonus();
-
 
     public abstract int getResistBonus();
 

@@ -15,7 +15,7 @@ public class Army {
 
     /**
      *Constructor for the class Army
-     * @param name of the Army, can not be blank
+     * @param name name of the Army, can not be blank
      */
     public Army(String name) {
         this.name = name;
@@ -27,8 +27,8 @@ public class Army {
 
     /**
      *Constructor for the class Army
-     * @param name of the Army, can not be blank
-     * @param units in the Army
+     * @param name name of the Army, can not be blank
+     * @param units units in the Army
      */
     public Army(String name, ArrayList<Unit> units) {
         this.name = name;
@@ -95,7 +95,7 @@ public class Army {
 
     /**
      *Adds all units from a list (units) to army
-     * @param units
+     * @param units a list of units
      */
     public void addAll(List<Unit> units) {
         for (Unit unit : units) {
@@ -105,7 +105,7 @@ public class Army {
 
     /**
      * Removes unit from army
-     * @param unit
+     * @param unit unit in an army
      */
     public void remove(Unit unit){
         if(units.contains(unit)){
@@ -137,7 +137,7 @@ public class Army {
 
     /**
      *Compares to objects
-     * @param o
+     * @param o an object
      * @return boolean
      * true or false depending on whether the objects are equal or not
      */

@@ -26,8 +26,8 @@ public class InfantryUnit extends Unit {
     }
 
     /**
-     * Returns attack bonus
-     * @return attackBonus=2
+     * Returns attack that infantry units will receive
+     * @return 2
      */
     @Override
     public int getAttackBonus() {
@@ -35,14 +35,19 @@ public class InfantryUnit extends Unit {
     }
 
     /**
-     *Returns attack bonus
-     * @return resistBonus=1
+     *Returns attack bonus that infantry units will receive
+     * @return 1
      */
     @Override
     public int getResistBonus() {
         return 1;
     }
 
+    /**
+     * Returns the bonus attack that infantry units will receive when fighting in a forest
+     * @param terrain the terrain where the battle is ongoing
+     * @return attackBonus
+     */
     @Override
     public int getTerrainAttackBonus(String terrain) {
         int attackBonus=0;
@@ -52,6 +57,11 @@ public class InfantryUnit extends Unit {
         return attackBonus;
     }
 
+    /**
+     * Returns the bonus resist that infantry units will receive when fighting in a forest
+     * @param terrain the terrain where the battle is ongoing
+     * @return resistBonus
+     */
     @Override
     public int getTerrainResistBonus(String terrain) {
         int resistBonus=0;
@@ -61,11 +71,20 @@ public class InfantryUnit extends Unit {
         return resistBonus;
     }
 
+    /**
+     * Returns the attack defects that infantry units will receive
+     * @param terrain the terrain where the battle is ongoing
+     * @return 0
+     */
     @Override
     public int getTerrainAttackDefect(String terrain) {
         return 0;
     }
-
+    /**
+     * Returns the resist defects that infantry units will receive
+     * @param terrain the terrain where the battle is ongoing
+     * @return 0
+     */
     @Override
     public int getTerrainResistDefect(String terrain) {
         return 0;
