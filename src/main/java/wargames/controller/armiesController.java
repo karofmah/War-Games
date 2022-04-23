@@ -1,24 +1,23 @@
 package wargames.controller;
 
-import javafx.application.Application;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
-import javafx.scene.Parent;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
+
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
+
 import wargames.WarGamesApplication;
 import wargames.model.Army;
-import wargames.model.Battle;
+
 import wargames.model.unitfactory.UnitFactory;
-import wargames.model.units.InfantryUnit;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,32 +34,29 @@ public class armiesController implements Initializable {
     private TableView<Army> armiesTableView;
 
     @FXML
-    private TableColumn<?, ?> armyNameCol;
+    private TableColumn<Army,String> armyNameCol;
 
     @FXML
-    private TableColumn<?, ?> numberOfCavalryUnitsCol;
+    private TableColumn<Army,Integer> numberOfCavalryUnitsCol;
 
     @FXML
-    private TableColumn<?, ?> numberOfCommanderUnitsCol;
+    private TableColumn<Army,Integer> numberOfCommanderUnitsCol;
 
     @FXML
-    private TableColumn<?, ?> numberOfInfantryUnitsCol;
+    private TableColumn<Army,Integer> numberOfInfantryUnitsCol;
 
     @FXML
-    private TableColumn<?, ?> numberOfRangedUnitsCol;
+    private TableColumn<Army,Integer> numberOfRangedUnitsCol;
     @FXML
-    private TableColumn<?, ?> totalNumberOfUnitsCol;
-    @FXML
-    private ObservableList<Army> armyObservableList;
+    private TableColumn<Army,Integer> totalNumberOfUnitsCol;
 
-    private InfantryUnit infantry;
 
     UnitFactory factory;
 
     private Army army1;
     private Army army2;
 
-    private Battle battle;
+
 
     @FXML
     void armiesBtnClicked() {
@@ -79,25 +75,29 @@ public class armiesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.armyNameCol.setCellValueFactory(new PropertyValueFactory<>("armyName"));
-        this.totalNumberOfUnitsCol.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
+        this.armyNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        this.totalNumberOfUnitsCol.setCellValueFactory(new PropertyValueFactory<Army,Integer>("totalNumberOfUnits"));
         this.numberOfInfantryUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
         this.numberOfRangedUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
         this.numberOfCavalryUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
         this.numberOfCommanderUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
         createArmies();
-        createBattle();
-        this.armyObservableList= FXCollections.observableArrayList((this.battle.getArmies()));
-        this.armiesTableView.setItems(this.armyObservableList);
+
+
+        ObservableList<Army> armyObservableList = FXCollections.observableArrayList(
+                new Army(army1.getName(), army1.getAllUnits().size(), army1.getInfantryUnits().size(),
+                        army1.getRangedUnits().size(), army1.getCavalryUnits().size(),
+                        army1.getCommanderUnits().size()),
+
+                new Army(army2.getName(), army2.getAllUnits().size(), army2.getInfantryUnits().size(),
+                        army2.getRangedUnits().size(), army2.getCavalryUnits().size(),
+                        army2.getCommanderUnits().size()));
+        this.armiesTableView.setItems(armyObservableList);
 
         //handleArmySelection();
     }
-    public void createBattle(){
-        try{this.battle=new Battle(this.army1,this.army2,"FOREST");}
-        catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
-    }
+
+
 
     public void createArmies(){
         try {

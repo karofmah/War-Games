@@ -13,10 +13,10 @@ public class Army {
     private String name;
     private List<Unit> units;
     private int totalNumberOfUnits;
-    /*private int numberOfInfantryUnits;
+    private int numberOfInfantryUnits;
     private int numberOfRangedUnits;
     private int numberOfCavalryUnits;
-    private int numberOfCommanderUnits;*/
+    private int numberOfCommanderUnits;
     /**
      *Constructor for the class Army
      * @param name name of the Army, can not be blank
@@ -44,7 +44,16 @@ public class Army {
               Army army=new Army(name);
         }
     }
+    public Army(String name,int totalNumberOfUnits,int numberOfInfantryUnits,int numberOfRangedUnits,int numberOfCavalryUnits,
+                int numberOfCommanderUnits){
+        this.name=name;
+        this.totalNumberOfUnits=totalNumberOfUnits;
+        this.numberOfInfantryUnits=numberOfInfantryUnits;
+        this.numberOfRangedUnits=numberOfRangedUnits;
+        this.numberOfCavalryUnits=numberOfCavalryUnits;
+        this.numberOfCommanderUnits=numberOfCommanderUnits;
 
+    }
     public void setName(String name) {
         this.name=name;
     }
@@ -89,6 +98,26 @@ public class Army {
     public List<Unit> getCommanderUnits(){
 
         return units.stream().filter(p->p instanceof CommanderUnit).collect(Collectors.toList());
+    }
+
+    public int getTotalNumberOfUnits() {
+        return totalNumberOfUnits;
+    }
+
+    public int getNumberOfInfantryUnits() {
+        return numberOfInfantryUnits;
+    }
+
+    public int getNumberOfRangedUnits() {
+        return numberOfRangedUnits;
+    }
+
+    public int getNumberOfCavalryUnits() {
+        return numberOfCavalryUnits;
+    }
+
+    public int getNumberOfCommanderUnits() {
+        return numberOfCommanderUnits;
     }
 
     /**
