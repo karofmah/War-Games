@@ -1,4 +1,4 @@
-package Units;
+package units;
 
 import wargames.model.unitfactory.UnitFactory;
 import org.junit.jupiter.api.BeforeEach;

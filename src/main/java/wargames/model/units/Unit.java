@@ -4,6 +4,8 @@ public abstract class Unit {
     private int health; //health of the unit
     private int attack; //attack damage of the unit
     private int armor; //armor of the unit
+    private String type; //type of the unit
+
 
     /**
      * Constructor for the abstract superclass Unit
@@ -23,7 +25,13 @@ public abstract class Unit {
         this.armor = armor;
         if(armor<0) throw new IllegalArgumentException("Unit can not have less than 0 armor");
     }
-
+    public Unit(String type,String name, int health){
+        if(type.equals(getClass().getSimpleName())) {
+            this.type = type;
+        }
+        this.name=name;
+        this.health=health;
+    }
     /**
      * Attack opponent to lower their health
      * @param opponent opponent that is attacked
@@ -75,17 +83,21 @@ public abstract class Unit {
         this.health = Math.max(health,0);
     }
 
+    public String getType() {
+        return type;
+    }
+
     /**
      * ToString-Method
      * @return Unit as String
      */
+
     @Override
     public String toString() {
         return "Units.Unit{" +
-                "name='" + name + '\'' +
+                "type='" + type + '\'' +
+                ", name=" + name +
                 ", health=" + health +
-                ", attack=" + attack +
-                ", armor=" + armor +
                 '}';
     }
 

@@ -14,7 +14,7 @@
             <Button fx:id="simulationBtn" layoutX="546.0" layoutY="97.0" mnemonicParsing="false" onAction="#simulationBtnClicked" prefHeight="25.0" prefWidth="87.0" text="Simulation" />
             <TableView fx:id="armiesTableView" layoutX="65.0" layoutY="154.0" prefHeight="113.0" prefWidth="961.0">
               <columns>
-                <TableColumn fx:id="armyNameCol" prefWidth="155.3333282470703" text="Army name" />
+                <TableColumn fx:id="armyNameCol" prefWidth="155.3333282470703" text="army name" />
                 <TableColumn fx:id="totalNumberOfUnitsCol" prefWidth="167.33334350585938" text="Total number of units" />
                   <TableColumn fx:id="numberOfInfantryUnitsCol" prefWidth="151.99996948242188" text="Number of infantry units" />
                   <TableColumn fx:id="numberOfRangedUnitsCol" prefWidth="151.99996948242188" text="Number of ranged units" />

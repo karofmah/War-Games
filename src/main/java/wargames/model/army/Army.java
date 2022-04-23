@@ -1,4 +1,4 @@
-package wargames.model;
+package wargames.model.army;
 
 
 import wargames.model.units.*;
@@ -45,17 +45,17 @@ public class Army {
         }
     }
     public Army(String name,int totalNumberOfUnits,int numberOfInfantryUnits,int numberOfRangedUnits,int numberOfCavalryUnits,
-                int numberOfCommanderUnits){
+                int numberOfCommanderUnits,List<Unit> units){
         this.name=name;
         this.totalNumberOfUnits=totalNumberOfUnits;
         this.numberOfInfantryUnits=numberOfInfantryUnits;
         this.numberOfRangedUnits=numberOfRangedUnits;
         this.numberOfCavalryUnits=numberOfCavalryUnits;
         this.numberOfCommanderUnits=numberOfCommanderUnits;
-
+        this.units=units;
     }
-    public void setName(String name) {
-        this.name=name;
+    public static void setName(String name) {
+        name=name;
     }
 
     /**

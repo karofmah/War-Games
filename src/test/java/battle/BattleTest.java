@@ -1,6 +1,6 @@
-package Battle;
+package battle;
 
-import wargames.model.Army;
+import wargames.model.army.Army;
 import wargames.model.unitfactory.UnitFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

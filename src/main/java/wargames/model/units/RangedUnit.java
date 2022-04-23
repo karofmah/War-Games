@@ -16,6 +16,7 @@ public class RangedUnit extends Unit {
     public RangedUnit(String name, int health) {
         super(name, health, 15, 8);
     }
+    public RangedUnit(String type,String name, int health){super(type,name,health);}
 
     /**
      * Returns the bonus attack that ranged units will receive

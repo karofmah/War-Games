@@ -1,8 +1,8 @@
-package Army;
+package army;
 
 import wargames.model.unitfactory.UnitFactory;
 import org.junit.jupiter.api.*;
-import wargames.model.Army;
+import wargames.model.army.Army;
 import wargames.model.units.InfantryUnit;
 import wargames.model.units.Unit;
 

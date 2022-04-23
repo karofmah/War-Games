@@ -22,11 +22,12 @@ public class CavalryUnit extends Unit {
     public CavalryUnit(String name, int health) {
         super(name, health, 20, 12);
     }
-
+    public CavalryUnit(String type,String name, int health){super(type,name,health);}
     /**
      * Returns the bonus attack that cavalry units will receive
      * @return attackBonus
      */
+
     @Override
     public int getAttackBonus() {
         int attackBonus=2;

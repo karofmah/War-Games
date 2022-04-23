@@ -10,16 +10,16 @@ public class UnitFactory implements AbstractFactory<Unit>{
     @Override
     public Unit create(String type, String name, int health) {
         if(type.equalsIgnoreCase("InfantryUnit")){
-            return new InfantryUnit(name,health);
+            return new InfantryUnit(type,name,health);
         }
         else if (type.equalsIgnoreCase("RangedUnit")){
-            return new RangedUnit(name,health);
+            return new RangedUnit(type,name,health);
         }
         else if (type.equalsIgnoreCase("CavalryUnit")){
-            return new CavalryUnit(name,health);
+            return new CavalryUnit(type, name,health);
         }
         else if (type.equalsIgnoreCase("CommanderUnit")){
-            return new CommanderUnit(name, health);
+            return new CommanderUnit(type, name, health);
         }else
         return null;
     }

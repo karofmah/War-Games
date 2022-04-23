@@ -1,13 +1,14 @@
 package wargames.model;
 
+import wargames.model.army.Army;
 import wargames.model.units.Unit;
 
 import java.util.ArrayList;
 
 
 public class Battle {
-    private final wargames.model.Army army1;
-    private final wargames.model.Army army2;
+    private final Army army1;
+    private final Army army2;
     private final String terrain;
     private final ArrayList<String> terrains;
     /**
@@ -15,7 +16,7 @@ public class Battle {
      * @param army1 one of the armies in a battle
      * @param army2 the other armies in a battle
      */
-    public Battle(wargames.model.Army army1, wargames.model.Army army2, String terrain) {
+    public Battle(Army army1, Army army2, String terrain) {
         this.army1 = army1;
         if(!army1.hasUnits()){
             throw new IllegalArgumentException(army1.getName() +" has no units. Please add units before starting battle");
@@ -41,7 +42,7 @@ public class Battle {
      * Returns the winner
      * @return Army
      */
-    public wargames.model.Army simulate(){
+    public Army simulate(){
         while(army1.hasUnits() && army2.hasUnits()) {
             int numberOfAttacks=0;
             while(numberOfAttacks>=0) {
@@ -72,8 +73,8 @@ public class Battle {
 
         return army1.hasUnits() ? army1 : army2;
     }
-    public ArrayList <wargames.model.Army> getArmies(){
-        ArrayList<wargames.model.Army> armies=new ArrayList<>();
+    public ArrayList <Army> getArmies(){
+        ArrayList<Army> armies=new ArrayList<>();
 
         armies.add(army1);
         armies.add(army2);
