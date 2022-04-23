@@ -1,6 +1,6 @@
-package wargames.model.UnitFactory;
+package wargames.model.unitfactory;
 
-import wargames.model.Units.*;
+import wargames.model.units.*;
 
 import java.util.ArrayList;
 

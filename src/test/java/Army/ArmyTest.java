@@ -1,10 +1,10 @@
 package Army;
 
-import wargames.model.UnitFactory.UnitFactory;
+import wargames.model.unitfactory.UnitFactory;
 import org.junit.jupiter.api.*;
 import wargames.model.Army;
-import wargames.model.Units.InfantryUnit;
-import wargames.model.Units.Unit;
+import wargames.model.units.InfantryUnit;
+import wargames.model.units.Unit;
 
 import java.io.File;
 import java.util.ArrayList;

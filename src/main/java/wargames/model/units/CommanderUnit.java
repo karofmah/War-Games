@@ -1,6 +1,4 @@
-package wargames.model.Units;
-
-import wargames.model.Units.CavalryUnit;
+package wargames.model.units;
 
 public class CommanderUnit extends CavalryUnit {
     /**

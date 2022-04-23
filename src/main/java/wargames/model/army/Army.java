@@ -1,7 +1,7 @@
 package wargames.model;
 
 
-import wargames.model.Units.*;
+import wargames.model.units.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 public class Army {
     private String name;
     private List<Unit> units;
-
+    private int totalNumberOfUnits;
+    /*private int numberOfInfantryUnits;
+    private int numberOfRangedUnits;
+    private int numberOfCavalryUnits;
+    private int numberOfCommanderUnits;*/
     /**
      *Constructor for the class Army
      * @param name name of the Army, can not be blank
@@ -39,6 +43,10 @@ public class Army {
         if(units.isEmpty()){
               Army army=new Army(name);
         }
+    }
+
+    public void setName(String name) {
+        this.name=name;
     }
 
     /**

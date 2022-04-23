@@ -1,7 +1,7 @@
 package Battle;
 
 import wargames.model.Army;
-import wargames.model.UnitFactory.UnitFactory;
+import wargames.model.unitfactory.UnitFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

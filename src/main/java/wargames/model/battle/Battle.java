@@ -1,14 +1,13 @@
 package wargames.model;
 
-import wargames.model.Army;
-import wargames.model.Units.Unit;
+import wargames.model.units.Unit;
 
 import java.util.ArrayList;
 
 
 public class Battle {
-    private final Army army1;
-    private final Army army2;
+    private final wargames.model.Army army1;
+    private final wargames.model.Army army2;
     private final String terrain;
     private final ArrayList<String> terrains;
     /**
@@ -16,14 +15,14 @@ public class Battle {
      * @param army1 one of the armies in a battle
      * @param army2 the other armies in a battle
      */
-    public Battle(Army army1, Army army2, String terrain) {
+    public Battle(wargames.model.Army army1, wargames.model.Army army2, String terrain) {
         this.army1 = army1;
         if(!army1.hasUnits()){
             throw new IllegalArgumentException(army1.getName() +" has no units. Please add units before starting battle");
             }
         this.army2 = army2;
         if(!army2.hasUnits()){
-            throw new IllegalArgumentException(army1.getName() + " This army has no units. Please add units before starting battle");
+            throw new IllegalArgumentException(army1.getName() + " has no units. Please add units before starting battle");
         }
         this.terrains=new ArrayList<>();
         terrains.add("FOREST");
@@ -42,7 +41,7 @@ public class Battle {
      * Returns the winner
      * @return Army
      */
-    public Army simulate(){
+    public wargames.model.Army simulate(){
         while(army1.hasUnits() && army2.hasUnits()) {
             int numberOfAttacks=0;
             while(numberOfAttacks>=0) {
@@ -73,12 +72,21 @@ public class Battle {
 
         return army1.hasUnits() ? army1 : army2;
     }
+    public ArrayList <wargames.model.Army> getArmies(){
+        ArrayList<wargames.model.Army> armies=new ArrayList<>();
+
+        armies.add(army1);
+        armies.add(army2);
+
+        return armies;
+    }
 
     @Override
     public String toString() {
         return "Battle{" +
-                "armyOne=" + army1 +
-                ", armyTwo=" + army2 +
+                "army1=" + army1 +
+                ", army2=" + army2 +
+                ", terrain='" + terrain +
                 '}';
     }
 }

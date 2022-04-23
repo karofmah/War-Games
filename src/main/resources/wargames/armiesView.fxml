@@ -6,21 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1085.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.armiesController">
    <top>
       <AnchorPane prefHeight="549.0" prefWidth="718.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="armiesBtn" layoutX="480.0" layoutY="97.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="25.0" prefWidth="65.0" text="Armies" />
             <Button fx:id="simulationBtn" layoutX="546.0" layoutY="97.0" mnemonicParsing="false" onAction="#simulationBtnClicked" prefHeight="25.0" prefWidth="87.0" text="Simulation" />
-            <TableView layoutX="65.0" layoutY="154.0" prefHeight="113.0" prefWidth="961.0">
+            <TableView fx:id="armiesTableView" layoutX="65.0" layoutY="154.0" prefHeight="113.0" prefWidth="961.0">
               <columns>
-                <TableColumn prefWidth="155.3333282470703" text="Army name" />
-                <TableColumn prefWidth="167.33334350585938" text="Total number of units" />
-                  <TableColumn prefWidth="151.99996948242188" text="Number of infantry units" />
-                  <TableColumn prefWidth="151.99996948242188" text="Number of ranged units" />
-                  <TableColumn prefWidth="151.99996948242188" text="Number of cavalry units" />
-                  <TableColumn prefWidth="179.33343505859375" text="Number of commander units" />
+                <TableColumn fx:id="armyNameCol" prefWidth="155.3333282470703" text="Army name" />
+                <TableColumn fx:id="totalNumberOfUnitsCol" prefWidth="167.33334350585938" text="Total number of units" />
+                  <TableColumn fx:id="numberOfInfantryUnitsCol" prefWidth="151.99996948242188" text="Number of infantry units" />
+                  <TableColumn fx:id="numberOfRangedUnitsCol" prefWidth="151.99996948242188" text="Number of ranged units" />
+                  <TableColumn fx:id="numberOfCavalryUnitsCol" prefWidth="151.99996948242188" text="Number of cavalry units" />
+                  <TableColumn fx:id="numberOfCommanderUnitsCol" prefWidth="179.33343505859375" text="Number of commander units" />
               </columns>
             </TableView>
          </children>

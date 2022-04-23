@@ -1,14 +1,14 @@
 package Units;
 
-import wargames.model.UnitFactory.UnitFactory;
+import wargames.model.unitfactory.UnitFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import wargames.model.Units.CavalryUnit;
-import wargames.model.Units.CommanderUnit;
-import wargames.model.Units.InfantryUnit;
-import wargames.model.Units.RangedUnit;
+import wargames.model.units.CavalryUnit;
+import wargames.model.units.CommanderUnit;
+import wargames.model.units.InfantryUnit;
+import wargames.model.units.RangedUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
