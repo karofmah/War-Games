@@ -11,15 +11,15 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.selectedArmyController">
    <bottom>
        <AnchorPane prefHeight="491.0" prefWidth="801.0" BorderPane.alignment="CENTER">
-           <TableView fx:id="unitsTableView" layoutX="99.0" layoutY="14.0" prefHeight="393.0" prefWidth="583.0">
+           <TableView fx:id="unitsTableView" layoutX="92.0" layoutY="-7.0" prefHeight="393.0" prefWidth="583.0">
                <columns>
-                   <TableColumn fx:id="unitTypeCol" prefWidth="216.66664123535156" text="Unit type"/>
-                   <TableColumn fx:id="unitNameCol" prefWidth="195.33340454101562" text="Unit name"/>
-                   <TableColumn fx:id="unitHealthCol" prefWidth="170.66668701171875" text="Unit health"/>
+                   <TableColumn fx:id="unitTypeCol" prefWidth="216.66664123535156" text="Unit type" />
+                   <TableColumn fx:id="unitNameCol" prefWidth="195.33340454101562" text="Unit name" />
+                   <TableColumn fx:id="unitHealthCol" prefWidth="170.66668701171875" text="Unit health" />
                </columns>
            </TableView>
-           <Button fx:id="backBtn" layoutX="26.0" layoutY="442.0" mnemonicParsing="false" onAction="#backBtnClicked"
-                   text="Back"/>
+           <Button fx:id="backBtn" layoutX="26.0" layoutY="442.0" mnemonicParsing="false" onAction="#backBtnClicked" text="Back" />
+         <Button fx:id="openFileBtn" layoutX="92.0" layoutY="386.0" mnemonicParsing="false" text="Open file" />
        </AnchorPane>
    </bottom>
    <top>

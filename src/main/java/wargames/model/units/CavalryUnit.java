@@ -22,7 +22,8 @@ public class CavalryUnit extends Unit {
     public CavalryUnit(String name, int health) {
         super(name, health, 20, 12);
     }
-    public CavalryUnit(String type,String name, int health){super(type,name,health);}
+    public CavalryUnit(String type, String name, int health,int attack,int armor){super(type,name,health,attack,armor);}
+    public CavalryUnit(String type,String name, int health){super(type,name,health,20, 12);}
     /**
      * Returns the bonus attack that cavalry units will receive
      * @return attackBonus

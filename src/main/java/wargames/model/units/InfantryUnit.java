@@ -24,7 +24,7 @@ public class InfantryUnit extends Unit {
         super(name,health,15,10);
     }
 
-    public InfantryUnit(String type,String name, int health){super(type,name,health);}
+    public InfantryUnit(String type,String name, int health){super(type,name,health,15,10);}
 
     /**
      * Returns attack that infantry units will receive

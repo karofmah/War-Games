@@ -107,7 +107,7 @@ public class UnitTest {
         @Test
         @DisplayName("Tests if a Unit can be created through UnitFactory")
         public void createUnitWithFactory(){
-            assertEquals("Units.Unit{name='Footman', health=100, attack=15, armor=10}",infantry.toString());
+            assertEquals("Unit{name='Footman', health=100, attack=15, armor=10}",infantry.toString());
         }
         @Nested
         @DisplayName("Performs negative tests")

@@ -14,6 +14,7 @@ import wargames.model.army.Army;
 import wargames.model.unitfactory.UnitFactory;
 import wargames.model.units.Unit;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class selectedArmyController implements Initializable {
     public Button backBtn;
     @FXML
     private TableView<Unit> unitsTableView;
+
     @FXML
     private TableColumn<?, ?> unitHealthCol;
 
@@ -32,7 +34,6 @@ public class selectedArmyController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> unitTypeCol;
-
 
     @FXML
     private Label teamNameLbl;
@@ -77,12 +78,12 @@ public class selectedArmyController implements Initializable {
                                     , unit.getName(), unit.getHealth(), 1));
                         }
                     }
-
                     unitObservableList = FXCollections.observableArrayList(unitsList);
 
                 }
-        this.unitsTableView.setItems(this.unitObservableList);
+                this.unitsTableView.setItems(this.unitObservableList);
+
             }
 
-    }
+}
 

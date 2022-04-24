@@ -48,6 +48,7 @@ public class armiesController implements Initializable {
 
     @FXML
     private TableColumn<Army,Integer> numberOfRangedUnitsCol;
+
     @FXML
     private TableColumn<Army,Integer> totalNumberOfUnitsCol;
 

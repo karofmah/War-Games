@@ -25,12 +25,24 @@ public abstract class Unit {
         this.armor = armor;
         if(armor<0) throw new IllegalArgumentException("Unit can not have less than 0 armor");
     }
-    public Unit(String type,String name, int health){
-        if(type.equals(getClass().getSimpleName())) {
-            this.type = type;
-        }
+
+    public Unit(String type,String name, int health, int attack,int armor){
+
+        this.type = type;
+        if(!type.equals(getClass().getSimpleName())) throw new IllegalArgumentException("Type of the unit must be valid, please write a type that exists");
+
         this.name=name;
+        if(name.isBlank()) throw new IllegalArgumentException("Please enter a name");
+
         this.health=health;
+        if(health<=0) throw new IllegalArgumentException("Unit can not have equal to, or less than 0 health");
+
+        this.attack=attack;
+        if(attack<0) throw new IllegalArgumentException("Unit can not have less than 0 attack");
+
+        this.armor=armor;
+        if(armor<0) throw new IllegalArgumentException("Unit can not have less than 0 armor");
+
     }
     /**
      * Attack opponent to lower their health
@@ -87,19 +99,22 @@ public abstract class Unit {
         return type;
     }
 
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "name='" + name + '\'' +
+                ", health=" + health +
+                ", attack=" + attack +
+                ", armor=" + armor +
+                '}';
+    }
+
     /**
      * ToString-Method
      * @return Unit as String
      */
 
-    @Override
-    public String toString() {
-        return "Units.Unit{" +
-                "type='" + type + '\'' +
-                ", name=" + name +
-                ", health=" + health +
-                '}';
-    }
+
 
 
     public abstract int getAttackBonus();
