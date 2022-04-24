@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 
 public class selectedArmyController implements Initializable {
 
+    @FXML
     public Button backBtn;
     @FXML
     private TableView<Unit> unitsTableView;

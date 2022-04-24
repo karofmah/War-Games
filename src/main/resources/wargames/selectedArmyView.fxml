@@ -19,7 +19,6 @@
                </columns>
            </TableView>
            <Button fx:id="backBtn" layoutX="26.0" layoutY="442.0" mnemonicParsing="false" onAction="#backBtnClicked" text="Back" />
-         <Button fx:id="openFileBtn" layoutX="92.0" layoutY="386.0" mnemonicParsing="false" text="Open file" />
        </AnchorPane>
    </bottom>
    <top>

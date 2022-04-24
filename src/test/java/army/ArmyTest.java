@@ -178,7 +178,7 @@ public class ArmyTest {
         @Test
         @DisplayName("Tests if the file armyFileTest.csv is read properly")
         public void readArmyFromFile(){
-            army1.readArmyFromFile(new File("src/test/resources/ArmyFileTest.csv"));
+            System.out.println(army1.readArmyFromFile(new File("src/test/resources/ArmyFileTest.csv")));
 
         }
 

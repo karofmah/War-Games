@@ -11,10 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.stage.Stage;
@@ -24,6 +22,7 @@ import wargames.model.army.Army;
 import wargames.model.unitfactory.UnitFactory;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -52,6 +51,11 @@ public class armiesController implements Initializable {
     @FXML
     private TableColumn<Army,Integer> totalNumberOfUnitsCol;
 
+    @FXML
+    private TextArea textFromFileArea;
+
+    @FXML
+    private TextField fileLocationTextField;
 
     UnitFactory factory;
 
@@ -130,7 +134,10 @@ public class armiesController implements Initializable {
                 Army army = row.getItem();
                 if (row.isHover() && army != null) {
                     row.setOnMouseEntered(mouseEvent1 -> {//Listen when mouse is hovered over a row
-                        armiesTableView.setCursor(Cursor.HAND);//Change courser
+                        armiesTableView.setCursor(Cursor.HAND);//Change
+                        army.writeArmyToFile(new File("src/main/resources/ArmyFile.csv"));
+                        textFromFileArea.setText(army.readArmyFromFile(new File("src/main/resources/ArmyFile.csv")));
+                        fileLocationTextField.setText("wargames/src/main/resources/ArmyFile.csv");
                         row.setOnMouseClicked(mouseEvent2 -> { //Listen for click event
                             //Army.setName((army.getName()));
 

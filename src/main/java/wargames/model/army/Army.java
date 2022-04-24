@@ -220,15 +220,19 @@ public class Army {
             e.printStackTrace();
         }
     }
-    public void readArmyFromFile(File file){
+    public String readArmyFromFile(File file){
+        String textFromFile="";
         try(Scanner scanner=new Scanner(file)){
             while(scanner.hasNext()){
                 String line=scanner.nextLine();
-                System.out.println(line);
+                textFromFile+=line+"\n";
             }
+            return textFromFile;
+
         }catch (IOException e){
             e.printStackTrace();
         }
+        return null;
     }
 }
 
