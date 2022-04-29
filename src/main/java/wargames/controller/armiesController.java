@@ -3,6 +3,7 @@ package wargames.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
@@ -74,9 +75,12 @@ public class armiesController implements Initializable {
     }
 
     @FXML
-    void simulationBtnClicked() {
-//TODO Change scene when this button is clicked
-
+    void simulationBtnClicked(Army army1,Army army2) {
+        try {
+            WarGamesApplication.changeScene("simulationView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -102,7 +106,7 @@ public class armiesController implements Initializable {
 
     }
 
-    public void createArmies(){
+ public void createArmies(){
         try {
             this.factory = new UnitFactory();
             this.army1 = new Army("Blue Side");
@@ -139,7 +143,7 @@ public class armiesController implements Initializable {
                         textFromFileArea.setText(army.readArmyFromFile(new File("src/main/resources/ArmyFile.csv")));
                         fileLocationTextField.setText("wargames/src/main/resources/ArmyFile.csv");
                         row.setOnMouseClicked(mouseEvent2 -> { //Listen for click event
-                            //Army.setName((army.getName()));
+
 
                             changeToSelectedArmyView(army);//Change scene
 
@@ -161,8 +165,22 @@ public class armiesController implements Initializable {
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             Parent FrontPageParent = loader.load();
             selectedArmyController controller = loader.getController();
-            System.out.println(army);
             controller.initData(army);
+            Stage stage = WarGamesApplication.stage;
+            stage.getScene().setRoot(FrontPageParent);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void simulationBtnClicked(ActionEvent actionEvent) {
+        try {
+            URL fxmlLocation = getClass().getResource("/wargames/simulationView.fxml");
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            Parent FrontPageParent = loader.load();
+            simulationController controller = loader.getController();
+            controller.initData(army1,army2);
             Stage stage = WarGamesApplication.stage;
             stage.getScene().setRoot(FrontPageParent);
 

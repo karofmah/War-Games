@@ -1,31 +1,31 @@
-Red Side
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-InfantryUnit,Grunt,100
-RangedUnit,Spearman,100
-CavalryUnit,Raider,100
-CommanderUnit,Gul´dan,100
-CavalryUnit,Raider,100
-CommanderUnit,Gul´dan,100
-CavalryUnit,Raider,100
-CommanderUnit,Gul´dan,100
-CavalryUnit,Raider,100
-CommanderUnit,Gul´dan,100
-CavalryUnit,Raider,100
-CommanderUnit,Gul´dan,100
+Blue Side
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+InfantryUnit,Footman,100
+RangedUnit,Archer,100
+CavalryUnit,Knight,100
+CommanderUnit,Mountain King,100
+CavalryUnit,Knight,100
+CommanderUnit,Mountain King,100
+CavalryUnit,Knight,100
+CommanderUnit,Mountain King,100
+CavalryUnit,Knight,100
+CommanderUnit,Mountain King,100
+CavalryUnit,Knight,100
+CommanderUnit,Mountain King,100
