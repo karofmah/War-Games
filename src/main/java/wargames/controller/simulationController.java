@@ -1,8 +1,11 @@
 package wargames.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import wargames.WarGamesApplication;
 import wargames.model.battle.Battle;
@@ -11,7 +14,7 @@ import wargames.model.unitfactory.UnitFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class simulationController implements Initializable {
@@ -33,6 +36,9 @@ public class simulationController implements Initializable {
     private Button resetBattleBtn;
 
     @FXML
+    private ComboBox<String> terrainComboBox;
+
+    @FXML
     void armiesBtnClicked() {
         try {
             WarGamesApplication.changeScene("armiesView.fxml");
@@ -41,7 +47,10 @@ public class simulationController implements Initializable {
         }
 
     }
-
+    private void addTerrainsToComboBox(){
+            ObservableList<String> terrainList= FXCollections.observableArrayList("Forest","Hill","Plains");
+            terrainComboBox.setItems(terrainList);
+    }
     @FXML
     void simulationBtnClicked() {
         try {
@@ -53,11 +62,12 @@ public class simulationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        addTerrainsToComboBox();
 
     }
 
     public void startBattle(Army army1,Army army2,String terrain){
+        System.out.println(terrain);
         Battle battle=new Battle(army1,army2,terrain);
         battle.simulate();
 
@@ -112,7 +122,8 @@ public class simulationController implements Initializable {
         totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
 
         startBattleBtn.setOnMouseClicked(mouseEvent ->
-                startBattle(army1,army2,"FOREST"));
+                startBattle(army1,army2,terrainComboBox.getValue().toUpperCase()));
+
         resetBattleBtn.setOnMouseClicked(mouseEvent ->resetBattle(army1,army2) );
 
 

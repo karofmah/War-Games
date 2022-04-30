@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Army {
-    private String name;
+    private final String name;
     private List<Unit> units;
     private int totalNumberOfUnits;
     private int numberOfInfantryUnits;
@@ -27,7 +27,7 @@ public class Army {
         if(name.isBlank()) {
             throw new IllegalArgumentException("Please enter a name");
         }
-        units=new ArrayList<Unit>();
+        units= new ArrayList<>();
     }
 
     /**
@@ -55,9 +55,7 @@ public class Army {
         this.numberOfCommanderUnits=numberOfCommanderUnits;
         this.units=units;
     }
-    public static void setName(String name) {
-        name=name;
-    }
+
 
     /**
      *Returns name
@@ -123,7 +121,7 @@ public class Army {
 
     /**
      *Adds an unit to army
-     * @param unit
+     * @param unit a unit outside the army
      */
     public void add(Unit unit){
         if(!units.contains(unit)) {
@@ -146,9 +144,7 @@ public class Army {
      * @param unit unit in an army
      */
     public void remove(Unit unit){
-        if(units.contains(unit)){
-            units.remove(unit);
-        }
+        units.remove(unit);
     }
 
     /**
@@ -222,13 +218,13 @@ public class Army {
         }
     }
     public String readArmyFromFile(File file){
-        String textFromFile="";
+        StringBuilder textFromFile= new StringBuilder();
         try(Scanner scanner=new Scanner(file)){
             while(scanner.hasNext()){
                 String line=scanner.nextLine();
-                textFromFile+=line+"\n";
+                textFromFile.append(line).append("\n");
             }
-            return textFromFile;
+            return textFromFile.toString();
 
         }catch (IOException e){
             e.printStackTrace();

@@ -1,9 +1,9 @@
 package wargames.model.units;
 public abstract class Unit {
-    private String name; //name of the unit
+    private final String name; //name of the unit
     private int health; //health of the unit
-    private int attack; //attack damage of the unit
-    private int armor; //armor of the unit
+    private final int attack; //attack damage of the unit
+    private final int armor; //armor of the unit
     private String type; //type of the unit
 
 

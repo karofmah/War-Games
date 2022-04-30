@@ -14,7 +14,7 @@
             <Button fx:id="startBattleBtn" layoutX="254.0" layoutY="500.0" mnemonicParsing="false" text="Start battle" />
             <Button fx:id="simulationBtn" layoutX="302.0" layoutY="123.0" mnemonicParsing="false" onAction="#armiesBtnClicked" text="Armies" />
             <Button fx:id="armiesBtn" layoutX="355.0" layoutY="123.0" mnemonicParsing="false" onAction="#simulationBtnClicked" prefHeight="25.0" prefWidth="86.0" text="Simulation" />
-            <ComboBox layoutX="302.0" layoutY="56.0" prefWidth="150.0" promptText="Terrain" />
+            <ComboBox fx:id="terrainComboBox" layoutX="302.0" layoutY="56.0" prefWidth="150.0" promptText="Terrain" />
             <Label layoutX="97.0" layoutY="42.0" prefHeight="53.0" prefWidth="157.0" text="Blue side">
                <font>
                   <Font size="36.0" />
