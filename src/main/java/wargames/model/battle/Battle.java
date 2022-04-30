@@ -1,4 +1,4 @@
-package wargames.model;
+package wargames.model.battle;
 
 import wargames.model.army.Army;
 import wargames.model.units.Unit;
@@ -10,7 +10,7 @@ public class Battle {
     private final Army army1;
     private final Army army2;
     private final String terrain;
-    private final ArrayList<String> terrains;
+
     /**
      *Constructor for the class Battle
      * @param army1 one of the armies in a battle
@@ -25,7 +25,7 @@ public class Battle {
         if(!army2.hasUnits()){
             throw new IllegalArgumentException(army1.getName() + " has no units. Please add units before starting battle");
         }
-        this.terrains=new ArrayList<>();
+        ArrayList<String> terrains = new ArrayList<>();
         terrains.add("FOREST");
         terrains.add("HILL");
         terrains.add("PLAINS");
@@ -58,10 +58,8 @@ public class Battle {
                         break;
                     }
                 }
-                if (numberOfAttacks % 2 != 0) {
-                    armyTwoUnit.attack(armyOneUnit,terrain);
-                    numberOfAttacks++;
-                }
+                armyTwoUnit.attack(armyOneUnit,terrain);
+                numberOfAttacks++;
                 if (armyOneUnit.getHealth() == 0) {
                     army1.remove(armyOneUnit);
                     if (!army1.hasUnits()) {

@@ -14,7 +14,6 @@ import wargames.model.army.Army;
 import wargames.model.unitfactory.UnitFactory;
 import wargames.model.units.Unit;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

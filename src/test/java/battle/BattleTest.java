@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import wargames.model.Battle;
+import wargames.model.battle.Battle;
 
 import java.util.ArrayList;
 
@@ -21,13 +21,11 @@ public class BattleTest {
 
     private Battle battle;
 
-    private UnitFactory factory;
-
     @BeforeEach
     @DisplayName("Sets up necessary data before each test")
     public void setup() {
         try {
-            this.factory = new UnitFactory();
+            UnitFactory factory = new UnitFactory();
             this.army1 = new Army("Blue Side");
             this.army2 = new Army("Red Side", new ArrayList<>());
 
