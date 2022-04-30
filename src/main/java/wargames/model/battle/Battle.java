@@ -19,21 +19,22 @@ public class Battle {
     public Battle(Army army1, Army army2, String terrain) {
         this.army1 = army1;
         if(!army1.hasUnits()){
-            throw new IllegalArgumentException(army1.getName() +" has no units. Please add units before starting battle");
+            throw new IllegalArgumentException(army1.getName() +" has no units. Please reset battle before starting battle");
             }
         this.army2 = army2;
         if(!army2.hasUnits()){
-            throw new IllegalArgumentException(army1.getName() + " has no units. Please add units before starting battle");
+            throw new IllegalArgumentException(army2.getName() + " has no units. Please reset battle before starting battle");
         }
         ArrayList<String> terrains = new ArrayList<>();
         terrains.add("FOREST");
         terrains.add("HILL");
         terrains.add("PLAINS");
-        this.terrain=terrain.toUpperCase();
-
-        if(!terrains.contains(terrain)){
+        if(terrain!=null && terrains.contains(terrain.toUpperCase()) ){
+            this.terrain = terrain.toUpperCase();
+        }
+        else {
             throw new IllegalArgumentException("The terrain chosen for this battle does not exist. " +
-                    "Please choose one of the following terrains: FOREST, HILL, PLAINS");
+                    "Please choose one of the following terrains: Forest, Hill, Plains");
         }
     }
 

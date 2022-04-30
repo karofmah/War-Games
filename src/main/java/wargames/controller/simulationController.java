@@ -2,6 +2,7 @@ package wargames.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,10 +12,11 @@ import wargames.WarGamesApplication;
 import wargames.model.battle.Battle;
 import wargames.model.army.Army;
 import wargames.model.unitfactory.UnitFactory;
+import static wargames.dialogs.Dialogs.showAlertDialog;
+import static wargames.dialogs.Dialogs.showInformationDialog;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class simulationController implements Initializable {
@@ -39,6 +41,9 @@ public class simulationController implements Initializable {
     private ComboBox<String> terrainComboBox;
 
     @FXML
+    private Label announcedWinnerLabel;
+
+    @FXML
     void armiesBtnClicked() {
         try {
             WarGamesApplication.changeScene("armiesView.fxml");
@@ -51,14 +56,9 @@ public class simulationController implements Initializable {
             ObservableList<String> terrainList= FXCollections.observableArrayList("Forest","Hill","Plains");
             terrainComboBox.setItems(terrainList);
     }
+
+
     @FXML
-    void simulationBtnClicked() {
-        try {
-            WarGamesApplication.changeScene("simulationView.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,24 +66,35 @@ public class simulationController implements Initializable {
 
     }
 
-    public void startBattle(Army army1,Army army2,String terrain){
-        System.out.println(terrain);
-        Battle battle=new Battle(army1,army2,terrain);
-        battle.simulate();
+    public void startBattle(Army army1,Army army2){
+        try {
+            Battle battle = new Battle(army1, army2, terrainComboBox.getValue());
+            Army winner=battle.simulate();
 
-        int totalArmy1Units=army1.getAllUnits().size();
-        String totalArmy1UnitsString=Integer.toString(totalArmy1Units);
-        int totalArmy2Units=army2.getAllUnits().size();
-        String totalArmy2UnitsString=Integer.toString(totalArmy2Units);
-       totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
-       totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString);
+            announcedWinnerLabel.setText(winner.getName() + " won the battle!");
+
+            int totalArmy1Units = army1.getAllUnits().size();
+            String totalArmy1UnitsString = Integer.toString(totalArmy1Units);
+            totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString);
+
+            int totalArmy2Units = army2.getAllUnits().size();
+            String totalArmy2UnitsString = Integer.toString(totalArmy2Units);
+            totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
+
+
+        }catch (IllegalArgumentException e){
+            showAlertDialog(e);
+        }
+
 
     }
+
     public void resetBattle(Army army1,Army army2){
         try {
             UnitFactory factory = new UnitFactory();
             army1.getAllUnits().clear();
             army2.getAllUnits().clear();
+            announcedWinnerLabel.setText("");
 
             for (int i = 0; i < 10; i++) {
                 army1.add(factory.create("InfantryUnit", "Footman", 100));
@@ -110,25 +121,28 @@ public class simulationController implements Initializable {
         totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString);
     }
 
+
     public void initData(Army army1, Army army2) {
-        System.out.println(army1);
-        System.out.println(army2);
-        int totalArmy1Units=army1.getAllUnits().size();
-        String totalArmy1UnitsString=Integer.toString(totalArmy1Units);
-        totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString);
+        try {
+            System.out.println(army1);
+            System.out.println(army2);
+            int totalArmy1Units = army1.getAllUnits().size();
+            String totalArmy1UnitsString = Integer.toString(totalArmy1Units);
+            totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString);
 
-        int totalArmy2Units=army2.getAllUnits().size();
-        String totalArmy2UnitsString=Integer.toString(totalArmy2Units);
-        totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
-
-        startBattleBtn.setOnMouseClicked(mouseEvent ->
-                startBattle(army1,army2,terrainComboBox.getValue().toUpperCase()));
-
-        resetBattleBtn.setOnMouseClicked(mouseEvent ->resetBattle(army1,army2) );
+            int totalArmy2Units = army2.getAllUnits().size();
+            String totalArmy2UnitsString = Integer.toString(totalArmy2Units);
+            totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
 
 
+            startBattleBtn.setOnMouseClicked(mouseEvent ->
+                        startBattle(army1, army2));
 
-
+            resetBattleBtn.setOnMouseClicked(mouseEvent -> resetBattle(army1, army2));
+        }
+        catch(IllegalArgumentException e){
+            showAlertDialog(e);
+            }
 
     }
 
