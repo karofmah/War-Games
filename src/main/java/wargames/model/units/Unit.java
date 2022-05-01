@@ -15,6 +15,7 @@ public abstract class Unit {
      * @param attack of the unit as an int, can not be lower than zero
      * @param armor  of the unit as an int, can not be lower than zero
      */
+    //Remove unused constructor?
     public Unit(String name, int health, int attack, int armor) {
         this.name = name;
         if(name.isBlank()) throw new IllegalArgumentException("Please enter a name");

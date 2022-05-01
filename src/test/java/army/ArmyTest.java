@@ -188,9 +188,19 @@ public class ArmyTest {
         @DisplayName("Performs negative tests")
         class inputIsNotSupported{
             @Test
-            @DisplayName("Tests if an exception is thrown when creating an army with a empty name")
+            @DisplayName("Tests if an exception is thrown when creating an army with a empty name " +
+                    "through constructor with 2 parameters")
             public void nameIsBlank(){
                 assertThrows(IllegalArgumentException.class,()-> new Army(""));
+            }
+
+            @Test
+            @DisplayName("Tests if an exception is thrown when creating an army with a empty name " +
+                    "through constructor with 5 parameters")
+            public void nameIsBlankTwo(){
+                    assertThrows(IllegalArgumentException.class,()-> new Army("", (ArrayList<Unit>) army1.getAllUnits()));
+
+
             }
         }
 

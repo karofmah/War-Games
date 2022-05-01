@@ -66,9 +66,6 @@ public class UnitTest {
             assertEquals(86,rangedHealthAfterAttack);
         }
 
-        public void getTerrainResistDefect(){
-            System.out.println(cavalry.getTerrainResistDefect("FOREST"));
-        }
         @Test
         @DisplayName("Tests if it is possible to set health below zero")
         public void setHealthBelowZero(){
