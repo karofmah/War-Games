@@ -63,7 +63,10 @@ public class armiesController implements Initializable {
     private Army army2;
 
 
-
+    /**
+     * Method to change view when the armies button is clicked to the same view
+     * Linked to the armies button
+     */
     @FXML
     void armiesBtnClicked() {
         try {
@@ -73,7 +76,11 @@ public class armiesController implements Initializable {
         }
     }
 
-
+    /**
+     * Method to initialize data when this view is present
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.armyNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -97,6 +104,9 @@ public class armiesController implements Initializable {
 
     }
 
+    /**
+     * Method to create armies to battle each other
+     */
  public void createArmies(){
         try {
             this.factory = new UnitFactory();
@@ -121,6 +131,10 @@ public class armiesController implements Initializable {
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * Method to handle the selection of an army in the tableview
+     */
     public void handleArmySelection() {
         armiesTableView.setRowFactory(table -> {
             TableRow<Army> row = new TableRow<>();
@@ -129,9 +143,9 @@ public class armiesController implements Initializable {
                 Army army = row.getItem();
                 if (row.isHover() && army != null) {
                     row.setOnMouseEntered(mouseEvent1 -> {//Listen when mouse is hovered over a row
-                        armiesTableView.setCursor(Cursor.HAND);//Change
-                        army.writeArmyToFile(new File("src/main/resources/ArmyFile.csv"));
-                        textFromFileArea.setText(army.readArmyFromFile(new File("src/main/resources/ArmyFile.csv")));
+                        armiesTableView.setCursor(Cursor.HAND);//Change cursor
+                        army.writeArmyToFile(new File("src/main/resources/ArmyFile.csv"));//Write to file
+                        textFromFileArea.setText(army.readArmyFromFile(new File("src/main/resources/ArmyFile.csv")));//Read from file
                         fileLocationTextField.setText("wargames/src/main/resources/ArmyFile.csv");
                         row.setOnMouseClicked(mouseEvent2 -> { //Listen for click event
 
@@ -150,6 +164,11 @@ public class armiesController implements Initializable {
             return row;
         });
     }
+
+    /**
+     * Method to change scene to selectedArmyView with information of that specific army
+     * @param army that is selected from the tableview
+     */
     public void changeToSelectedArmyView(Army army){
         try {
             URL fxmlLocation = getClass().getResource("/wargames/selectedArmyView.fxml");
@@ -165,6 +184,9 @@ public class armiesController implements Initializable {
         }
     }
 
+    /**
+     * Method to change scene to simulationView when the simulation button is clicked.
+     */
     public void simulationBtnClicked() {
         try {
             URL fxmlLocation = getClass().getResource("/wargames/simulationView.fxml");

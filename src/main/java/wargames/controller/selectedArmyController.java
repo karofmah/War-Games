@@ -45,6 +45,10 @@ public class selectedArmyController implements Initializable {
     ArrayList<Unit> unitsList = new ArrayList<>();
 
     UnitFactory factory=new UnitFactory();
+
+    /**
+     * Method to change to the armiesView
+     */
     @FXML
     void backBtnClicked() {
         try {
@@ -53,12 +57,23 @@ public class selectedArmyController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Method to initialize data when this view is present
+     * @param url
+     * @param resourceBundle
+     */
         public void initialize(URL url, ResourceBundle resourceBundle) {
 
             this.unitTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
             this.unitNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
             this.unitHealthCol.setCellValueFactory(new PropertyValueFactory<>("health"));
         }
+
+    /**
+     * Method to initialize transferred data from armiesView when this view is present
+     * @param army that is selected in armiesView
+     */
     public void initData(Army army) {
         teamNameLbl.setText(army.getName());
                 if (army.getAllUnits() != null) {

@@ -50,6 +50,9 @@ public class simulationController implements Initializable {
 
     private ArrayList<Circle> listOfCirclesArmy2;
 
+    /**
+     * Method to change scene to armiesView when armies button is clicked.
+     */
     @FXML
     void armiesBtnClicked() {
         try {
@@ -59,14 +62,21 @@ public class simulationController implements Initializable {
         }
 
     }
+
+    /**
+     * Method to add existing terrains to a ComboBox
+     */
     private void addTerrainsToComboBox(){
             ObservableList<String> terrainList= FXCollections.observableArrayList("Forest","Hill","Plains");
             terrainComboBox.setItems(terrainList);
     }
 
 
-    @FXML
-
+    /**
+     * Method to initialize data when this view is present
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addTerrainsToComboBox();
@@ -74,22 +84,28 @@ public class simulationController implements Initializable {
     }
     //Method to update number of units of each side (This method does not work yet)
     /*public void updateNumberOfUnits(Army army1,Army army2) throws InterruptedException {
+        Thread.sleep(2000);
 
         int totalArmy1Units = army1.size();
         String totalArmy1UnitsString = Integer.toString(totalArmy1Units);
-        Platform.runLater(()->totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString));
-
-
+        totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString);
 
         int totalArmy2Units = army2.size();
         String totalArmy2UnitsString = Integer.toString(totalArmy2Units);
-        Platform.runLater(()->totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString));
+        totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
 
 
         System.out.println("updated");
 
 
     }*/
+
+    /**
+     * Method to start battle between two armies in chosen terrain
+     * Linked to the start battle button
+     * @param army1 one of the armies in the battle
+     * @param army2 the other of the armies in the battle
+     */
     public void startBattle(Army army1,Army army2){
         try {
             Battle battle = new Battle(army1, army2, terrainComboBox.getValue());
@@ -122,6 +138,11 @@ public class simulationController implements Initializable {
 
     }
 
+    /**
+     * Method to create circles that represent the units in the armies
+     * @param army1 one of the armies in a battle
+     * @param army2 the other of the armies in a battle
+     */
     public void createShapesForArmies(Army army1,Army army2){
 
         if(listOfCirclesArmy1!=null  && listOfCirclesArmy2!=null) {
@@ -158,11 +179,16 @@ public class simulationController implements Initializable {
                 }
             }
         }
-
-            for (Circle circle:listOfCirclesArmy2) {
+        for (Circle circle:listOfCirclesArmy2) {
                 anchorPane.getChildren().add(circle);
-            }
+        }
     }
+
+    /**
+     * Method to reset a battle that has finished between two armies
+     * @param army1 one of the armies in the battle
+     * @param army2 the other of the armies in a battle
+     */
     public void resetBattle(Army army1,Army army2){
         try {
             UnitFactory factory = new UnitFactory();
@@ -201,7 +227,11 @@ public class simulationController implements Initializable {
 
     }
 
-
+    /**
+     * Method to initialize transferred data from armiesView when this view is present
+     * @param army1 one of the armies in a battle
+     * @param army2 the other of the armies in a battle
+     */
     public void initData(Army army1, Army army2) {
         try {
             System.out.println(army1);
