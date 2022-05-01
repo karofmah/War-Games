@@ -1,8 +1,16 @@
 package wargames.model.battle;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+import wargames.WarGamesApplication;
+import wargames.controller.selectedArmyController;
+import wargames.controller.simulationController;
 import wargames.model.army.Army;
 import wargames.model.units.Unit;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -43,14 +51,26 @@ public class Battle {
      * Returns the winner
      * @return Army
      */
-    public Army simulate(){
+    public Army simulate() throws IOException, InterruptedException {
+
         while(army1.hasUnits() && army2.hasUnits()) {
+            //Trying to update number of units on each side during battle (Does not work yet):
+
+            /*URL fxmlLocation = getClass().getResource("/wargames/simulationView.fxml");
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            Parent FrontPageParent = loader.load();
+            simulationController controller = loader.getController();
+            Stage stage = WarGamesApplication.stage;
+            stage.getScene().setRoot(FrontPageParent);
+            controller.updateNumberOfUnits(army1,army2);*/
             int numberOfAttacks=0;
             while(numberOfAttacks>=0) {
+
                 Unit armyOneUnit = army1.getRandom();
                 Unit armyTwoUnit = army2.getRandom();
                 if (numberOfAttacks % 2 == 0) {
                     armyOneUnit.attack(armyTwoUnit,terrain);
+
                     numberOfAttacks++;
                 }
                 if (armyTwoUnit.getHealth() == 0) {

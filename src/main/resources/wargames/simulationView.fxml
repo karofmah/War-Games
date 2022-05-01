@@ -7,49 +7,49 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.simulationController">
-   <top>
-      <AnchorPane prefHeight="779.0" prefWidth="868.0" BorderPane.alignment="CENTER">
-         <Button fx:id="startBattleBtn" layoutX="254.0" layoutY="500.0" mnemonicParsing="false" text="Start battle" />
-         <Button layoutX="302.0" layoutY="123.0" mnemonicParsing="false" onAction="#armiesBtnClicked" text="Armies" />
-         <Button layoutX="355.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Simulation" />
-         <ComboBox fx:id="terrainComboBox" layoutX="302.0" layoutY="56.0" prefWidth="150.0" promptText="Terrain" />
-         <Label layoutX="97.0" layoutY="42.0" prefHeight="53.0" prefWidth="157.0" text="Blue side">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.simulationController">
+   <left>
+      <AnchorPane fx:id="anchorPane" prefHeight="777.0" prefWidth="877.0" BorderPane.alignment="CENTER">
+         <Button fx:id="startBattleBtn" layoutX="494.0" layoutY="501.0" mnemonicParsing="false" text="Start battle" />
+         <Button layoutX="480.0" layoutY="97.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="25.0" prefWidth="66.0" text="Armies" />
+         <Button layoutX="546.0" layoutY="97.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Simulation" />
+         <ComboBox fx:id="terrainComboBox" layoutX="481.0" layoutY="56.0" prefWidth="150.0" promptText="Terrain" />
+         <Label layoutX="244.0" layoutY="36.0" prefHeight="53.0" prefWidth="157.0" text="Blue side">
             <font>
                <Font size="36.0" />
             </font>
          </Label>
-         <Label layoutX="539.0" layoutY="42.0" prefHeight="53.0" prefWidth="157.0" text="Red side">
+         <Label layoutX="696.0" layoutY="36.0" prefHeight="53.0" prefWidth="157.0" text="Red side">
             <font>
                <Font size="36.0" />
             </font>
          </Label>
-         <Label layoutX="29.0" layoutY="122.0" prefHeight="27.0" prefWidth="180.0" text="Total number of units:">
+         <Label layoutX="184.0" layoutY="122.0" prefHeight="27.0" prefWidth="180.0" text="Total number of units:">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
-         <Label layoutX="462.0" layoutY="122.0" prefHeight="27.0" prefWidth="180.0" text="Total number of units:">
+         <Label layoutX="649.0" layoutY="122.0" prefHeight="27.0" prefWidth="180.0" text="Total number of units:">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
-         <Label fx:id="totalNumberOfUnitsBlueSide" layoutX="209.0" layoutY="122.0" prefHeight="17.0" prefWidth="35.0">
+         <Label fx:id="totalNumberOfUnitsBlueSide" layoutX="364.0" layoutY="122.0" prefHeight="17.0" prefWidth="35.0">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
-         <Label fx:id="totalNumberOfUnitsRedSide" layoutX="642.0" layoutY="122.0" prefHeight="17.0" prefWidth="35.0">
+         <Label fx:id="totalNumberOfUnitsRedSide" layoutX="844.0" layoutY="122.0" prefHeight="17.0" prefWidth="35.0">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
-         <Button fx:id="resetBattleBtn" layoutX="329.0" layoutY="500.0" mnemonicParsing="false" text="Reset battle" />
-         <Label fx:id="announcedWinnerLabel" layoutX="153.0" layoutY="284.0" prefHeight="41.0" prefWidth="403.0">
+         <Button fx:id="resetBattleBtn" layoutX="569.0" layoutY="501.0" mnemonicParsing="false" text="Reset battle" />
+         <Label fx:id="announcedWinnerLabel" layoutX="447.0" layoutY="566.0" prefHeight="41.0" prefWidth="403.0">
             <font>
                <Font size="24.0" />
             </font>
          </Label>
       </AnchorPane>
-   </top>
+   </left>
 </BorderPane>

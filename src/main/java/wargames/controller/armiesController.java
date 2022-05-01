@@ -3,7 +3,6 @@ package wargames.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
@@ -74,14 +73,6 @@ public class armiesController implements Initializable {
         }
     }
 
-    @FXML
-    void simulationBtnClicked(Army army1,Army army2) {
-        try {
-            WarGamesApplication.changeScene("simulationView.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,11 +84,11 @@ public class armiesController implements Initializable {
         this.numberOfCommanderUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
         createArmies();
         ObservableList<Army> armyObservableList = FXCollections.observableArrayList(
-                new Army(army1.getName(), army1.getAllUnits().size(), army1.getInfantryUnits().size(),
+                new Army(army1.getName(), army1.size(), army1.getInfantryUnits().size(),
                         army1.getRangedUnits().size(), army1.getCavalryUnits().size(),
                         army1.getCommanderUnits().size(),army1.getAllUnits()),
 
-                new Army(army2.getName(), army2.getAllUnits().size(), army2.getInfantryUnits().size(),
+                new Army(army2.getName(), army2.size(), army2.getInfantryUnits().size(),
                         army2.getRangedUnits().size(), army2.getCavalryUnits().size(),
                         army2.getCommanderUnits().size(),army2.getAllUnits()));
         this.armiesTableView.setItems(armyObservableList);
@@ -174,7 +165,7 @@ public class armiesController implements Initializable {
         }
     }
 
-    public void simulationBtnClicked(ActionEvent actionEvent) {
+    public void simulationBtnClicked() {
         try {
             URL fxmlLocation = getClass().getResource("/wargames/simulationView.fxml");
             FXMLLoader loader = new FXMLLoader(fxmlLocation);

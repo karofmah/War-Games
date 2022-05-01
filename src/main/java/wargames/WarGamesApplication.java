@@ -24,7 +24,7 @@ public class WarGamesApplication extends javafx.application.Application {
         WarGamesApplication.stage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(WarGamesApplication.class.getResource("armiesView.fxml"));
         Scene scene = null;
-
+        stage.setMaximized(true);
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
         } catch (IOException e) {
@@ -33,8 +33,7 @@ public class WarGamesApplication extends javafx.application.Application {
         stage.setTitle("War Games");
         stage.setScene(scene);
         stage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent -> {
-            //Since connection is kept as long as the app is running
-            //Listen for closing event and close when at app exit
+
 
         });
         stage.show();

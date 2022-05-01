@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import wargames.model.battle.Battle;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -61,12 +62,16 @@ public class BattleTest {
         @Test
         @DisplayName("Tests if the battle is performed properly ")
         public void simulateBattle() {
+        try{
             for (int i = 0; i <10 ; i++) {
                 setup();
                 System.out.println(battle.simulate());
                 System.out.println(army1.size());
                 System.out.println(army2.size());
             }
+        }catch (IOException | InterruptedException e){
+            e.printStackTrace();
+        }
         }
 
     @Nested
