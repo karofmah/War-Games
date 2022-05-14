@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class selectedArmyController implements Initializable {
+public class SelectedArmyController implements Initializable {
 
     @FXML
     public Button backBtn;

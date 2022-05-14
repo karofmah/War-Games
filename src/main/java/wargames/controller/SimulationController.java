@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import wargames.WarGamesApplication;
@@ -21,7 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class simulationController implements Initializable {
+public class SimulationController implements Initializable {
 
 
     @FXML
@@ -46,9 +47,18 @@ public class simulationController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
-    private ArrayList<Circle> listOfCirclesArmy1;
+    @FXML
+    private TilePane tilePane1;
 
-    private ArrayList<Circle> listOfCirclesArmy2;
+    @FXML
+    private TilePane tilePane2;
+
+
+
+    private ArrayList <Circle> listOfCirclesArmy1;
+
+    private ArrayList <Circle> listOfCirclesArmy2;
+
 
     /**
      * Method to change scene to armiesView when armies button is clicked.
@@ -80,11 +90,9 @@ public class simulationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addTerrainsToComboBox();
-
     }
     //Method to update number of units of each side (This method does not work yet)
-    /*public void updateNumberOfUnits(Army army1,Army army2) throws InterruptedException {
-        Thread.sleep(2000);
+     /*public void updateNumberOfUnits(Army army1,Army army2) throws InterruptedException {
 
         int totalArmy1Units = army1.size();
         String totalArmy1UnitsString = Integer.toString(totalArmy1Units);
@@ -93,7 +101,7 @@ public class simulationController implements Initializable {
         int totalArmy2Units = army2.size();
         String totalArmy2UnitsString = Integer.toString(totalArmy2Units);
         totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
-
+         Thread.sleep(2000);
 
         System.out.println("updated");
 
@@ -121,11 +129,11 @@ public class simulationController implements Initializable {
             String totalArmy2UnitsString = Integer.toString(totalArmy2Units);
             totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
 
-            for (int i=0;i<(listOfCirclesArmy1.size()-army1.size());i++) {
-                anchorPane.getChildren().remove(listOfCirclesArmy1.get(i));
+            for (int i=0;i<listOfCirclesArmy1.size()-army1.size();i++) {
+                tilePane1.getChildren().remove(listOfCirclesArmy1.get(i));
             }
-            for (int i=0;i<(listOfCirclesArmy2.size()-army2.size());i++) {
-                anchorPane.getChildren().remove(listOfCirclesArmy2.get(i));
+            for (int i=0;i<listOfCirclesArmy2.size()-army2.size();i++) {
+                tilePane2.getChildren().remove(listOfCirclesArmy2.get(i));
             }
 
 
@@ -147,40 +155,33 @@ public class simulationController implements Initializable {
 
         if(listOfCirclesArmy1!=null  && listOfCirclesArmy2!=null) {
             for (Circle circle : listOfCirclesArmy1) {
-                anchorPane.getChildren().remove(circle);
+                tilePane1.getChildren().remove(circle);
             }
             for (Circle circle : listOfCirclesArmy2) {
-                anchorPane.getChildren().remove(circle);
+                tilePane2.getChildren().remove(circle);
             }
             listOfCirclesArmy1.clear();
             listOfCirclesArmy2.clear();
 
         }
-
         listOfCirclesArmy1=new ArrayList<>();
-        for (int i = 1; i < army1.size(); i++) {
-            for (int j=150;j<=500;j+=25) {
-                for (int k = 200; k<=450; k+=25) {
-                    listOfCirclesArmy1.add(new Circle(j, k, 5, Color.BLUE));
 
-                }
-            }
+        for (int i = 0; i <army1.size(); i++) {
+            listOfCirclesArmy1.add(new Circle(10,Color.BLUE));
         }
 
         for (Circle circle:listOfCirclesArmy1) {
-            anchorPane.getChildren().add(circle);
+            tilePane1.getChildren().add(circle);
         }
-        listOfCirclesArmy2=new ArrayList<>();
-        for (int i = 1; i < army2.size(); i++) {
-            for (int j=600;j<=900;j+=25) {
-                for (int k = 200; k<=450; k+=25) {
-                    listOfCirclesArmy2.add(new Circle(j, k, 5, Color.RED));
 
-                }
-            }
+        listOfCirclesArmy2=new ArrayList<>();
+
+        for (int i = 0; i <army2.size(); i++) {
+                    listOfCirclesArmy2.add(new Circle(10,Color.RED));
         }
+
         for (Circle circle:listOfCirclesArmy2) {
-                anchorPane.getChildren().add(circle);
+                tilePane2.getChildren().add(circle);
         }
     }
 

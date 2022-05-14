@@ -28,7 +28,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class armiesController implements Initializable {
+public class ArmiesController implements Initializable {
 
     @FXML
     private TableView<Army> armiesTableView;
@@ -174,7 +174,7 @@ public class armiesController implements Initializable {
             URL fxmlLocation = getClass().getResource("/wargames/selectedArmyView.fxml");
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             Parent FrontPageParent = loader.load();
-            selectedArmyController controller = loader.getController();
+            SelectedArmyController controller = loader.getController();
             controller.initData(army);
             Stage stage = WarGamesApplication.stage;
             stage.getScene().setRoot(FrontPageParent);
@@ -192,7 +192,7 @@ public class armiesController implements Initializable {
             URL fxmlLocation = getClass().getResource("/wargames/simulationView.fxml");
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             Parent FrontPageParent = loader.load();
-            simulationController controller = loader.getController();
+            SimulationController controller = loader.getController();
             controller.initData(army1,army2);
             Stage stage = WarGamesApplication.stage;
             stage.getScene().setRoot(FrontPageParent);

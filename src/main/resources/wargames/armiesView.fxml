@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1085.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.armiesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1271.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.ArmiesController">
    <top>
       <AnchorPane prefHeight="549.0" prefWidth="718.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="armiesBtn" layoutX="480.0" layoutY="97.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="25.0" prefWidth="65.0" text="Armies" />
-            <Button fx:id="simulationBtn" layoutX="546.0" layoutY="97.0" mnemonicParsing="false" onAction="#simulationBtnClicked" prefHeight="25.0" prefWidth="87.0" text="Simulation" />
-            <TableView fx:id="armiesTableView" layoutX="65.0" layoutY="154.0" prefHeight="113.0" prefWidth="961.0">
+            <Button fx:id="armiesBtn" layoutX="674.0" layoutY="97.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="25.0" prefWidth="65.0" text="Armies" />
+            <Button fx:id="simulationBtn" layoutX="738.0" layoutY="97.0" mnemonicParsing="false" onAction="#simulationBtnClicked" prefHeight="25.0" prefWidth="87.0" text="Simulation" />
+            <TableView fx:id="armiesTableView" layoutX="257.0" layoutY="161.0" prefHeight="113.0" prefWidth="961.0">
               <columns>
                 <TableColumn fx:id="armyNameCol" prefWidth="155.3333282470703" text="army name" />
                 <TableColumn fx:id="totalNumberOfUnitsCol" prefWidth="167.33334350585938" text="Total number of units" />
@@ -24,8 +24,8 @@
                   <TableColumn fx:id="numberOfCommanderUnitsCol" prefWidth="179.33343505859375" text="Number of commander units" />
               </columns>
             </TableView>
-            <TextArea fx:id="textFromFileArea" layoutX="64.0" layoutY="281.0" prefHeight="235.0" prefWidth="964.0" />
-            <TextField fx:id="fileLocationTextField" layoutX="65.0" layoutY="523.0" prefHeight="25.0" prefWidth="961.0" />
+            <TextArea fx:id="textFromFileArea" layoutX="256.0" layoutY="286.0" prefHeight="235.0" prefWidth="964.0" />
+            <TextField fx:id="fileLocationTextField" layoutX="257.0" layoutY="522.0" prefHeight="25.0" prefWidth="961.0" />
          </children>
       </AnchorPane>
    </top>

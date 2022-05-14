@@ -4,8 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import wargames.WarGamesApplication;
-import wargames.controller.selectedArmyController;
-import wargames.controller.simulationController;
+import wargames.controller.SimulationController;
 import wargames.model.army.Army;
 import wargames.model.units.Unit;
 
@@ -59,10 +58,10 @@ public class Battle {
             /*URL fxmlLocation = getClass().getResource("/wargames/simulationView.fxml");
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             Parent FrontPageParent = loader.load();
-            simulationController controller = loader.getController();
+            SimulationController controller = loader.getController();
             Stage stage = WarGamesApplication.stage;
-            stage.getScene().setRoot(FrontPageParent);
-            controller.updateNumberOfUnits(army1,army2);*/
+            stage.getScene().setRoot(FrontPageParent);*/
+
             int numberOfAttacks=0;
             while(numberOfAttacks>=0) {
 
@@ -83,6 +82,8 @@ public class Battle {
                 numberOfAttacks++;
                 if (armyOneUnit.getHealth() == 0) {
                     army1.remove(armyOneUnit);
+
+
                     if (!army1.hasUnits()) {
                         break;
                     }

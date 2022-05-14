@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.selectedArmyController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.SelectedArmyController">
    <bottom>
        <AnchorPane prefHeight="491.0" prefWidth="801.0" BorderPane.alignment="CENTER">
            <TableView fx:id="unitsTableView" layoutX="92.0" layoutY="-7.0" prefHeight="393.0" prefWidth="583.0">
