@@ -13,6 +13,7 @@ public class Battle {
     private final Army army2;
     private String terrain;
 
+    //TODO: Javadoc
     public enum Terrains{
         FOREST("Forest"),
         HILL("Hill"),
@@ -44,15 +45,15 @@ public class Battle {
             throw new IllegalArgumentException(army2.getName() + " has no units. Please reset battle before starting battle");
         }
 
-        for (Terrains validTerrain:Terrains.values()) {
-            if (terrain.equals(validTerrain.toString())){
+            if (terrain!=null && (terrain.equals(Terrains.FOREST.toString()) ||
+                    terrain.equals(Terrains.HILL.toString()) || terrain.equals(Terrains.PLAINS.toString()))) {
                 this.terrain = terrain;
-                break;
-            } else {throw new IllegalArgumentException("The terrain chosen for this battle does not exist. " +
+            }
+            else {throw new IllegalArgumentException("The terrain chosen for this battle does not exist. " +
                         "Please choose one of the following terrains: Forest, Hill, Plains");
             }
         }
-    }
+
 
     /**
      * Simulates the battle between army one and army two

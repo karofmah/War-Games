@@ -22,10 +22,10 @@
                 <configuration>
 
                     <release>${maven.compiler.target}</release>
-                    <jlinkImageName>hellofx</jlinkImageName>
+                    <jlinkImageName>wargames</jlinkImageName>
                     <launcher>launcher</launcher>
 
-                    <mainClass>Mainclass</mainClass>
+                    <mainClass>WarGamesApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>

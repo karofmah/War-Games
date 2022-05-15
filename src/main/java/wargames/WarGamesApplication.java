@@ -8,13 +8,13 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.util.logging.Logger;
+
 
 
 public class WarGamesApplication extends javafx.application.Application {
     public static Stage stage;
 
-    private final Logger logger = Logger.getLogger(this.getClass().getName());
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -28,7 +28,7 @@ public class WarGamesApplication extends javafx.application.Application {
         try {
             scene = new Scene(fxmlLoader.load(), 1280, 720);
         } catch (IOException e) {
-            logger.severe("ERROR: IOException occurred. Cause: " + e.getCause());
+            e.printStackTrace();
         }
         stage.setTitle("War Games");
         stage.setScene(scene);
