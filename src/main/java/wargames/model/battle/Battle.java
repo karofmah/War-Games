@@ -1,22 +1,33 @@
 package wargames.model.battle;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
-import wargames.WarGamesApplication;
-import wargames.controller.SimulationController;
+
 import wargames.model.army.Army;
 import wargames.model.units.Unit;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 
 public class Battle {
     private final Army army1;
     private final Army army2;
-    private final String terrain;
+    private String terrain;
+
+    public enum Terrains{
+        FOREST("Forest"),
+        HILL("Hill"),
+        PLAINS("Plains");
+
+        private final String toString;
+
+        Terrains(String toString) {
+            this.toString = toString;
+        }
+        @Override
+        public String toString(){
+            return toString;
+        }
+    }
 
     /**
      *Constructor for the class Battle
@@ -32,16 +43,14 @@ public class Battle {
         if(!army2.hasUnits()){
             throw new IllegalArgumentException(army2.getName() + " has no units. Please reset battle before starting battle");
         }
-        ArrayList<String> terrains = new ArrayList<>();
-        terrains.add("FOREST");
-        terrains.add("HILL");
-        terrains.add("PLAINS");
-        if(terrain!=null && terrains.contains(terrain.toUpperCase()) ){
-            this.terrain = terrain.toUpperCase();
-        }
-        else {
-            throw new IllegalArgumentException("The terrain chosen for this battle does not exist. " +
-                    "Please choose one of the following terrains: Forest, Hill, Plains");
+
+        for (Terrains validTerrain:Terrains.values()) {
+            if (terrain.equals(validTerrain.toString())){
+                this.terrain = terrain;
+                break;
+            } else {throw new IllegalArgumentException("The terrain chosen for this battle does not exist. " +
+                        "Please choose one of the following terrains: Forest, Hill, Plains");
+            }
         }
     }
 

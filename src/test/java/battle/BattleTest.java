@@ -43,7 +43,7 @@ public class BattleTest {
                 this.army2.add(factory.create("CavalryUnit", "Raider", 100));
                 this.army2.add(factory.create("CommanderUnit", "Gul´dan", 100));
             }
-            this.battle = new Battle(army1, army2, "FOREST");
+            this.battle = new Battle(army1, army2, "Forest");
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
         }

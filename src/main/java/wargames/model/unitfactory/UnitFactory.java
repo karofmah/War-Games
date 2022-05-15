@@ -4,27 +4,45 @@ import wargames.model.units.*;
 
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class UnitFactory implements AbstractFactory<Unit>{
 
+    //https://stackoverflow.com/questions/9712977/is-it-possible-to-have-an-enum-class-with-enums-of-two-or-more-words
+    public enum UnitType{
+        INFANTRY("InfantryUnit"),
+        RANGED("RangedUnit"),
+        CAVALRY("CavalryUnit"),
+        COMMANDER("CommanderUnit");
+
+
+        private final String toString;
+
+        UnitType(String toString) {
+            this.toString = toString;
+        }
+        @Override
+        public String toString(){
+            return toString;
+        }
+    }
     @Override
     public Unit create(String type, String name, int health) {
-        if(type.equalsIgnoreCase("InfantryUnit")){
-            return new InfantryUnit(type,name,health);
+        UnitType typeOfUnit=null;
+        for (UnitType unitType:UnitType.values()){
+            if(unitType.toString().equals(type)){
+                typeOfUnit=unitType;
+            }
         }
-        else if (type.equalsIgnoreCase("RangedUnit")){
-            return new RangedUnit(type,name,health);
+        switch (Objects.requireNonNull(typeOfUnit)){
+            case INFANTRY -> {return new InfantryUnit(type,name,health);}
+            case RANGED -> {return new RangedUnit(type,name,health);}
+            case CAVALRY -> {return new CavalryUnit(type,name,health);}
+            case COMMANDER-> {return new CommanderUnit(type,name,health);}
+            default -> throw new IllegalArgumentException("This type of unit does not exist");
         }
-        else if (type.equalsIgnoreCase("CavalryUnit")){
-            return new CavalryUnit(type, name,health);
-        }
-        else if (type.equalsIgnoreCase("CommanderUnit")){
-            return new CommanderUnit(type, name, health);
-        }else
-        return null;
     }
-
     public ArrayList<Unit> unitsOfSpecificType(String type, String name, int health, int n){
         ArrayList<Unit> unitsOfType=new ArrayList<>();
 
