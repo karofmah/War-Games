@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -23,12 +22,6 @@ import java.util.ResourceBundle;
 
 public class SimulationController implements Initializable {
 
-
-    @FXML
-    private Label totalNumberOfUnitsBlueSide;
-
-    @FXML
-    private Label totalNumberOfUnitsRedSide;
 
     @FXML
     private Button startBattleBtn;
@@ -89,6 +82,8 @@ public class SimulationController implements Initializable {
 
     @FXML
     private TableView<Army> army2TableView;
+
+
 
     private ArrayList <Circle> listOfCirclesArmy1;
 
@@ -241,9 +236,7 @@ public class SimulationController implements Initializable {
                 army2.add(factory.create("CavalryUnit", "Raider", 100));
                 army2.add(factory.create("CommanderUnit", "Gul´dan", 100));
             }
-
-
-
+            updateTableViews(army1,army2);
 
             createShapesForArmies(army1,army2);
         }catch(IllegalArgumentException e){
@@ -271,10 +264,20 @@ public class SimulationController implements Initializable {
 
             resetBattleBtn.setOnMouseClicked(mouseEvent -> resetBattle(army1, army2));
 
+
+
         }
         catch(IllegalArgumentException e){
             showAlertDialog(e);
             }
+
+    }
+    public void fillTableView(TableView<Army> tableView,Army army){
+        ObservableList<Army> armyObservableList = FXCollections.observableArrayList(
+                new Army(army.getName(), army.size(), army.getInfantryUnits().size(),
+                        army.getRangedUnits().size(), army.getCavalryUnits().size(),
+                        army.getCommanderUnits().size(),army.getAllUnits()));
+        tableView.setItems(armyObservableList);
 
     }
     public void updateTableViews(Army army1, Army army2){
@@ -294,16 +297,9 @@ public class SimulationController implements Initializable {
         this.numberOfCavalryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
         this.numberOfCommanderUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
 
-        ObservableList<Army> army1ObservableList = FXCollections.observableArrayList(
-                new Army(army1.getName(), army1.size(), army1.getInfantryUnits().size(),
-                        army1.getRangedUnits().size(), army1.getCavalryUnits().size(),
-                        army1.getCommanderUnits().size(),army1.getAllUnits()));
+       fillTableView(army1TableView,army1);
+       fillTableView(army2TableView,army2);
 
-        ObservableList<Army> army2ObservableList=FXCollections.observableArrayList(new Army(army2.getName(), army2.size(), army2.getInfantryUnits().size(),
-                army2.getRangedUnits().size(), army2.getCavalryUnits().size(),
-                army2.getCommanderUnits().size(),army2.getAllUnits()));
-        this.army1TableView.setItems(army1ObservableList);
-        this.army2TableView.setItems(army2ObservableList);
     }
 
 

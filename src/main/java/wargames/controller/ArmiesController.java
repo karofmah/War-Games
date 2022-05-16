@@ -31,31 +31,54 @@ import java.util.ResourceBundle;
 public class ArmiesController implements Initializable {
 
     @FXML
-    private TableView<Army> armiesTableView;
+    private TableView<Army> army1TableView;
 
     @FXML
-    private TableColumn<Army,String> armyNameCol;
+    private TableView<Army> army2TableView;
 
     @FXML
-    private TableColumn<Army,Integer> numberOfCavalryUnitsCol;
+    private TableColumn<?, ?> armyNameCol1;
 
     @FXML
-    private TableColumn<Army,Integer> numberOfCommanderUnitsCol;
+    private TableColumn<?, ?> armyNameCol2;
 
     @FXML
-    private TableColumn<Army,Integer> numberOfInfantryUnitsCol;
+    private TableColumn<?, ?> numberOfCavalryUnitsCol1;
 
     @FXML
-    private TableColumn<Army,Integer> numberOfRangedUnitsCol;
+    private TableColumn<?, ?> numberOfCavalryUnitsCol2;
 
     @FXML
-    private TableColumn<Army,Integer> totalNumberOfUnitsCol;
+    private TableColumn<?, ?> numberOfCommanderUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> numberOfCommanderUnitsCol2;
+
+    @FXML
+    private TableColumn<?, ?> numberOfInfantryUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> numberOfInfantryUnitsCol2;
+
+    @FXML
+    private TableColumn<?, ?> numberOfRangedUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> numberOfRangedUnitsCol2;
+
+    @FXML
+    private TableColumn<?, ?> totalNumberOfUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> totalNumberOfUnitsCol2;
 
     @FXML
     private TextArea textFromFileArea;
 
     @FXML
     private TextField fileLocationTextField;
+
+
 
     UnitFactory factory;
 
@@ -83,27 +106,40 @@ public class ArmiesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.armyNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        this.totalNumberOfUnitsCol.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
-        this.numberOfInfantryUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
-        this.numberOfRangedUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
-        this.numberOfCavalryUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
-        this.numberOfCommanderUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
-        createArmies();
-        ObservableList<Army> armyObservableList = FXCollections.observableArrayList(
-                new Army(army1.getName(), army1.size(), army1.getInfantryUnits().size(),
-                        army1.getRangedUnits().size(), army1.getCavalryUnits().size(),
-                        army1.getCommanderUnits().size(),army1.getAllUnits()),
 
-                new Army(army2.getName(), army2.size(), army2.getInfantryUnits().size(),
-                        army2.getRangedUnits().size(), army2.getCavalryUnits().size(),
-                        army2.getCommanderUnits().size(),army2.getAllUnits()));
-        this.armiesTableView.setItems(armyObservableList);
-        handleArmySelection();
+        createArmies();
+
+        fillTableView(army1TableView,army1);
+        fillTableView(army2TableView,army2);
+
+        handleArmySelection(army1TableView);
+        handleArmySelection(army2TableView);
 
 
     }
+    public void fillTableView(TableView<Army> tableView,Army army){
 
+        this.armyNameCol1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        this.totalNumberOfUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
+        this.numberOfInfantryUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
+        this.numberOfRangedUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
+        this.numberOfCavalryUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
+        this.numberOfCommanderUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
+
+        this.armyNameCol2.setCellValueFactory(new PropertyValueFactory<>("name"));
+        this.totalNumberOfUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
+        this.numberOfInfantryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
+        this.numberOfRangedUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
+        this.numberOfCavalryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
+        this.numberOfCommanderUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
+
+        ObservableList<Army> armyObservableList = FXCollections.observableArrayList(
+                new Army(army.getName(), army.size(), army.getInfantryUnits().size(),
+                        army.getRangedUnits().size(), army.getCavalryUnits().size(),
+                        army.getCommanderUnits().size(),army.getAllUnits()));
+        tableView.setItems(armyObservableList);
+
+    }
     /**
      * Method to create armies to battle each other
      */
@@ -135,15 +171,15 @@ public class ArmiesController implements Initializable {
     /**
      * Method to handle the selection of an army in the tableview
      */
-    public void handleArmySelection() {
-        armiesTableView.setRowFactory(table -> {
+    public void handleArmySelection(TableView <Army> tableView) {
+        tableView.setRowFactory(table -> {
             TableRow<Army> row = new TableRow<>();
 
             row.hoverProperty().addListener(observable -> {//Listen for hover on row
                 Army army = row.getItem();
                 if (row.isHover() && army != null) {
                     row.setOnMouseEntered(mouseEvent1 -> {//Listen when mouse is hovered over a row
-                        armiesTableView.setCursor(Cursor.HAND);//Change cursor
+                        tableView.setCursor(Cursor.HAND);//Change cursor
                         army.writeArmyToFile(new File("src/main/resources/ArmyFile.csv"));//Write to file
                         textFromFileArea.setText(army.readArmyFromFile(new File("src/main/resources/ArmyFile.csv")));//Read from file
                         fileLocationTextField.setText("wargames/src/main/resources/ArmyFile.csv");
@@ -156,7 +192,7 @@ public class ArmiesController implements Initializable {
                     });
                 } else {
                     row.setOnMouseEntered(mouseEvent -> { //Default cursor when row is empty
-                        armiesTableView.setCursor(Cursor.DEFAULT);
+                        tableView.setCursor(Cursor.DEFAULT);
                     });
                 }
             });
