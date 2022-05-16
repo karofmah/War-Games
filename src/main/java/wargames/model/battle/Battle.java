@@ -103,6 +103,7 @@ public class Battle {
 
         return army1.hasUnits() ? army1 : army2;
     }
+    //TODO: Javadoc
     public ArrayList <Army> getArmies(){
         ArrayList<Army> armies=new ArrayList<>();
 

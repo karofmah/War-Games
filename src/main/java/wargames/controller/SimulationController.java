@@ -4,9 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
@@ -43,17 +42,53 @@ public class SimulationController implements Initializable {
     @FXML
     private Label announcedWinnerLabel;
 
-
-    @FXML
-    private AnchorPane anchorPane;
-
     @FXML
     private TilePane tilePane1;
 
     @FXML
     private TilePane tilePane2;
 
+    @FXML
+    private TableColumn<?, ?> armyNameCol1;
 
+    @FXML
+    private TableColumn<?, ?> armyNameCol2;
+
+    @FXML
+    private TableColumn<?, ?> numberOfCavalryUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> numberOfCavalryUnitsCol2;
+
+    @FXML
+    private TableColumn<?, ?> numberOfCommanderUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> numberOfCommanderUnitsCol2;
+
+    @FXML
+    private TableColumn<?, ?> numberOfInfantryUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> numberOfInfantryUnitsCol2;
+
+    @FXML
+    private TableColumn<?, ?> numberOfRangedUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> numberOfRangedUnitsCol2;
+
+    @FXML
+    private TableColumn<?, ?> totalNumberOfUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> totalNumberOfUnitsCol2;
+
+    @FXML
+    private TableView<Army> army1TableView;
+
+    @FXML
+    private TableView<Army> army2TableView;
 
     private ArrayList <Circle> listOfCirclesArmy1;
 
@@ -121,13 +156,7 @@ public class SimulationController implements Initializable {
 
             announcedWinnerLabel.setText(winner.getName() + " won the battle!");
 
-           int totalArmy1Units = army1.getAllUnits().size();
-            String totalArmy1UnitsString = Integer.toString(totalArmy1Units);
-            totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString);
-
-            int totalArmy2Units = army2.getAllUnits().size();
-            String totalArmy2UnitsString = Integer.toString(totalArmy2Units);
-            totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
+            updateTableViews(army1,army2);
 
             for (int i=0;i<listOfCirclesArmy1.size()-army1.size();i++) {
                 tilePane1.getChildren().remove(listOfCirclesArmy1.get(i));
@@ -135,6 +164,7 @@ public class SimulationController implements Initializable {
             for (int i=0;i<listOfCirclesArmy2.size()-army2.size();i++) {
                 tilePane2.getChildren().remove(listOfCirclesArmy2.get(i));
             }
+
 
 
 
@@ -197,7 +227,7 @@ public class SimulationController implements Initializable {
             army2.getAllUnits().clear();
             announcedWinnerLabel.setText("");
 
-
+            updateTableViews(army1,army2);
             for (int i = 0; i < 10; i++) {
                 army1.add(factory.create("InfantryUnit", "Footman", 100));
                 army1.add(factory.create("RangedUnit", "Archer", 100));
@@ -212,13 +242,7 @@ public class SimulationController implements Initializable {
                 army2.add(factory.create("CommanderUnit", "Gul´dan", 100));
             }
 
-            int totalArmy1Units=army1.getAllUnits().size();
-            String totalArmy1UnitsString=Integer.toString(totalArmy1Units);
-            totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString);
 
-            int totalArmy2Units2=army2.getAllUnits().size();
-            String totalArmy2UnitsString=Integer.toString(totalArmy2Units2);
-            totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
 
 
             createShapesForArmies(army1,army2);
@@ -240,14 +264,7 @@ public class SimulationController implements Initializable {
 
             createShapesForArmies(army1,army2);
 
-            int totalArmy1Units = army1.getAllUnits().size();
-            String totalArmy1UnitsString = Integer.toString(totalArmy1Units);
-            totalNumberOfUnitsBlueSide.setText(totalArmy1UnitsString);
-
-            int totalArmy2Units = army2.getAllUnits().size();
-            String totalArmy2UnitsString = Integer.toString(totalArmy2Units);
-            totalNumberOfUnitsRedSide.setText(totalArmy2UnitsString);
-
+            updateTableViews(army1,army2);
 
             startBattleBtn.setOnMouseClicked(mouseEvent ->
                         startBattle(army1, army2));
@@ -259,6 +276,34 @@ public class SimulationController implements Initializable {
             showAlertDialog(e);
             }
 
+    }
+    public void updateTableViews(Army army1, Army army2){
+        army1TableView.refresh();
+        army2TableView.refresh();
+        this.armyNameCol1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        this.totalNumberOfUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
+        this.numberOfInfantryUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
+        this.numberOfRangedUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
+        this.numberOfCavalryUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
+        this.numberOfCommanderUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
+
+        this.armyNameCol2.setCellValueFactory(new PropertyValueFactory<>("name"));
+        this.totalNumberOfUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
+        this.numberOfInfantryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
+        this.numberOfRangedUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
+        this.numberOfCavalryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
+        this.numberOfCommanderUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
+
+        ObservableList<Army> army1ObservableList = FXCollections.observableArrayList(
+                new Army(army1.getName(), army1.size(), army1.getInfantryUnits().size(),
+                        army1.getRangedUnits().size(), army1.getCavalryUnits().size(),
+                        army1.getCommanderUnits().size(),army1.getAllUnits()));
+
+        ObservableList<Army> army2ObservableList=FXCollections.observableArrayList(new Army(army2.getName(), army2.size(), army2.getInfantryUnits().size(),
+                army2.getRangedUnits().size(), army2.getCavalryUnits().size(),
+                army2.getCommanderUnits().size(),army2.getAllUnits()));
+        this.army1TableView.setItems(army1ObservableList);
+        this.army2TableView.setItems(army2ObservableList);
     }
 
 

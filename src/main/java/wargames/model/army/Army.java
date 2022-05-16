@@ -205,7 +205,7 @@ public class Army {
     public int size() {
         return units.size();
     }
-
+//TODO:Javadoc
     public void writeArmyToFile( File file){
         try(PrintWriter writer=new PrintWriter(file)){
             writer.println(name);
@@ -217,6 +217,7 @@ public class Army {
             e.printStackTrace();
         }
     }
+    //TODO: Javadoc
     public String readArmyFromFile(File file){
         StringBuilder textFromFile= new StringBuilder();
         try(Scanner scanner=new Scanner(file)){

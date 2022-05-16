@@ -110,13 +110,6 @@ public abstract class Unit {
                 '}';
     }
 
-    /**
-     * ToString-Method
-     * @return Unit as String
-     */
-
-
-
 
     public abstract int getAttackBonus();
 

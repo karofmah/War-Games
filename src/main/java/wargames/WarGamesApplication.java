@@ -25,8 +25,9 @@ public class WarGamesApplication extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(WarGamesApplication.class.getResource("armiesView.fxml"));
         Scene scene = null;
         stage.setMaximized(true);
+
         try {
-            scene = new Scene(fxmlLoader.load(), 1280, 720);
+            scene = new Scene(fxmlLoader.load(), 1800, 720);
         } catch (IOException e) {
             e.printStackTrace();
         }
