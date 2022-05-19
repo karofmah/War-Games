@@ -11,40 +11,42 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.SimulationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1473.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.SimulationController">
    <bottom>
-       <ScrollPane hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1281.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
-           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="1861.0">
-              <Button fx:id="startBattleBtn" layoutX="834.0" layoutY="501.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Start battle" />
-              <Button layoutX="850.0" layoutY="97.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="25.0" prefWidth="66.0" text="Armies" />
-              <Button layoutX="914.0" layoutY="97.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Simulation" />
-              <ComboBox fx:id="terrainComboBox" layoutX="850.0" layoutY="56.0" prefWidth="150.0" promptText="Terrain" />
-              <Button fx:id="resetBattleBtn" layoutX="914.0" layoutY="501.0" mnemonicParsing="false" text="Reset battle" />
+       <ScrollPane hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1476.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="2660.0" styleClass="background" stylesheets="@../stylesheet/mycss.css">
+              <Button fx:id="startBattleBtn" layoutX="1169.0" layoutY="505.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="127.0" styleClass="buttons" stylesheets="@../stylesheet/mycss.css" text="Start battle" />
+              <Button layoutX="1212.0" layoutY="91.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="43.0" prefWidth="89.0" styleClass="buttons" text="Armies" />
+              <Button fx:id="resetBattleBtn" layoutX="1297.0" layoutY="505.0" mnemonicParsing="false" styleClass="buttons" text="Reset battle" />
               <Label fx:id="announcedWinnerLabel" layoutX="698.0" layoutY="537.0" prefHeight="41.0" prefWidth="403.0">
                   <font>
                       <Font size="24.0" />
                   </font>
               </Label>
-              <TilePane fx:id="tilePane2" layoutX="990.0" layoutY="161.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="313.0" prefWidth="869.0" />
-              <TilePane fx:id="tilePane1" layoutX="2.0" layoutY="161.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="313.0" prefWidth="869.0" />
-              <TableView fx:id="army1TableView" layoutX="1.0" layoutY="51.0" prefHeight="65.0" prefWidth="839.0">
+              <TilePane fx:id="tilePane2" layoutX="1398.0" layoutY="177.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="313.0" prefWidth="1176.0" />
+              <TilePane fx:id="tilePane1" layoutX="17.0" layoutY="161.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="313.0" prefWidth="1176.0" />
+              <TableView fx:id="army1TableView" layoutX="-2.0" layoutY="32.0" prefHeight="81.0" prefWidth="1171.0" styleClass="table">
                   <columns>
-                      <TableColumn fx:id="armyNameCol1" prefWidth="75.0" text="Army name" />
-                      <TableColumn fx:id="totalNumberOfUnitsCol1" prefWidth="141.33335876464844" text="Total number of units" />
-                      <TableColumn fx:id="numberOfInfantryUnitsCol1" prefWidth="149.33331298828125" text="Number of infantry units" />
-                      <TableColumn fx:id="numberOfRangedUnitsCol1" prefWidth="149.33331298828125" text="Number of ranged units" />
-                      <TableColumn fx:id="numberOfCavalryUnitsCol1" prefWidth="149.33331298828125" text="Number of cavalry units" />
-                      <TableColumn fx:id="numberOfCommanderUnitsCol1" prefWidth="171.33331298828125" text="Number of commander units" />
+                      <TableColumn fx:id="armyNameCol1" prefWidth="108.66664123535156" styleClass="table" text="Army name" />
+                      <TableColumn fx:id="totalNumberOfUnitsCol1" prefWidth="188.66668701171875" styleClass="table" text="Total number of units" />
+                      <TableColumn fx:id="numberOfInfantryUnitsCol1" minWidth="0.0" prefWidth="211.3333740234375" styleClass="table" text="Number of infantry units" />
+                      <TableColumn fx:id="numberOfRangedUnitsCol1" minWidth="0.0" prefWidth="8.0" styleClass="table" text="Number of ranged units" />
+                      <TableColumn fx:id="numberOfCavalryUnitsCol1" prefWidth="207.99993896484375" styleClass="table" text="Number of cavalry units" />
+                      <TableColumn fx:id="numberOfCommanderUnitsCol1" prefWidth="252.66656494140625" styleClass="table" text="Number of commander units" />
+                  <TableColumn fx:id="numberOfMageUnitsCol1" prefWidth="194.0" styleClass="table" text="Number of mage units" />
                   </columns>
               </TableView>
-              <TableView fx:id="army2TableView" layoutX="1009.0" layoutY="48.0" prefHeight="65.0" prefWidth="837.0">
+              <Button layoutX="1302.0" layoutY="91.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="121.0" styleClass="buttons" text="Simulation" />
+              <ComboBox fx:id="terrainComboBox" layoutX="1247.0" layoutY="32.0" prefWidth="150.0" promptText="Terrain" styleClass="inputFields" />
+              <TableView fx:id="army2TableView" layoutX="1433.0" layoutY="32.0" prefHeight="81.0" prefWidth="1045.0" styleClass="table">
                   <columns>
-                      <TableColumn fx:id="armyNameCol2" prefWidth="75.0" text="Army name" />
-                      <TableColumn fx:id="totalNumberOfUnitsCol2" prefWidth="141.33335876464844" text="Total number of units" />
-                      <TableColumn fx:id="numberOfInfantryUnitsCol2" prefWidth="149.33331298828125" text="Number of infantry units" />
-                      <TableColumn fx:id="numberOfRangedUnitsCol2" prefWidth="149.33331298828125" text="Number of ranged units" />
-                      <TableColumn fx:id="numberOfCavalryUnitsCol2" prefWidth="149.33331298828125" text="Number of cavalry units" />
-                      <TableColumn fx:id="numberOfCommanderUnitsCol2" prefWidth="171.33331298828125" text="Number of commander units" />
+                      <TableColumn fx:id="armyNameCol2" prefWidth="102.66666030883789" styleClass="table" text="Army name" />
+                      <TableColumn fx:id="totalNumberOfUnitsCol2" prefWidth="195.3333511352539" styleClass="table" text="Total number of units" />
+                      <TableColumn fx:id="numberOfInfantryUnitsCol2" prefWidth="213.33328247070312" styleClass="table" text="Number of infantry units" />
+                      <TableColumn fx:id="numberOfRangedUnitsCol2" minWidth="0.0" prefWidth="5.33331298828125" styleClass="table" text="Number of ranged units" />
+                      <TableColumn fx:id="numberOfCavalryUnitsCol2" prefWidth="149.33331298828125" styleClass="table" text="Number of cavalry units" />
+                      <TableColumn fx:id="numberOfCommanderUnitsCol2" prefWidth="171.33331298828125" styleClass="table" text="Number of commander units" />
+                  <TableColumn fx:id="numberOfMageUnitsCol2" prefWidth="215.333251953125" styleClass="table" text="Number of mage units" />
                   </columns>
               </TableView>
            </AnchorPane>

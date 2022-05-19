@@ -13,7 +13,9 @@ module wargames {
     exports wargames.model.units;
     exports wargames.model.army;
     exports wargames.model.battle;
-
+    exports wargames.model.observer;
+    exports wargames.model;
+    opens wargames.model to javafx.fxml;
 
 
 }

@@ -1,17 +1,32 @@
 package wargames.model.battle;
 
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import wargames.WarGamesApplication;
+import wargames.controller.SelectedArmyController;
+import wargames.controller.SimulationController;
 import wargames.model.army.Army;
+import wargames.model.observer.Publisher;
+import wargames.model.observer.Subscriber;
 import wargames.model.units.Unit;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class Battle {
+public class Battle extends Publisher {
     private final Army army1;
     private final Army army2;
-    private String terrain;
+    private final String terrain;
 
     //TODO: Javadoc
     public enum Terrains{
@@ -52,6 +67,7 @@ public class Battle {
             else {throw new IllegalArgumentException("The terrain chosen for this battle does not exist. " +
                         "Please choose one of the following terrains: Forest, Hill, Plains");
             }
+
         }
 
 
@@ -63,37 +79,29 @@ public class Battle {
     public Army simulate() throws IOException, InterruptedException {
 
         while(army1.hasUnits() && army2.hasUnits()) {
-            //Trying to update number of units on each side during battle (Does not work yet):
-
-            /*URL fxmlLocation = getClass().getResource("/wargames/simulationView.fxml");
-            FXMLLoader loader = new FXMLLoader(fxmlLocation);
-            Parent FrontPageParent = loader.load();
-            SimulationController controller = loader.getController();
-            Stage stage = WarGamesApplication.stage;
-            stage.getScene().setRoot(FrontPageParent);*/
 
             int numberOfAttacks=0;
             while(numberOfAttacks>=0) {
 
-                Unit armyOneUnit = army1.getRandom();
-                Unit armyTwoUnit = army2.getRandom();
+                Unit army1Unit = army1.getRandom();
+                Unit army2Unit = army2.getRandom();
                 if (numberOfAttacks % 2 == 0) {
-                    armyOneUnit.attack(armyTwoUnit,terrain);
+                    army1Unit.attack(army2Unit,terrain);
 
                     numberOfAttacks++;
                 }
-                if (armyTwoUnit.getHealth() == 0) {
-                    army2.remove(armyTwoUnit);
+                if (army2Unit.getHealth() == 0) {
+                    army2.remove(army2Unit);
+                    notify(army1,army2);
                     if (!army2.hasUnits()) {
                         break;
                     }
                 }
-                armyTwoUnit.attack(armyOneUnit,terrain);
+                army2Unit.attack(army1Unit,terrain);
                 numberOfAttacks++;
-                if (armyOneUnit.getHealth() == 0) {
-                    army1.remove(armyOneUnit);
-
-
+                if (army1Unit.getHealth() == 0) {
+                    army1.remove(army1Unit);
+                    notify(army1,army2);
                     if (!army1.hasUnits()) {
                         break;
                     }
@@ -103,6 +111,8 @@ public class Battle {
 
         return army1.hasUnits() ? army1 : army2;
     }
+
+
     //TODO: Javadoc
     public ArrayList <Army> getArmies(){
         ArrayList<Army> armies=new ArrayList<>();

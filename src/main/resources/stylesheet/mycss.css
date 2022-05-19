@@ -1,0 +1,126 @@
+.background{
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(56, 61, 128, 0.59), #541616);
+}
+.title{
+    -fx-text-fill: #00fe48;
+    -fx-font-weight: bold;
+    -fx-font-family: "Comic Sans MS";
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 1, 0, 0);
+}
+
+.textlabels{
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, black, 2, 1, 0, 0);
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+#menuBar{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.90), 10, 0.5, 0, 0);
+}
+
+.buttons{
+    -fx-font-size: 20;
+    -fx-background-color: linear-gradient(rgba(0, 166, 255, 0.59) 40%, rgba(17, 64, 183, 0) 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.90), 10, 0.5, 0, 0);
+    -fx-text-fill: white;
+}
+.buttons .text{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 1, 1, 0, 0);
+}
+.buttons:hover{
+    -fx-cursor:HAND;
+    -fx-background-color: linear-gradient(from 100% 50% to 100% 150%, #01698f, #020344);
+}
+.buttonsActiveTab{
+    -fx-background-color: linear-gradient(from 100% 50% to 100% 150%, #01698f, #020344);
+}
+.inputFields{
+    -fx-background-color: linear-gradient(from 100% 50% to 100% 120%, #02EAFC,white);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.90), 10, 0.5, 0, 0);
+    -fx-font-size: 20;
+}
+
+
+/* TABLE */
+.table{
+    -fx-background-color:  transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 17;
+    -fx-alignment: CENTER;
+}
+.table-view .column-header-background{
+    -fx-background-color: #000000;
+    -fx-background-radius: 7px 7px 0px 0px;
+}
+.table-view .column-header .label{
+    -fx-text-fill: #00ffea;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 1, 0, 0);
+}
+.table-view .column-header-background .filler{
+    -fx-background-color: transparent;
+}
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+    -fx-effect: dropshadow(three-pass-box, black, 0.5, 1, 0, 0);
+}
+.table-row-cell {
+    -fx-table-cell-border-color: transparent;
+}
+.table-row-cell:odd{
+    -fx-background-insets: 0,0 0 1 0;
+    -fx-background-color: #00BCFF;
+}
+.table-row-cell:odd:hover{
+    -fx-background-color: #1D002E;
+}
+.table-row-cell:even{
+    -fx-background-color: #1112B7;
+    -fx-background-insets: 0,0 0 1 0;
+}
+.table-row-cell:even:hover{
+    -fx-background-color: #1D002E;
+}
+
+
+/*Scrollbar*/
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  linear-gradient(to right, #1dbbdd44, #93f9b944);
+}
+.text {
+    -fx-text-fill: white;
+}
+
+
+/** Tree Table View */
+
+.tree-view{
+    -fx-background-color:  transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 17;
+    -fx-alignment: CENTER;
+}
+.tree-view .column-header-background{
+    -fx-background-color: rgba(0, 166, 255, 0.4);
+    -fx-background-radius: 7px 7px 0px 0px;
+}

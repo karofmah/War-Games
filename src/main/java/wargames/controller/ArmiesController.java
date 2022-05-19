@@ -136,7 +136,7 @@ public class ArmiesController implements Initializable {
         ObservableList<Army> armyObservableList = FXCollections.observableArrayList(
                 new Army(army.getName(), army.size(), army.getInfantryUnits().size(),
                         army.getRangedUnits().size(), army.getCavalryUnits().size(),
-                        army.getCommanderUnits().size(),army.getAllUnits()));
+                        army.getCommanderUnits().size(),army.getMageUnits().size(),army.getAllUnits()));
         tableView.setItems(armyObservableList);
 
     }

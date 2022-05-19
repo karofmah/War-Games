@@ -12,12 +12,13 @@ import java.util.stream.Collectors;
 
 public class Army {
     private final String name;
-    private List<Unit> units;
+    private final List<Unit> units;
     private int totalNumberOfUnits;
     private int numberOfInfantryUnits;
     private int numberOfRangedUnits;
     private int numberOfCavalryUnits;
     private int numberOfCommanderUnits;
+    private int numberOfMageUnits;
     /**
      *Constructor for the class Army
      * @param name name of the Army, can not be blank
@@ -46,13 +47,14 @@ public class Army {
         }
     }
     public Army(String name,int totalNumberOfUnits,int numberOfInfantryUnits,int numberOfRangedUnits,int numberOfCavalryUnits,
-                int numberOfCommanderUnits,List<Unit> units){
+                int numberOfCommanderUnits,int numberOfMageUnits,List<Unit> units){
         this.name=name;
         this.totalNumberOfUnits=totalNumberOfUnits;
         this.numberOfInfantryUnits=numberOfInfantryUnits;
         this.numberOfRangedUnits=numberOfRangedUnits;
         this.numberOfCavalryUnits=numberOfCavalryUnits;
         this.numberOfCommanderUnits=numberOfCommanderUnits;
+        this.numberOfMageUnits=numberOfMageUnits;
         this.units=units;
     }
 
@@ -98,6 +100,9 @@ public class Army {
 
         return units.stream().filter(p->p instanceof CommanderUnit).collect(Collectors.toList());
     }
+    public List<Unit> getMageUnits(){
+        return units.stream().filter(p->p instanceof CommanderUnit).collect(Collectors.toList());
+    }
 
     public int getTotalNumberOfUnits() {
         return totalNumberOfUnits;
@@ -119,6 +124,9 @@ public class Army {
         return numberOfCommanderUnits;
     }
 
+    public int getNumberOfMageUnits(){
+        return numberOfMageUnits;
+    }
     /**
      *Adds an unit to army
      * @param unit a unit outside the army
