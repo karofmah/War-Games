@@ -145,19 +145,12 @@ public class SimulationController implements Subscriber {
             battle.addSubscriber(this);
             Army winner = battle.simulate();
             battle.removeSubscriber(this);
-
             announcedWinnerLabel.setText(winner.getName() + " won the battle!");
+            createShapesForArmies(army1, army2);
 
 
-            for (int i = 0; i < listOfImageViewsArmy1.size() - army1.size(); i++) {
-                tilePane1.getChildren().remove(listOfImageViewsArmy1.get(i));
-            }
-            for (int i = 0; i < listOfImageViewsArmy2.size() - army2.size(); i++) {
-                tilePane2.getChildren().remove(listOfImageViewsArmy2.get(i));
-            }
 
-
-        } catch (IllegalArgumentException | IOException | InterruptedException e) {
+        } catch (IllegalArgumentException | IOException | InterruptedException|URISyntaxException e) {
             showAlertDialog(e);
 
         }
@@ -223,27 +216,27 @@ public class SimulationController implements Subscriber {
             if(unit instanceof InfantryUnit) {
                 ImageIcon imageIcon = new ImageIcon("file:src/main/resources/images/redInfantry.png");
                 ImageView imageView = new ImageView(String.valueOf(imageIcon));
-                listOfImageViewsArmy1.add(imageView);
+                listOfImageViewsArmy2.add(imageView);
             }
             else if(unit instanceof RangedUnit) {
                 ImageIcon imageIcon = new ImageIcon("file:src/main/resources/images/redRanged.png");
                 ImageView imageView = new ImageView(String.valueOf(imageIcon));
-                listOfImageViewsArmy1.add(imageView);
+                listOfImageViewsArmy2.add(imageView);
             }
             else if(unit instanceof CavalryUnit && !(unit instanceof CommanderUnit)) {
                 ImageIcon imageIcon = new ImageIcon("file:src/main/resources/images/redCavalry.png");
                 ImageView imageView = new ImageView(String.valueOf(imageIcon));
-                listOfImageViewsArmy1.add(imageView);
+                listOfImageViewsArmy2.add(imageView);
             }
             else if(unit instanceof CommanderUnit){
                 ImageIcon imageIcon = new ImageIcon("file:src/main/resources/images/redCommander.png");
                 ImageView imageView = new ImageView(String.valueOf(imageIcon));
-                listOfImageViewsArmy1.add(imageView);
+                listOfImageViewsArmy2.add(imageView);
             }
             else if(unit instanceof MageUnit){
                 ImageIcon imageIcon = new ImageIcon("file:src/main/resources/images/redMage.png");
                 ImageView imageView = new ImageView(String.valueOf(imageIcon));
-                listOfImageViewsArmy1.add(imageView);
+                listOfImageViewsArmy2.add(imageView);
             }
         }
 
@@ -264,7 +257,6 @@ public class SimulationController implements Subscriber {
             army1.getAllUnits().clear();
             army2.getAllUnits().clear();
             announcedWinnerLabel.setText("");
-
 
             for (int i = 0; i < 10; i++) {
                 army1.add(factory.create("InfantryUnit", "Footman", 100));

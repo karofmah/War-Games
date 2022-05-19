@@ -18,7 +18,7 @@
               <Button fx:id="startBattleBtn" layoutX="1169.0" layoutY="505.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="127.0" styleClass="buttons" stylesheets="@../stylesheet/mycss.css" text="Start battle" />
               <Button layoutX="1212.0" layoutY="91.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="43.0" prefWidth="89.0" styleClass="buttons" text="Armies" />
               <Button fx:id="resetBattleBtn" layoutX="1297.0" layoutY="505.0" mnemonicParsing="false" styleClass="buttons" text="Reset battle" />
-              <Label fx:id="announcedWinnerLabel" layoutX="698.0" layoutY="537.0" prefHeight="41.0" prefWidth="403.0">
+              <Label fx:id="announcedWinnerLabel" layoutX="1100.0" layoutY="561.0" prefHeight="41.0" prefWidth="403.0">
                   <font>
                       <Font size="24.0" />
                   </font>
