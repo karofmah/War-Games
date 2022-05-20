@@ -25,12 +25,12 @@
                         <TableColumn fx:id="numberOfRangedUnitsCol1" minWidth="0.0" prefWidth="0.0" styleClass="table" text="Number of ranged units" />
                         <TableColumn fx:id="numberOfCavalryUnitsCol1" prefWidth="208.66668701171875" styleClass="table" text="Number of cavalry units" />
                         <TableColumn fx:id="numberOfCommanderUnitsCol1" prefWidth="258.66668701171875" styleClass="table" text="Number of commander units" />
-                        <TableColumn fx:id="numberOfCommanderUnitsCol11" prefWidth="193.33319091796875" styleClass="table" text="Number of mage units" />
+                        <TableColumn fx:id="numberOfMageUnitsCol1" prefWidth="193.33319091796875" styleClass="table" text="Number of mage units" />
                     </columns>
                   </TableView>
                   <TextArea fx:id="textFromFileArea" layoutX="47.0" layoutY="286.0" prefHeight="235.0" prefWidth="209.0" />
                   <TextField fx:id="fileLocationTextField" layoutX="48.0" layoutY="522.0" prefHeight="25.0" prefWidth="207.0" />
-                  <TableView fx:id="army2TableView" layoutX="1433.0" layoutY="32.0" prefHeight="97.0" prefWidth="1349.0" styleClass="table">
+                  <TableView fx:id="army2TableView" layoutX="1433.0" layoutY="32.0" prefHeight="81.0" prefWidth="1349.0" styleClass="table">
                      <columns>
                         <TableColumn fx:id="armyNameCol2" prefWidth="100.6666259765625" styleClass="table" text="Army name" />
                         <TableColumn fx:id="totalNumberOfUnitsCol2" prefWidth="183.3333740234375" styleClass="table" text="Total number of units" />
@@ -38,7 +38,7 @@
                         <TableColumn fx:id="numberOfRangedUnitsCol2" prefWidth="201.333251953125" styleClass="table" text="Number of ranged units" />
                         <TableColumn fx:id="numberOfCavalryUnitsCol2" prefWidth="203.33319091796875" styleClass="table" text="Number of cavalry units" />
                         <TableColumn fx:id="numberOfCommanderUnitsCol2" prefWidth="253.333251953125" styleClass="table" text="Number of commander units" />
-                        <TableColumn fx:id="numberOfCommanderUnitsCol21" prefWidth="190.66650390625" styleClass="table" text="Number of mage units" />
+                        <TableColumn fx:id="numberOfMageUnitsCol2" prefWidth="190.66650390625" styleClass="table" text="Number of mage units" />
                      </columns>
                   </TableView>
                   <Button fx:id="readArmy1FromFile" layoutX="1094.0" layoutY="505.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="235.0" styleClass="buttons" text="Read left army from file" />

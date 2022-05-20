@@ -1,8 +1,8 @@
 .background{
-    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(56, 61, 128, 0.59), #541616);
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, rgba(10, 18, 121, 0.59), #541616);
 }
 .title{
-    -fx-text-fill: #00fe48;
+    -fx-text-fill: #0a0811;
     -fx-font-weight: bold;
     -fx-font-family: "Comic Sans MS";
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 1, 0, 0);
@@ -49,7 +49,7 @@
     -fx-alignment: CENTER;
 }
 .table-view .column-header-background{
-    -fx-background-color: #000000;
+    -fx-background-color: rgba(1, 17, 54, 0.4);
     -fx-background-radius: 7px 7px 0px 0px;
 }
 .table-view .column-header .label{

@@ -91,6 +91,8 @@ public class SelectedArmyController implements Initializable {
 
                             case "CommanderUnit" -> unitsList.addAll(factory.unitsOfSpecificType("CommanderUnit"
                                     , unit.getName(), unit.getHealth(), 1));
+
+                            case "MageUnit"->unitsList.addAll(factory.unitsOfSpecificType("MageUnit",unit.getName(),unit.getHealth(),1));
                         }
                     }
                     unitObservableList = FXCollections.observableArrayList(unitsList);

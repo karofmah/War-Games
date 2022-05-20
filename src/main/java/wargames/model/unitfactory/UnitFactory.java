@@ -14,7 +14,8 @@ public class UnitFactory implements AbstractFactory<Unit>{
         INFANTRY("InfantryUnit"),
         RANGED("RangedUnit"),
         CAVALRY("CavalryUnit"),
-        COMMANDER("CommanderUnit");
+        COMMANDER("CommanderUnit"),
+        MAGE("MageUnit");
 
 
         private final String toString;
@@ -40,6 +41,7 @@ public class UnitFactory implements AbstractFactory<Unit>{
             case RANGED -> {return new RangedUnit(type,name,health);}
             case CAVALRY -> {return new CavalryUnit(type,name,health);}
             case COMMANDER-> {return new CommanderUnit(type,name,health);}
+            case MAGE->{return new MageUnit(type,name,health);}
             default -> throw new IllegalArgumentException("This type of unit does not exist");
         }
     }

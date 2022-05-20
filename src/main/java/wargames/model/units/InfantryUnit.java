@@ -52,7 +52,7 @@ public class InfantryUnit extends Unit {
     @Override
     public int getTerrainAttackBonus(String terrain) {
         int attackBonus=0;
-        if(terrain.equals("FOREST")) {
+        if(terrain.equals("Forest")) {
             attackBonus+=2;
         }
         return attackBonus;

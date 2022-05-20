@@ -15,9 +15,6 @@ private int receivedAttack;
         super(type, name, health ,13,6);
     }
 
-    public void stun(Unit opponent,int millis) throws InterruptedException {
-        opponent.wait(millis);
-    }
 
     @Override
     public int getAttackBonus() {
@@ -43,7 +40,7 @@ private int receivedAttack;
     @Override
     public int getTerrainAttackBonus(String terrain) {
         int attackBonus=0;
-        if (terrain.equals("HILL")){
+        if (terrain.equals("Hill")){
             attackBonus+=3;
         }
         return attackBonus;
@@ -58,7 +55,7 @@ private int receivedAttack;
     @Override
     public int getTerrainAttackDefect(String terrain) {
         int attackDefect=0;
-        if (terrain.equals("FOREST")){
+        if (terrain.equals("Forest")){
             attackDefect-=2;
         }
         return attackDefect;

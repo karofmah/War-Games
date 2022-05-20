@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import wargames.model.battle.Battle;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,6 +71,8 @@ public class BattleTest {
                 System.out.println(army2.size());
             }
         }catch (IOException | InterruptedException e){
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         }

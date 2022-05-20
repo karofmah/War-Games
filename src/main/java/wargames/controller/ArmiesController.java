@@ -73,6 +73,12 @@ public class ArmiesController implements Initializable {
     private TableColumn<?, ?> totalNumberOfUnitsCol2;
 
     @FXML
+    private TableColumn<?, ?> numberOfMageUnitsCol1;
+
+    @FXML
+    private TableColumn<?, ?> numberOfMageUnitsCol2;
+
+    @FXML
     private TextArea textFromFileArea;
 
     @FXML
@@ -125,6 +131,7 @@ public class ArmiesController implements Initializable {
         this.numberOfRangedUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
         this.numberOfCavalryUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
         this.numberOfCommanderUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
+        this.numberOfMageUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfMageUnits"));
 
         this.armyNameCol2.setCellValueFactory(new PropertyValueFactory<>("name"));
         this.totalNumberOfUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
@@ -132,6 +139,7 @@ public class ArmiesController implements Initializable {
         this.numberOfRangedUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
         this.numberOfCavalryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
         this.numberOfCommanderUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
+        this.numberOfMageUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfMageUnits"));
 
         ObservableList<Army> armyObservableList = FXCollections.observableArrayList(
                 new Army(army.getName(), army.size(), army.getInfantryUnits().size(),
@@ -152,9 +160,10 @@ public class ArmiesController implements Initializable {
             for (int i = 0; i < 10; i++) {
                 this.army1.add(factory.create("InfantryUnit", "Footman", 100));
                 this.army1.add(factory.create("RangedUnit", "Archer", 100));
+                this.army1.add(factory.create("MageUnit","Sorcerer",100));
                 this.army2.add(factory.create("InfantryUnit", "Grunt", 100));
                 this.army2.add(factory.create("RangedUnit", "Spearman", 100));
-
+                this.army2.add(factory.create("MageUnit","Sorcerer",100));
             }
             for (int i = 0; i < 5; i++) {
                 this.army1.add(factory.create("CavalryUnit", "Knight", 100));

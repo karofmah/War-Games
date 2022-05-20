@@ -49,7 +49,7 @@ public class RangedUnit extends Unit {
     @Override
     public int getTerrainAttackBonus(String terrain) {
         int attackBonus=0;
-        if (terrain.equals("HILL")){
+        if (terrain.equals("Hill")){
             attackBonus+=2;
         }
         return attackBonus;
@@ -73,7 +73,7 @@ public class RangedUnit extends Unit {
     @Override
     public int getTerrainAttackDefect(String terrain) {
         int attackDefect=0;
-        if (terrain.equals("FOREST")){
+        if (terrain.equals("Forest")){
             attackDefect-=2;
         }
         return attackDefect;

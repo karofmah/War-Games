@@ -1,5 +1,6 @@
 package wargames.controller;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -101,14 +102,11 @@ public class SimulationController implements Subscriber {
     private TableView<Army> army2TableView;
 
 
-
-    private ObservableList<Army> army1ObservableList;
-
-    private ObservableList<Army> army2ObservableList;
-
     private ArrayList<ImageView> listOfImageViewsArmy1;
 
     private ArrayList<ImageView> listOfImageViewsArmy2;
+
+    Battle battle;
 
     /**
      * Method to change scene to armiesView when armies button is clicked.
@@ -141,12 +139,13 @@ public class SimulationController implements Subscriber {
      */
     public void startBattle(Army army1, Army army2) {
         try {
-            Battle battle = new Battle(army1, army2, terrainComboBox.getValue());
+            battle = new Battle(army1, army2, terrainComboBox.getValue());
             battle.addSubscriber(this);
             Army winner = battle.simulate();
             battle.removeSubscriber(this);
             announcedWinnerLabel.setText(winner.getName() + " won the battle!");
-            createShapesForArmies(army1, army2);
+            createImagesForArmies(army1, army2);
+            updateArmies(army1,army2);
 
 
 
@@ -164,7 +163,7 @@ public class SimulationController implements Subscriber {
      * @param army1 one of the armies in a battle
      * @param army2 the other of the armies in a battle
      */
-    public void createShapesForArmies(Army army1, Army army2) throws URISyntaxException, FileNotFoundException, MalformedURLException {
+    public void createImagesForArmies(Army army1, Army army2) throws URISyntaxException, FileNotFoundException, MalformedURLException {
 
         if (listOfImageViewsArmy1 != null && listOfImageViewsArmy2 != null) {
             for (ImageView imageView : listOfImageViewsArmy1) {
@@ -261,8 +260,10 @@ public class SimulationController implements Subscriber {
             for (int i = 0; i < 10; i++) {
                 army1.add(factory.create("InfantryUnit", "Footman", 100));
                 army1.add(factory.create("RangedUnit", "Archer", 100));
+                army1.add(factory.create("MageUnit","Sorcerer",100));
                 army2.add(factory.create("InfantryUnit", "Grunt", 100));
                 army2.add(factory.create("RangedUnit", "Spearman", 100));
+                army2.add(factory.create("MageUnit","Sorcerer",100));
 
             }
             for (int i = 0; i < 5; i++) {
@@ -272,7 +273,7 @@ public class SimulationController implements Subscriber {
                 army2.add(factory.create("CommanderUnit", "Gul´dan", 100));
             }
             updateArmies(army1, army2);
-            createShapesForArmies(army1, army2);
+            createImagesForArmies(army1, army2);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         } catch (MalformedURLException | FileNotFoundException | URISyntaxException e) {
@@ -299,7 +300,7 @@ public class SimulationController implements Subscriber {
 
             addTerrainsToComboBox();
 
-            createShapesForArmies(army1, army2);
+            createImagesForArmies(army1, army2);
 
 
 
@@ -385,24 +386,23 @@ public class SimulationController implements Subscriber {
         //delay(1000, () -> updateArmies(army1,army2));
 
         updateArmies(army1,army2);
-        System.out.println("updated before");
+        /*System.out.println("updated before");
         int army1Size=army1.size();
         int army2Size=army2.size();
         System.out.println(army1Size);
         System.out.println(army2Size);
 
-
         PauseTransition pause=new PauseTransition(Duration.seconds(2));
         pause.setOnFinished(e-> System.out.println("Pause finished"));
 
        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, e->updateArmies(army1,army2)),new KeyFrame(Duration.seconds(1),e->pause.play()));
+        timeline.getKeyFrames().addAll(new KeyFrame(Duration.seconds(1), e->updateArmies(army1,army2)));
 
-        timeline.setCycleCount(1);
+        timeline.setCycleCount(Animation.INDEFINITE);
         timeline.setOnFinished(e-> System.out.println("Timeline finished"));
 
         timeline.play();
-        System.out.println("updated after");
+        System.out.println("updated after");*/
 
 
 

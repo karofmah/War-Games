@@ -57,7 +57,7 @@ public class CavalryUnit extends Unit {
     @Override
     public int getTerrainAttackBonus(String terrain) {
         int attackBonus=0;
-        if(terrain.equals("PLAINS")){
+        if(terrain.equals("Plains")){
             attackBonus=2;
 
         }
@@ -92,7 +92,7 @@ public class CavalryUnit extends Unit {
     @Override
     public int getTerrainResistDefect(String terrain) {
         int resistDefect=0;
-        if(terrain.equals("FOREST")){
+        if(terrain.equals("Forest")){
             resistDefect-=getResistBonus();
         }
         return resistDefect;

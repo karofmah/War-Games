@@ -101,7 +101,7 @@ public class Army {
         return units.stream().filter(p->p instanceof CommanderUnit).collect(Collectors.toList());
     }
     public List<Unit> getMageUnits(){
-        return units.stream().filter(p->p instanceof CommanderUnit).collect(Collectors.toList());
+        return units.stream().filter(p->p instanceof MageUnit).collect(Collectors.toList());
     }
 
     public int getTotalNumberOfUnits() {
