@@ -1,9 +1,6 @@
 package wargames.controller;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-import javafx.util.Duration;
 import wargames.WarGamesApplication;
 import wargames.model.army.Army;
 import wargames.model.battle.Battle;
@@ -51,7 +47,8 @@ public class SimulationController implements Subscriber {
     @FXML
     private TilePane tilePane2;
 
-
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     private TableColumn<?, ?> armyNameCol1;
@@ -290,6 +287,7 @@ public class SimulationController implements Subscriber {
      */
     public void initData(Army army1, Army army2) {
         try {
+            scrollPane.setHvalue(0.54);
 
             updateArmies(army1, army2);
 

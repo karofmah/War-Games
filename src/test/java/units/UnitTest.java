@@ -65,13 +65,15 @@ public class UnitTest {
             assertEquals(86,rangedHealthAfterAttack);
         }
         @Test
-        public void mageAttacksRanged(){
+        @DisplayName("Tests if an attack from a mage unit to a ranged unit on a hill, lowers their health by right amount")
+        public void mageAttacksRangedOnHill(){
             mage.attack(ranged,"Hill");
             int rangedHealthAfterAttack=ranged.getHealth();
             assertEquals(95,rangedHealthAfterAttack);
 
         }
         @Test
+        @DisplayName("Tests if an attack from a ranged unit to a mage unit on a hill, lowers their health by right amount")
         public void rangedAttacksMage(){
             ranged.attack(mage,"Forest");
             int mageHealthAfterAttack=mage.getHealth();
@@ -86,7 +88,7 @@ public class UnitTest {
             assertEquals(0,infantryHealth);
         }
         @Test
-        @DisplayName("Tests if the resist bonus of a RangedUnit is changed by right amount")
+        @DisplayName("Tests if the resist bonus of a ranged unit is changed by right amount")
         public void rangedResistBonus(){
             for (int i = 0; i < 5; i++) {
                 if(i==0) {
@@ -102,7 +104,7 @@ public class UnitTest {
 
         }
         @Test
-        @DisplayName("Tests if the resist bonus of a CavalryUnit is changed by right amount ")
+        @DisplayName("Tests if the resist bonus of a cavalry unit is changed by right amount ")
         public void cavalryAttackBonus(){
             for (int i = 0; i < 7; i++) {
                 if(i==0) {
@@ -114,6 +116,7 @@ public class UnitTest {
             }
         }
         @Test
+        @DisplayName("Tests if the attack bonus of a mage unit is changed by right amount")
         public void mageAttackBonus(){
             for (int i = 0; i < 5; i++) {
                 if(i==3){
@@ -125,6 +128,7 @@ public class UnitTest {
 
         }
         @Test
+        @DisplayName("Tests if the resist bonus of a mage unit is changed by right amount")
         public void mageResistBonus(){
             for (int i = 0; i < 5; i++) {
                 if (i == 0) {

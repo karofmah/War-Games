@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1473.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wargames.controller.SimulationController">
    <bottom>
-       <ScrollPane hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1476.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+       <ScrollPane fx:id="scrollPane" hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1476.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="2660.0" styleClass="background" stylesheets="@../stylesheet/mycss.css">
               <Button fx:id="startBattleBtn" layoutX="1169.0" layoutY="505.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="127.0" styleClass="buttons" stylesheets="@../stylesheet/mycss.css" text="Start battle" />
               <Button layoutX="1212.0" layoutY="91.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="43.0" prefWidth="89.0" styleClass="buttons" text="Armies" />

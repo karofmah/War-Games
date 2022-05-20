@@ -26,7 +26,7 @@ public class Publisher {
     public void notify(Army army1,Army army2){
         subscribers.forEach(subscriber -> {
             try {
-                subscriber.updateGui(army1,army2);
+                subscriber.updateArmies(army1,army2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

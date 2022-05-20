@@ -1,9 +1,7 @@
 package wargames.model.battle;
 
 
-import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.util.Duration;
 import wargames.controller.SimulationController;
@@ -101,6 +99,7 @@ public class Battle extends Publisher {
                 if (army1Unit.getHealth() == 0) {
                     army1.remove(army1Unit);
                     if (!army1.hasUnits()) {
+                        notify(army1,army2);
                         break;
                     }
                 }
