@@ -1,41 +1,6 @@
-Blue Side
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-InfantryUnit,Footman,100
-RangedUnit,Archer,100
-MageUnit,Sorcerer,100
-CavalryUnit,Knight,100
-CommanderUnit,Mountain King,100
-CavalryUnit,Knight,100
-CommanderUnit,Mountain King,100
-CavalryUnit,Knight,100
-CommanderUnit,Mountain King,100
-CavalryUnit,Knight,100
-CommanderUnit,Mountain King,100
-CavalryUnit,Knight,100
-CommanderUnit,Mountain King,100
+Blue side
+CommanderUnit,Mountain King,180
+CommanderUnit,Mountain King,180
+CommanderUnit,Mountain King,180
+CommanderUnit,Mountain King,180
+CommanderUnit,Mountain King,180

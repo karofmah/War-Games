@@ -4,6 +4,9 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
@@ -11,22 +14,22 @@
    <left>
       <ScrollPane fx:id="scrollPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="1476.0" BorderPane.alignment="CENTER">
          <content>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="3000.0" styleClass="background" stylesheets="@../stylesheet/mycss.css">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="3153.0" styleClass="background" stylesheets="@../stylesheet/mycss.css">
                <children>
-                  <Button fx:id="armiesBtn" layoutX="1212.0" layoutY="91.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="43.0" prefWidth="91.0" styleClass="buttons" text="Armies" />
-                  <Button fx:id="simulationBtn" layoutX="1302.0" layoutY="91.0" mnemonicParsing="false" onAction="#simulationBtnClicked" prefHeight="43.0" prefWidth="121.0" styleClass="buttons" text="Simulation" />
-                  <TableView fx:id="army1TableView" layoutX="-2.0" layoutY="32.0" prefHeight="81.0" prefWidth="1171.0" styleClass="table">
+                  <Button fx:id="armiesBtn" layoutX="1375.0" layoutY="91.0" mnemonicParsing="false" onAction="#armiesBtnClicked" prefHeight="43.0" prefWidth="91.0" styleClass="buttons" text="Armies" />
+                  <Button fx:id="simulationBtn" layoutX="1465.0" layoutY="91.0" mnemonicParsing="false" onAction="#simulationBtnClicked" prefHeight="43.0" prefWidth="121.0" styleClass="buttons" text="Simulation" />
+                  <TableView fx:id="army1TableView" layoutX="-2.0" layoutY="32.0" prefHeight="81.0" prefWidth="1367.0" styleClass="table">
                     <columns>
                       <TableColumn fx:id="armyNameCol1" prefWidth="100.00003051757812" styleClass="table" text="Army name" />
                       <TableColumn fx:id="totalNumberOfUnitsCol1" prefWidth="196.66668701171875" styleClass="table" text="Total number of units" />
                         <TableColumn fx:id="numberOfInfantryUnitsCol1" prefWidth="210.00006103515625" styleClass="table" text="Number of infantry units" />
-                        <TableColumn fx:id="numberOfRangedUnitsCol1" minWidth="0.0" prefWidth="0.0" styleClass="table" text="Number of ranged units" />
-                        <TableColumn fx:id="numberOfCavalryUnitsCol1" prefWidth="208.66668701171875" styleClass="table" text="Number of cavalry units" />
-                        <TableColumn fx:id="numberOfCommanderUnitsCol1" prefWidth="258.66668701171875" styleClass="table" text="Number of commander units" />
-                        <TableColumn fx:id="numberOfMageUnitsCol1" prefWidth="193.33319091796875" styleClass="table" text="Number of mage units" />
+                        <TableColumn fx:id="numberOfRangedUnitsCol1" minWidth="0.0" prefWidth="209.33331298828125" styleClass="table" text="Number of ranged units" />
+                        <TableColumn fx:id="numberOfCavalryUnitsCol1" minWidth="0.0" prefWidth="210.66668701171875" styleClass="table" text="Number of cavalry units" />
+                        <TableColumn fx:id="numberOfCommanderUnitsCol1" minWidth="0.0" prefWidth="242.66668701171875" styleClass="table" text="Number of commander units" />
+                        <TableColumn fx:id="numberOfMageUnitsCol1" minWidth="0.0" prefWidth="193.33333333333326" styleClass="table" text="Number of mage units" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="army2TableView" layoutX="1433.0" layoutY="32.0" prefHeight="81.0" prefWidth="1349.0" styleClass="table">
+                  <TableView fx:id="army2TableView" layoutX="1600.0" layoutY="32.0" prefHeight="81.0" prefWidth="1349.0" styleClass="table">
                      <columns>
                         <TableColumn fx:id="armyNameCol2" prefWidth="100.6666259765625" styleClass="table" text="Army name" />
                         <TableColumn fx:id="totalNumberOfUnitsCol2" prefWidth="183.3333740234375" styleClass="table" text="Total number of units" />
@@ -37,21 +40,81 @@
                         <TableColumn fx:id="numberOfMageUnitsCol2" prefWidth="190.66650390625" styleClass="table" text="Number of mage units" />
                      </columns>
                   </TableView>
-                  <Button fx:id="readChosenArmyFromFile" layoutX="1138.0" layoutY="506.0" mnemonicParsing="false" onAction="#readArmyFromFile" prefHeight="43.0" prefWidth="327.0" styleClass="buttons" text="Read chosen army from file" />
-                  <TableView fx:id="army1UnitsTableView" layoutX="867.0" layoutY="174.0" prefHeight="254.0" prefWidth="380.0" styleClass="table">
+                  <Button fx:id="readChosenArmyFromFile" layoutX="1302.0" layoutY="506.0" mnemonicParsing="false" onAction="#readArmyFromFile" prefHeight="43.0" prefWidth="327.0" styleClass="buttons" text="Read chosen army from file" />
+                  <TableView fx:id="army1UnitsTableView" layoutX="966.0" layoutY="173.0" prefHeight="254.0" prefWidth="380.0" styleClass="table">
                     <columns>
                       <TableColumn fx:id="unitTypeCol1" prefWidth="160.0" styleClass="table" text="Unit type" />
-                      <TableColumn fx:id="unitNameCol1" prefWidth="113.33349609375" styleClass="table" text="Unit name" />
-                        <TableColumn fx:id="unitHealthCol1" prefWidth="66.00008138020831" styleClass="table" text="Unit health" />
+                      <TableColumn fx:id="unitNameCol1" prefWidth="114.666748046875" styleClass="table" text="Unit name" />
+                        <TableColumn fx:id="unitHealthCol1" prefWidth="66.0" styleClass="table" text="Unit health" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="army2UnitsTableView" layoutX="1433.0" layoutY="174.0" prefHeight="254.0" prefWidth="301.0" styleClass="table">
+                  <TableView fx:id="army2UnitsTableView" layoutX="1600.0" layoutY="184.0" prefHeight="254.0" prefWidth="407.0" styleClass="table">
                      <columns>
-                        <TableColumn fx:id="unitTypeCol2" prefWidth="97.9998779296875" styleClass="table" text="Unit type" />
-                        <TableColumn fx:id="unitNameCol2" prefWidth="100.0" styleClass="table" text="Unit name" />
-                        <TableColumn fx:id="unitHealthCol2" prefWidth="104.666748046875" styleClass="table" text="Unit health" />
+                        <TableColumn fx:id="unitTypeCol2" prefWidth="150.66650390625" styleClass="table" text="Unit type" />
+                        <TableColumn fx:id="unitNameCol2" prefWidth="105.3333740234375" styleClass="table" text="Unit name" />
+                        <TableColumn fx:id="unitHealthCol2" prefWidth="151.333251953125" styleClass="table" text="Unit health" />
                      </columns>
                   </TableView>
+                  <ImageView fx:id="blueInfantryImageView" fitHeight="125.0" fitWidth="125.0" layoutX="422.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/blueInfantry.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="blueRangedImageView" fitHeight="100.0" fitWidth="100.0" layoutX="424.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/blueRanged.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="blueCavalryImageView" fitHeight="100.0" fitWidth="100.0" layoutX="424.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/blueCavalry.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="blueCommanderImageView" fitHeight="100.0" fitWidth="100.0" layoutX="739.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/blueCommander.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="blueMageImageView" fitHeight="100.0" fitWidth="100.0" layoutX="752.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/blueMage.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="numberOfBlueInfantry" layoutX="556.0" layoutY="257.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
+                  <TextField fx:id="numberOfBlueRanged" layoutX="556.0" layoutY="363.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
+                  <TextField fx:id="numberOfBlueCavalry" layoutX="556.0" layoutY="463.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
+                  <TextField fx:id="numberOfBlueCommander" layoutX="852.0" layoutY="289.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
+                  <TextField fx:id="numberOfBlueMage" layoutX="852.0" layoutY="435.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
+                  <ImageView fx:id="redInfantryImageView" fitHeight="125.0" fitWidth="125.0" layoutX="2050.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/redInfantry.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="redRangedImageView" fitHeight="100.0" fitWidth="100.0" layoutX="2050.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/redRanged.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="redCavalryImageView" fitHeight="100.0" fitWidth="100.0" layoutX="2050.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/redCavalry.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="redCommanderImageView" fitHeight="100.0" fitWidth="100.0" layoutX="2300.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/redCommander.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="redMageImageView" fitHeight="100.0" fitWidth="100.0" layoutX="2300.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/redMage.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="numberOfRedInfantry" layoutX="2125.0" layoutY="267.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
+                  <TextField fx:id="numberOfRedRanged" layoutX="2125.0" layoutY="373.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
+                  <TextField fx:id="numberOfRedCavalry" layoutX="2125.0" layoutY="473.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
+                  <TextField fx:id="numberOfRedCommander" layoutX="2413.0" layoutY="299.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
+                  <TextField fx:id="numberOfRedMage" layoutX="2413.0" layoutY="445.0" prefHeight="43.0" prefWidth="88.0" styleClass="inputFields" />
                </children>
             </AnchorPane>
          </content>

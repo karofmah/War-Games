@@ -36,7 +36,7 @@ public class Army {
      * @param name name of the Army, can not be blank
      * @param units units in the Army
      */
-    public Army(String name, ArrayList<Unit> units) {
+    public Army(String name, List<Unit> units) {
         this.name = name;
         if(name.isBlank()) {
             throw new IllegalArgumentException("Please enter a name");

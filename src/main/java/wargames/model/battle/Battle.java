@@ -9,7 +9,9 @@ import wargames.model.army.Army;
 import wargames.model.observer.Publisher;
 import wargames.model.units.Unit;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -70,18 +72,11 @@ public class Battle extends Publisher {
      */
     public Army simulate() throws IOException, InterruptedException, URISyntaxException {
 
-        URL fxmlLocation = getClass().getResource("/wargames/simulationView.fxml");
-        FXMLLoader loader = new FXMLLoader(fxmlLocation);
-        loader.load();
-        SimulationController controller=loader.getController();
-        PauseTransition pause=new PauseTransition(Duration.seconds(1));
-        pause.setOnFinished(e-> controller.updateArmies(army1,army2));
-
         while(army1.hasUnits() && army2.hasUnits()) {
 
             int numberOfAttacks=0;
             while(numberOfAttacks>=0) {
-                notify(army1,army2);
+
                 Unit army1Unit = army1.getRandom();
                 Unit army2Unit = army2.getRandom();
                 if (numberOfAttacks % 2 == 0) {
@@ -90,18 +85,24 @@ public class Battle extends Publisher {
                 }
                 if (army2Unit.getHealth() == 0) {
                     army2.remove(army2Unit);
-                    if (!army2.hasUnits()) {
-                        break;
-                    }
+                    System.out.println(army1.size());
+                    System.out.println(army2.size());
+
+                }
+                if (!army2.hasUnits()) {
+                    notify(army1,army2);
+                    break;
                 }
                 army2Unit.attack(army1Unit,terrain);
                 numberOfAttacks++;
                 if (army1Unit.getHealth() == 0) {
                     army1.remove(army1Unit);
-                    if (!army1.hasUnits()) {
-                        notify(army1,army2);
-                        break;
-                    }
+                    System.out.println(army1.size());
+                    System.out.println(army2.size());
+                }
+                if (!army1.hasUnits()) {
+                    notify(army1,army2);
+                    break;
                 }
             }
         }

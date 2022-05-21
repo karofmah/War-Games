@@ -12,12 +12,9 @@ import wargames.WarGamesApplication;
 import wargames.model.army.Army;
 import wargames.model.battle.Battle;
 import wargames.model.observer.Subscriber;
-import wargames.model.unitfactory.UnitFactory;
 import wargames.model.units.*;
 
-
 import javax.swing.*;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -25,6 +22,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static wargames.dialogs.Dialogs.showAlertDialog;
+import static wargames.dialogs.Dialogs.showInformationDialog;
 
 public class SimulationController implements Subscriber {
 
@@ -37,9 +35,6 @@ public class SimulationController implements Subscriber {
 
     @FXML
     private ComboBox<String> terrainComboBox;
-
-    @FXML
-    private Label announcedWinnerLabel;
 
     @FXML
     private TilePane tilePane1;
@@ -136,14 +131,13 @@ public class SimulationController implements Subscriber {
      */
     public void startBattle(Army army1, Army army2) {
         try {
+
             battle = new Battle(army1, army2, terrainComboBox.getValue());
             battle.addSubscriber(this);
             Army winner = battle.simulate();
             battle.removeSubscriber(this);
-            announcedWinnerLabel.setText(winner.getName() + " won the battle!");
-            createImagesForArmies(army1, army2);
-            updateArmies(army1,army2);
 
+            showInformationDialog(winner.getName() + " has won the battle!");
 
 
         } catch (IllegalArgumentException | IOException | InterruptedException|URISyntaxException e) {
@@ -247,37 +241,17 @@ public class SimulationController implements Subscriber {
      * @param army1 one of the armies in the battle
      * @param army2 the other of the armies in a battle
      */
-    public void resetBattle(Army army1, Army army2) {
-        try {
-            UnitFactory factory = new UnitFactory();
-            army1.getAllUnits().clear();
-            army2.getAllUnits().clear();
-            announcedWinnerLabel.setText("");
+    public void resetBattle(Army army1, Army army2,Army army1Saved,Army army2Saved) throws MalformedURLException, FileNotFoundException, URISyntaxException {
 
-            for (int i = 0; i < 10; i++) {
-                army1.add(factory.create("InfantryUnit", "Footman", 100));
-                army1.add(factory.create("RangedUnit", "Archer", 100));
-                army1.add(factory.create("MageUnit","Sorcerer",100));
-                army2.add(factory.create("InfantryUnit", "Grunt", 100));
-                army2.add(factory.create("RangedUnit", "Spearman", 100));
-                army2.add(factory.create("MageUnit","Sorcerer",100));
-
-            }
-            for (int i = 0; i < 5; i++) {
-                army1.add(factory.create("CavalryUnit", "Knight", 100));
-                army1.add(factory.create("CommanderUnit", "Mountain King", 100));
-                army2.add(factory.create("CavalryUnit", "Raider", 100));
-                army2.add(factory.create("CommanderUnit", "Gul´dan", 100));
-            }
-            updateArmies(army1, army2);
-            createImagesForArmies(army1, army2);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        } catch (MalformedURLException | FileNotFoundException | URISyntaxException e) {
-            e.printStackTrace();
-        }
+        army1.getAllUnits().clear();
+        army2.getAllUnits().clear();
+        army1.addAll(army1Saved.getAllUnits());
+        army2.addAll(army2Saved.getAllUnits());
+        updateArmies(army1,army2);
 
     }
+
+
 
     /**
      * Method to initialize transferred data from armiesView when this view is present
@@ -289,18 +263,33 @@ public class SimulationController implements Subscriber {
         try {
             scrollPane.setHvalue(0.54);
 
+            Army army1Saved=new Army(army1.getName());
+            Army army2Saved=new Army(army2.getName());
             updateArmies(army1, army2);
 
-            startBattleBtn.setOnMouseClicked(mouseEvent ->
-                    startBattle(army1, army2));
+            System.out.println(army1.size());
+            System.out.println(army2.size());
+            startBattleBtn.setOnMouseClicked(mouseEvent ->{
+                    army1Saved.addAll(army1.getAllUnits());
+                    army2Saved.addAll(army2.getAllUnits());
+                    startBattle(army1, army2);
+                    });
 
-            resetBattleBtn.setOnMouseClicked(mouseEvent -> resetBattle(army1, army2));
+            resetBattleBtn.setOnMouseClicked(mouseEvent -> {
+                try {
+                    resetBattle(army1,army2,army1Saved, army2Saved);
+                } catch (MalformedURLException | FileNotFoundException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            });
 
             addTerrainsToComboBox();
 
             createImagesForArmies(army1, army2);
 
-
+            if(army1.size()>144 || army2.size()>144){
+                showInformationDialog("Max 144 units are displayed per army");
+        }
 
             this.armyNameCol1.setCellValueFactory(new PropertyValueFactory<>("name"));
             this.totalNumberOfUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
@@ -320,6 +309,7 @@ public class SimulationController implements Subscriber {
             this.numberOfMageUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfMageUnits"));
 
 
+
         } catch (IllegalArgumentException e) {
             showAlertDialog(e);
         } catch (URISyntaxException | FileNotFoundException | MalformedURLException e) {
@@ -329,6 +319,10 @@ public class SimulationController implements Subscriber {
     }
 
     public void fillTableView(TableView<Army> tableView, Army army) {
+
+        army1TableView.refresh();
+        army2TableView.refresh();
+
         ObservableList<Army> armyObservableList = FXCollections.observableArrayList(
                 new Army(army.getName(), army.size(), army.getInfantryUnits().size(),
                         army.getRangedUnits().size(), army.getCavalryUnits().size(),
@@ -336,9 +330,10 @@ public class SimulationController implements Subscriber {
         tableView.setItems(armyObservableList);
 
 
+
     }
 
-    public void updateArmies(Army army1, Army army2) {
+    public void updateArmies(Army army1, Army army2) throws MalformedURLException, FileNotFoundException, URISyntaxException {
 
         army1TableView.refresh();
         army2TableView.refresh();
@@ -346,67 +341,11 @@ public class SimulationController implements Subscriber {
         fillTableView(army1TableView,army1);
         fillTableView(army2TableView,army2);
 
-        System.out.println("Army updated");
-
-    }
-
-    public void delay(Army army1,Army army2) {
-
-/*
-        PartialResultsTask task1=new PartialResultsTask(army1, army1TableView,army1ObservableList);
-        Thread thread1=new Thread(task1);
-        thread1.start();
-        PartialResultsTask task2=new PartialResultsTask(army2,army2TableView, army2ObservableList);
-        Thread thread2=new Thread(task2);
-        thread2.start();
-
-    }
-    public static void delay(long millis, Runnable continuation) {
-        Task<Void> sleeper = new Task<>() {
-            @Override
-            protected Void call() {
-                try {
-                    Thread.sleep(millis);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        };
-        sleeper.setOnSucceeded(event -> continuation.run());
-        new Thread(sleeper).start();
-        System.out.println("updated");
-    }*/
-    }
-
-    public void updateGui(Army army1, Army army2) {
-
-        //delay(1000, () -> updateArmies(army1,army2));
-
-        updateArmies(army1,army2);
-        /*System.out.println("updated before");
-        int army1Size=army1.size();
-        int army2Size=army2.size();
-        System.out.println(army1Size);
-        System.out.println(army2Size);
-
-        PauseTransition pause=new PauseTransition(Duration.seconds(2));
-        pause.setOnFinished(e-> System.out.println("Pause finished"));
-
-       Timeline timeline = new Timeline();
-        timeline.getKeyFrames().addAll(new KeyFrame(Duration.seconds(1), e->updateArmies(army1,army2)));
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.setOnFinished(e-> System.out.println("Timeline finished"));
-
-        timeline.play();
-        System.out.println("updated after");*/
-
+        createImagesForArmies(army1, army2);
 
 
 
     }
-
 
 
 }

@@ -4,6 +4,9 @@ import javafx.animation.Timeline;
 import wargames.model.army.Army;
 import wargames.model.battle.Battle;
 
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class Publisher {
         subscribers.forEach(subscriber -> {
             try {
                 subscriber.updateArmies(army1,army2);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException | MalformedURLException | FileNotFoundException | URISyntaxException e) {
                 e.printStackTrace();
             }
         });
