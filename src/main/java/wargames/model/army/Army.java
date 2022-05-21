@@ -10,6 +10,10 @@ import java.io.PrintWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Army-class that contains constructors, methods and attributes
+ * to manage the armies
+ */
 public class Army {
     private final String name;
     private final List<Unit> units;
@@ -46,6 +50,20 @@ public class Army {
               Army army=new Army(name);
         }
     }
+
+    /**
+     * Constructor for the class Army
+     * Is necessary to create tableview
+     * with number of units
+     * @param name Name of the army
+     * @param totalNumberOfUnits total number of units in the army
+     * @param numberOfInfantryUnits number of infantry units in the army
+     * @param numberOfRangedUnits number of ranged units in the army
+     * @param numberOfCavalryUnits number of cavalry units in the army
+     * @param numberOfCommanderUnits number of commander units in the army
+     * @param numberOfMageUnits number of mage units in the army
+     * @param units list of all the units in the army as List<Unit>
+     */
     public Army(String name,int totalNumberOfUnits,int numberOfInfantryUnits,int numberOfRangedUnits,int numberOfCavalryUnits,
                 int numberOfCommanderUnits,int numberOfMageUnits,List<Unit> units){
         this.name=name;
@@ -104,31 +122,55 @@ public class Army {
         return units.stream().filter(p->p instanceof MageUnit).collect(Collectors.toList());
     }
 
+    /**
+     * Returns total number of units
+     * @return totalNumberOfUnits
+     */
     public int getTotalNumberOfUnits() {
         return totalNumberOfUnits;
     }
 
+    /**
+     * Returns total number of infantry units
+     * @return totalNumberOfInfantryUnits
+     */
     public int getNumberOfInfantryUnits() {
         return numberOfInfantryUnits;
     }
 
+    /**
+     * Returns total number of ranged units
+     * @return totalNumberOfRangedUnits
+     */
     public int getNumberOfRangedUnits() {
         return numberOfRangedUnits;
     }
 
+    /**
+     * Returns total number of cavalry units
+     * @return totalNumberOfCavalryUnits
+     */
     public int getNumberOfCavalryUnits() {
         return numberOfCavalryUnits;
     }
 
+    /**
+     * Returns total number of commander units
+     * @return totalNumberOfCommanderUnits
+     */
     public int getNumberOfCommanderUnits() {
         return numberOfCommanderUnits;
     }
 
+    /**
+     * Returns total number of mage units
+     * @return totalNumberOfMageUnits
+     */
     public int getNumberOfMageUnits(){
         return numberOfMageUnits;
     }
     /**
-     *Adds an unit to army
+     *Adds a unit to army
      * @param unit a unit outside the army
      */
     public void add(Unit unit){
@@ -225,7 +267,12 @@ public class Army {
             e.printStackTrace();
         }
     }
-    //TODO: Javadoc
+
+    /**
+     * Method to read an army from a file
+     * @param file file that is read from
+     * @return text from file as a String
+     */
     public String readArmyFromFile(File file){
         StringBuilder textFromFile= new StringBuilder();
         try(Scanner scanner=new Scanner(file)){

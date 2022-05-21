@@ -24,6 +24,10 @@ import java.util.ArrayList;
 import static wargames.dialogs.Dialogs.showAlertDialog;
 import static wargames.dialogs.Dialogs.showInformationDialog;
 
+/**
+ * Controller class that mainly manages and updates simulationView.fxml.
+ */
+
 public class SimulationController implements Subscriber {
 
 
@@ -124,7 +128,10 @@ public class SimulationController implements Subscriber {
 
     /**
      * Method to start battle between two armies in chosen terrain
-     * Linked to the start battle button
+     * Linked to the start battle button.
+     * This controller-class is added as a subscriber
+     * of the Subject/Publisher during the battle,
+     * and the armies are updated when the battle has ended
      *
      * @param army1 one of the armies in the battle
      * @param army2 the other of the armies in the battle
@@ -149,10 +156,14 @@ public class SimulationController implements Subscriber {
     }
 
     /**
-     * Method to create circles that represent the units in the armies
+     * Method to create images/image icons that represents
+     * the different type of units in the armies
      *
-     * @param army1 one of the armies in a battle
-     * @param army2 the other of the armies in a battle
+     * @param army1 One of the armies that will take part in a battle
+     * @param army2 The other army in a battle that will take part in a battle
+     * @throws URISyntaxException e
+     * @throws FileNotFoundException e
+     * @throws MalformedURLException e
      */
     public void createImagesForArmies(Army army1, Army army2) throws URISyntaxException, FileNotFoundException, MalformedURLException {
 
@@ -236,10 +247,16 @@ public class SimulationController implements Subscriber {
     }
 
     /**
-     * Method to reset a battle that has finished between two armies
-     *
-     * @param army1 one of the armies in the battle
-     * @param army2 the other of the armies in a battle
+     * Method to reset a battle that has finished between two armies.
+     * The state of the armies before the battle was started,
+     * will return
+     * @param army1 One of the armies after battle
+     * @param army2 The other army after battle
+     * @param army1Saved One of the armies before battle
+     * @param army2Saved The other army before battle
+     * @throws MalformedURLException e
+     * @throws FileNotFoundException e
+     * @throws URISyntaxException e
      */
     public void resetBattle(Army army1, Army army2,Army army1Saved,Army army2Saved) throws MalformedURLException, FileNotFoundException, URISyntaxException {
 
@@ -255,6 +272,7 @@ public class SimulationController implements Subscriber {
 
     /**
      * Method to initialize transferred data from armiesView when this view is present
+     * Also initiates methods to set up the simulation of the battle between armies
      *
      * @param army1 one of the armies in a battle
      * @param army2 the other of the armies in a battle
@@ -280,8 +298,10 @@ public class SimulationController implements Subscriber {
                     resetBattle(army1,army2,army1Saved, army2Saved);
                 } catch (MalformedURLException | FileNotFoundException | URISyntaxException e) {
                     e.printStackTrace();
+                    showAlertDialog(e);
                 }
             });
+
 
             addTerrainsToComboBox();
 
@@ -318,6 +338,13 @@ public class SimulationController implements Subscriber {
 
     }
 
+    /**
+     * Method to a fill table view with number of units, both in general
+     *  * and for each unit type, as well as the name of an army
+     *  * connected to these units
+     * @param tableView tableview that is filled
+     * @param army army that is connected to the content of the table view
+     */
     public void fillTableView(TableView<Army> tableView, Army army) {
 
         army1TableView.refresh();
@@ -333,6 +360,16 @@ public class SimulationController implements Subscriber {
 
     }
 
+    /**
+     *Method to update both the tableview of the armies
+     * and the images that represents the units in
+     * the armies
+     * @param army1 One of the armies that are updated
+     * @param army2 The other of the armies that are updated
+     * @throws MalformedURLException e
+     * @throws FileNotFoundException e
+     * @throws URISyntaxException e
+     */
     public void updateArmies(Army army1, Army army2) throws MalformedURLException, FileNotFoundException, URISyntaxException {
 
         army1TableView.refresh();
@@ -346,6 +383,5 @@ public class SimulationController implements Subscriber {
 
 
     }
-
 
 }

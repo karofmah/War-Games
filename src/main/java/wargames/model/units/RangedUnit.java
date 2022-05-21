@@ -1,9 +1,13 @@
 package wargames.model.units;
 
+/**
+ * RangedUnit-class extends Unit
+ * Represents a unit of the type ranged
+ */
 public class RangedUnit extends Unit {
     private int receivedAttack;
     /**
-     * Constructor
+     * Constructor for RangedUnit
      *
      * @param name   of the unit as a String, can not be blank
      * @param health of the unit as an int, can not be lower than zero
@@ -13,9 +17,21 @@ public class RangedUnit extends Unit {
     public RangedUnit(String name, int health, int attack, int armor) {
         super(name, health, attack, armor);
     }
+    /**
+     * Constructor for RangedUnit
+     * @param name   of the unit as a String, can not be blank
+     * @param health of the unit as an int, can not be lower than zero
+     */
     public RangedUnit(String name, int health) {
         super(name, health, 15, 8);
     }
+
+    /**
+     * Constructor for RangedUnit
+     * @param type of the unit as a String  must be a RangedUnit and can not be blank
+     * @param name  of the unit as a String, can not be blank
+     * @param health of the unit as an int, can not be lower than zero
+     */
     public RangedUnit(String type,String name, int health){super(type,name,health,15,8);}
 
     /**

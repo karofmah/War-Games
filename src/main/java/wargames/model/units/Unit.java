@@ -15,7 +15,7 @@ public abstract class Unit {
      * @param attack of the unit as an int, can not be lower than zero
      * @param armor  of the unit as an int, can not be lower than zero
      */
-    //Remove unused constructor?
+
     public Unit(String name, int health, int attack, int armor) {
         this.name = name;
         if(name.isBlank()) throw new IllegalArgumentException("Please enter a name for the unit");
@@ -26,11 +26,18 @@ public abstract class Unit {
         this.armor = armor;
         if(armor<0) throw new IllegalArgumentException("Unit can not have less than 0 armor");
     }
-
+    /**
+     * Constructor for the abstract superclass Unit
+     * @param type of the unit as a String  must be a RangedUnit and can not be blank
+     * @param name   of the unit as a String, can not be blank
+     * @param health of the unit as an int, can not be lower than zero
+     * @param attack of the unit as an int, can not be lower than zero
+     * @param armor  of the unit as an int, can not be lower than zero
+     */
     public Unit(String type,String name, int health, int attack,int armor){
 
         this.type = type;
-        if(!type.equals(getClass().getSimpleName())) throw new IllegalArgumentException("Type of the unit must be valid, please write a type that exists");
+        if(!type.equals(getClass().getSimpleName()) || type.isBlank()) throw new IllegalArgumentException("Type of the unit must be valid, please write a type that exists");
 
         this.name=name;
         if(name.isBlank()) throw new IllegalArgumentException("Please enter a name");
@@ -110,16 +117,48 @@ public abstract class Unit {
                 '}';
     }
 
-
+    /**
+     * Abstract method for receiving the attack bonus of a unit
+     * @return int
+     */
     public abstract int getAttackBonus();
 
+    /**
+     * Abstract method for receiving the resist bonus of a unit
+     * @return int
+     */
     public abstract int getResistBonus();
 
+    /**
+     * Abstract method for receiving the attack bonus of a unit
+     * in a specific terrain
+     * @param terrain the terrain where the battle is ongoing
+     * @return int
+     */
     public abstract int getTerrainAttackBonus(String terrain);
 
+    /**
+     * Abstract method for receiving the resist bonus of a unit
+     * in a specific terrain
+     * @param terrain the terrain where the battle is ongoing
+     * @return int
+     */
     public abstract int getTerrainResistBonus(String terrain);
 
+    /**
+     * Abstract method for receiving the attack defect of a unit
+     * in a specific terrain
+     * @param terrain the terrain where the battle is ongoing
+     * @return int
+     */
     public abstract int getTerrainAttackDefect(String terrain);
+
+    /**
+     * Abstract method for receiving the resist defect of a unit
+     * in a specific terrain
+     * @param terrain the terrain where the battle is ongoing
+     * @return int
+     */
 
     public abstract int getTerrainResistDefect(String terrain);
 }

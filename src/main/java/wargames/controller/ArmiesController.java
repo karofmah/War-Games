@@ -27,6 +27,9 @@ import java.util.ResourceBundle;
 import static wargames.dialogs.Dialogs.showAlertDialog;
 import static wargames.dialogs.Dialogs.showInformationDialog;
 
+/**
+ * Controller class that mainly manages and updates armiesView.fxml
+ */
 public class ArmiesController implements Initializable {
 
     @FXML
@@ -204,8 +207,8 @@ public class ArmiesController implements Initializable {
     }
     /**
      * Method to initialize data when this view is present
-     * @param url
-     * @param resourceBundle
+     * @param url url
+     * @param resourceBundle resource bundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -262,121 +265,163 @@ public class ArmiesController implements Initializable {
 
     }
     public void handleUnitsAdded(javafx.scene.image.ImageView imageView, Army army,TableView<Unit> unitTableView,TableView<Army> armyTableView,TextField text){
-
             if (Objects.equals(imageView.getId(), blueInfantryImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("InfantryUnit", "Footman", 100, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("InfantryUnit", "Footman", 100, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
+
                 });
             } else if (Objects.equals(imageView.getId(), blueRangedImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("RangedUnit", "Archer", 100, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("RangedUnit", "Archer", 100, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
                 });
             } else if (Objects.equals(imageView.getId(), blueCavalryImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("CavalryUnit", "Knight", 100, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("CavalryUnit", "Knight", 100, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
                 });
             } else if (Objects.equals(imageView.getId(), blueCommanderImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("CommanderUnit", "Mountain King", 180, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("CommanderUnit", "Mountain King", 180, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
                 });
             } else if (Objects.equals(imageView.getId(), blueMageImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("MageUnit", "Sorcerer", 100, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("MageUnit", "Sorcerer", 100, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
 
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
                 });
             } else if (Objects.equals(imageView.getId(), redInfantryImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("InfantryUnit", "Grunt", 100, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("InfantryUnit", "Grunt", 100, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
                 });
             } else if (Objects.equals(imageView.getId(), redRangedImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("RangedUnit", "Spearman", 100, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("RangedUnit", "Spearman", 100, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
                 });
 
             } else if (Objects.equals(imageView.getId(), redCavalryImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("CavalryUnit", "Raider", 100, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("CavalryUnit", "Raider", 100, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
                 });
             } else if (Objects.equals(imageView.getId(), redCommanderImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("CommanderUnit", "Gul'dan", 180, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("CommanderUnit", "Gul'dan", 180, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
                 });
             } else if (Objects.equals(imageView.getId(), redMageImageView.getId())) {
-                imageView.setOnMouseClicked(e -> {
-                    if(text.getText().isBlank())
-                        showInformationDialog("Please specify how many units of this type you want to add");
-                    else {
-                        List<Unit> units = factory.unitsOfSpecificType("MageUnit", "Necromancer", 100, Integer.parseInt(text.getText()));
-                        army.addAll(units);
-                        fillUnitTableView(army.getAllUnits(), unitTableView);
-                        fillArmyTableView(armyTableView, army);
+                imageView.setOnMouseClicked(event -> {
+                    try {
+                        if (text.getText().isBlank())
+                            showInformationDialog("Please specify how many units of this type you want to add");
+                        else {
+                            List<Unit> units = factory.unitsOfSpecificType("MageUnit", "Necromancer", 100, Integer.parseInt(text.getText()));
+                            army.addAll(units);
+                            fillUnitTableView(army.getAllUnits(), unitTableView);
+                            fillArmyTableView(armyTableView, army);
+                        }
+                    }catch (IllegalArgumentException e){
+                        showAlertDialog("This input is not supported, please enter a positive number");
                     }
                 });
             }
+
         }
+
 
     /**
      * Method to fill a table view that represents the number of units an army
@@ -465,7 +510,11 @@ public class ArmiesController implements Initializable {
     }
 
     /**
-     * Method to handle the selection of an army in the tableview
+     * Method to handle removal of units from an army
+     * Units may be removed by clicking on the unit on a table view that represent the units in an army
+     * @param unitTableView the unit table view, is updated when a team is removed from this tableview
+     * @param armyTableView the army table view, is updated when a team is removed from the unit table view
+     * @param army the army that a unit is removed from
      */
     public void handleUnitsRemoval(TableView<Unit> unitTableView,TableView<Army> armyTableView,Army army) {
         unitTableView.setRowFactory(table -> {
@@ -502,7 +551,10 @@ public class ArmiesController implements Initializable {
     }
 
 
-
+    /**
+     *Method to open the file explorer and open a file that
+     * the user may want to read
+     */
     @FXML
     public void readArmyFromFile() {
         Stage stage = WarGamesApplication.stage;

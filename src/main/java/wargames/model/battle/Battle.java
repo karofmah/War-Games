@@ -1,28 +1,25 @@
 package wargames.model.battle;
 
 
-import javafx.animation.PauseTransition;
-import javafx.fxml.FXMLLoader;
-import javafx.util.Duration;
-import wargames.controller.SimulationController;
 import wargames.model.army.Army;
 import wargames.model.observer.Publisher;
 import wargames.model.units.Unit;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
 
-
+/**
+ * Battle-class to manage the battle between armies
+ */
 public class Battle extends Publisher {
     private final Army army1;
     private final Army army2;
     private final String terrain;
 
-    //TODO: Javadoc
+    /**
+     * Enum-class to manage terrains
+     * Used in the Battle-constructor
+     */
     public enum Terrains{
         FOREST("Forest"),
         HILL("Hill"),
@@ -42,7 +39,7 @@ public class Battle extends Publisher {
     /**
      *Constructor for the class Battle
      * @param army1 one of the armies in a battle
-     * @param army2 the other armies in a battle
+     * @param army2 the other of  the armies in a battle
      */
     public Battle(Army army1, Army army2, String terrain) {
         this.army1 = army1;
@@ -66,7 +63,9 @@ public class Battle extends Publisher {
 
 
     /**
-     * Simulates the battle between army one and army two
+     * Simulates the battle between two armies. One random unit from each army is set up
+     * to attack each other. When the blows are done, another two random units
+     * have to fight.
      * Returns the winner
      * @return Army
      */
@@ -76,7 +75,6 @@ public class Battle extends Publisher {
 
             int numberOfAttacks=0;
             while(numberOfAttacks>=0) {
-
                 Unit army1Unit = army1.getRandom();
                 Unit army2Unit = army2.getRandom();
                 if (numberOfAttacks % 2 == 0) {
@@ -85,8 +83,7 @@ public class Battle extends Publisher {
                 }
                 if (army2Unit.getHealth() == 0) {
                     army2.remove(army2Unit);
-                    System.out.println(army1.size());
-                    System.out.println(army2.size());
+
 
                 }
                 if (!army2.hasUnits()) {
@@ -95,10 +92,10 @@ public class Battle extends Publisher {
                 }
                 army2Unit.attack(army1Unit,terrain);
                 numberOfAttacks++;
+
                 if (army1Unit.getHealth() == 0) {
                     army1.remove(army1Unit);
-                    System.out.println(army1.size());
-                    System.out.println(army2.size());
+
                 }
                 if (!army1.hasUnits()) {
                     notify(army1,army2);
@@ -110,17 +107,9 @@ public class Battle extends Publisher {
         return army1.hasUnits() ? army1 : army2;
     }
 
-
-    //TODO: Javadoc
-    public ArrayList <Army> getArmies(){
-        ArrayList<Army> armies=new ArrayList<>();
-
-        armies.add(army1);
-        armies.add(army2);
-
-        return armies;
-    }
-
+    /**
+     * toString-method
+     */
     @Override
     public String toString() {
         return "Battle{" +

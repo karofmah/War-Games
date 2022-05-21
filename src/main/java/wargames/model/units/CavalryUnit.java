@@ -1,10 +1,13 @@
 package wargames.model.units;
 
+/**
+ * CavalryUnit-class extends Unit
+ * Represents a unit of the type cavalry
+ */
 public class CavalryUnit extends Unit {
     private int attackCounter;
     /**
-     * Constructor
-     *
+     * Constructor for CavalryUnit
      * @param name   of the unit as a String, can not be blank
      * @param health of the unit as an int, can not be lower than zero
      * @param attack of the unit as an int, can not be lower than zero
@@ -14,15 +17,30 @@ public class CavalryUnit extends Unit {
         super(name, health, attack, armor);
     }
     /**
-     * Constructor
-     *
+     * Constructor for CavalryUnit
      * @param name   of the unit as a String, can not be blank
      * @param health of the unit as an int, can not be lower than zero
      */
     public CavalryUnit(String name, int health) {
         super(name, health, 20, 12);
     }
+
+    /**
+     * Constructor for CavalryUnit
+     * @param type of the unit as a String, must be a CavalryUnit and can not be blank
+     * @param name of the unit as a String, can not be blank
+     * @param health of the unit as an int, can not be lower than zero
+     * @param attack of the unit as an int, can not be lower than zero
+     * @param armor of the unit as an int, can not be lower than zero
+     */
     public CavalryUnit(String type, String name, int health,int attack,int armor){super(type,name,health,attack,armor);}
+
+    /**
+     * Constructor for CavalryUnit
+     * @param type of the unit, must be a CavalryUnit and can not be blank
+     * @param name of the unit as a String, can not be blank
+     * @param health of the unit as an int, can not be lower than zero
+     */
     public CavalryUnit(String type,String name, int health){super(type,name,health,20, 12);}
     /**
      * Returns the bonus attack that cavalry units will receive

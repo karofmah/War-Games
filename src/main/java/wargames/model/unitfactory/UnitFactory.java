@@ -6,10 +6,16 @@ import wargames.model.units.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * UnitFactory-class that is mainly utilized to create units
+ */
+public class UnitFactory{
+    /**
+     * Enum-class that is used to create units
+     * Source:
+     *https://stackoverflow.com/questions/9712977/is-it-possible-to-have-an-enum-class-with-enums-of-two-or-more-words
+     */
 
-public class UnitFactory implements AbstractFactory<Unit>{
-
-    //https://stackoverflow.com/questions/9712977/is-it-possible-to-have-an-enum-class-with-enums-of-two-or-more-words
     public enum UnitType{
         INFANTRY("InfantryUnit"),
         RANGED("RangedUnit"),
@@ -28,7 +34,15 @@ public class UnitFactory implements AbstractFactory<Unit>{
             return toString;
         }
     }
-    @Override
+
+    /**
+     * Method to create a unit
+     * Is utilized in the method unitsOfSpecificType
+     * @param type type of the unit
+     * @param name name of the unit
+     * @param health health of the unit
+     * @return new Unit as a Unit
+     */
     public Unit create(String type, String name, int health) {
         UnitType typeOfUnit=null;
         for (UnitType unitType:UnitType.values()){
@@ -45,6 +59,15 @@ public class UnitFactory implements AbstractFactory<Unit>{
             default -> throw new IllegalArgumentException("This type of unit does not exist");
         }
     }
+
+    /**
+     * Method to create multiple units of same type
+     * @param type type of the units
+     * @param name name of the units
+     * @param health health of the units
+     * @param n number of units
+     * @return unitsOfType as an ArrayList<Unit>
+     */
     public ArrayList<Unit> unitsOfSpecificType(String type, String name, int health, int n){
         ArrayList<Unit> unitsOfType=new ArrayList<>();
 

@@ -1,10 +1,12 @@
 package wargames.model.units;
 
-
+/**
+ * InfantryUnit-class extends Unit
+ * Represents a unit of the type infantry
+ */
 public class InfantryUnit extends Unit {
     /**
-     * Constructor
-     *
+     * Constructor for InfantryUnit
      * @param name   of the unit as a String, can not be blank
      * @param health of the unit as an int, can not be lower than zero
      * @param attack of the unit as an int, can not be lower than zero
@@ -16,7 +18,7 @@ public class InfantryUnit extends Unit {
     }
 
     /**
-     *
+     *Constructor for InfantryUnit
      * @param name of the unit as a String, can not be blank
      * @param health of the unit as a String, can not be lower than zero
      */
@@ -24,10 +26,16 @@ public class InfantryUnit extends Unit {
         super(name,health,15,10);
     }
 
+    /**
+     * Constructor for InfantryUnit
+     * @param type of the unit as a String  must be a InfantryUnit and can not be blank
+     * @param name of the unit as a String, can not be blank
+     * @param health of the unit as an int, can not be lower than zero
+     */
     public InfantryUnit(String type,String name, int health){super(type,name,health,15,10);}
 
     /**
-     * Returns attack that infantry units will receive
+     * Returns attack bonus that infantry units will receive
      * @return 2
      */
     @Override
@@ -36,7 +44,7 @@ public class InfantryUnit extends Unit {
     }
 
     /**
-     *Returns attack bonus that infantry units will receive
+     *Returns resist bonus that infantry units will receive
      * @return 1
      */
     @Override
