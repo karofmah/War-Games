@@ -64,7 +64,7 @@ public class Battle extends Publisher {
 
     /**
      * Simulates the battle between two armies. One random unit from each army is set up
-     * to attack each other. When the blows are done, another two random units
+     * to attack each other. When these dies, two new random units
      * have to fight.
      * Returns the winner
      * @return Army
@@ -74,16 +74,17 @@ public class Battle extends Publisher {
         while(army1.hasUnits() && army2.hasUnits()) {
 
             int numberOfAttacks=0;
+            Unit army1Unit = army1.getRandom();
+            Unit army2Unit = army2.getRandom();
             while(numberOfAttacks>=0) {
-                Unit army1Unit = army1.getRandom();
-                Unit army2Unit = army2.getRandom();
+
                 if (numberOfAttacks % 2 == 0) {
                     army1Unit.attack(army2Unit,terrain);
                     numberOfAttacks++;
                 }
                 if (army2Unit.getHealth() == 0) {
                     army2.remove(army2Unit);
-
+                    numberOfAttacks=-1;
 
                 }
                 if (!army2.hasUnits()) {
@@ -95,7 +96,7 @@ public class Battle extends Publisher {
 
                 if (army1Unit.getHealth() == 0) {
                     army1.remove(army1Unit);
-
+                    numberOfAttacks=-1;
                 }
                 if (!army1.hasUnits()) {
                     notify(army1,army2);

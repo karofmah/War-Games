@@ -9,8 +9,10 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import wargames.WarGamesApplication;
 import wargames.model.army.Army;
 import wargames.model.unitfactory.UnitFactory;
@@ -166,6 +168,12 @@ public class ArmiesController implements Initializable {
 
     @FXML
     private TextField numberOfRedMage;
+    @FXML
+    private TextArea textFieldArea;
+
+    @FXML
+    private TextField textField;
+
     ArrayList<Unit> unitsList=new ArrayList<>();
 
     UnitFactory factory=new UnitFactory();
@@ -234,22 +242,17 @@ public class ArmiesController implements Initializable {
         fillUnitTableView(army2.getAllUnits(),army2UnitsTableView);
 
 
-            handleUnitsAdded(blueInfantryImageView, army1, army1UnitsTableView, army1TableView, numberOfBlueInfantry);
-            handleUnitsAdded(blueRangedImageView, army1, army1UnitsTableView, army1TableView, numberOfBlueRanged);
-            handleUnitsAdded(blueCavalryImageView, army1, army1UnitsTableView, army1TableView, numberOfBlueCavalry);
-            handleUnitsAdded(blueCommanderImageView, army1, army1UnitsTableView, army1TableView, numberOfBlueCommander);
-            handleUnitsAdded(blueMageImageView, army1, army1UnitsTableView, army1TableView, numberOfBlueMage);
+        handleUnitsAddedForArmy(blueInfantryImageView, army1, army1UnitsTableView, army1TableView, numberOfBlueInfantry, blueRangedImageView, numberOfBlueRanged, blueCavalryImageView, numberOfBlueCavalry, blueCommanderImageView, numberOfBlueCommander, blueMageImageView, numberOfBlueMage);
 
 
-            handleUnitsAdded(redInfantryImageView, army2, army2UnitsTableView, army2TableView, numberOfRedInfantry);
-            handleUnitsAdded(redRangedImageView, army2, army2UnitsTableView, army2TableView, numberOfRedRanged);
-            handleUnitsAdded(redCavalryImageView, army2, army2UnitsTableView, army2TableView, numberOfRedCavalry);
-            handleUnitsAdded(redCommanderImageView, army2, army2UnitsTableView, army2TableView, numberOfRedCommander);
-            handleUnitsAdded(redMageImageView, army2, army2UnitsTableView, army2TableView, numberOfRedMage);
+        handleUnitsAddedForArmy(redInfantryImageView, army2, army2UnitsTableView, army2TableView, numberOfRedInfantry, redRangedImageView, numberOfRedRanged, redCavalryImageView, numberOfRedCavalry, redCommanderImageView, numberOfRedCommander, redMageImageView, numberOfRedMage);
 
 
         handleUnitsRemoval(army1UnitsTableView,army1TableView,army1);
         handleUnitsRemoval(army2UnitsTableView,army2TableView,army2);
+
+        textField.setEditable(false);
+        textFieldArea.setEditable(false);
 
         this.unitTypeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
         this.unitNameCol1.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -264,6 +267,15 @@ public class ArmiesController implements Initializable {
         army2.writeArmyToFile(new File("src/main/resources/Army2File.csv"));
 
     }
+
+    private void handleUnitsAddedForArmy(ImageView infantryImageView, Army army, TableView<Unit> armyUnitsTableView, TableView<Army> armyTableView, TextField numberOfInfantry, ImageView rangedImageView, TextField numberOfRanged, ImageView cavalryImageView, TextField numberOfCavalry, ImageView commanderImageView, TextField numberOfCommander, ImageView mageImageView, TextField numberOfMage) {
+        handleUnitsAdded(infantryImageView, army, armyUnitsTableView, armyTableView, numberOfInfantry);
+        handleUnitsAdded(rangedImageView, army, armyUnitsTableView, armyTableView, numberOfRanged);
+        handleUnitsAdded(cavalryImageView, army, armyUnitsTableView, armyTableView, numberOfCavalry);
+        handleUnitsAdded(commanderImageView, army, armyUnitsTableView, armyTableView, numberOfCommander);
+        handleUnitsAdded(mageImageView, army, armyUnitsTableView, armyTableView, numberOfMage);
+    }
+
     public void handleUnitsAdded(javafx.scene.image.ImageView imageView, Army army,TableView<Unit> unitTableView,TableView<Army> armyTableView,TextField text){
             if (Objects.equals(imageView.getId(), blueInfantryImageView.getId())) {
                 imageView.setOnMouseClicked(event -> {
@@ -414,6 +426,9 @@ public class ArmiesController implements Initializable {
                             fillUnitTableView(army.getAllUnits(), unitTableView);
                             fillArmyTableView(armyTableView, army);
                         }
+                        army1.writeArmyToFile(new File("src/main/resources/Army1File.csv"));
+
+                        army2.writeArmyToFile(new File("src/main/resources/Army2File.csv"));
                     }catch (IllegalArgumentException e){
                         showAlertDialog("This input is not supported, please enter a positive number");
                     }
@@ -434,22 +449,7 @@ public class ArmiesController implements Initializable {
 
             armyTableView.getItems().clear();
 
-        this.armyNameCol1.setCellValueFactory(new PropertyValueFactory<>("name"));
-        this.totalNumberOfUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
-        this.numberOfInfantryUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
-        this.numberOfRangedUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
-        this.numberOfCavalryUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
-        this.numberOfCommanderUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
-        this.numberOfMageUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfMageUnits"));
-
-        this.armyNameCol2.setCellValueFactory(new PropertyValueFactory<>("name"));
-        this.totalNumberOfUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
-        this.numberOfInfantryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
-        this.numberOfRangedUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
-        this.numberOfCavalryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
-        this.numberOfCommanderUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
-        this.numberOfMageUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfMageUnits"));
-
+        setCellValueFactories(this.armyNameCol1, this.totalNumberOfUnitsCol1, this.numberOfInfantryUnitsCol1, this.numberOfRangedUnitsCol1, this.numberOfCavalryUnitsCol1, this.numberOfCommanderUnitsCol1, this.numberOfMageUnitsCol1, this.armyNameCol2, this.totalNumberOfUnitsCol2, this.numberOfInfantryUnitsCol2, this.numberOfRangedUnitsCol2, this.numberOfCavalryUnitsCol2, this.numberOfCommanderUnitsCol2, this.numberOfMageUnitsCol2);
 
 
         ObservableList<Army> armyObservableList = FXCollections.observableArrayList(
@@ -459,6 +459,23 @@ public class ArmiesController implements Initializable {
         armyTableView.setItems(armyObservableList);
 
 
+
+    }
+
+    static void setCellValueFactories(TableColumn<?, ?> armyNameCol1, TableColumn<?, ?> totalNumberOfUnitsCol1, TableColumn<?, ?> numberOfInfantryUnitsCol1, TableColumn<?, ?> numberOfRangedUnitsCol1, TableColumn<?, ?> numberOfCavalryUnitsCol1, TableColumn<?, ?> numberOfCommanderUnitsCol1, TableColumn<?, ?> numberOfMageUnitsCol1, TableColumn<?, ?> armyNameCol2, TableColumn<?, ?> totalNumberOfUnitsCol2, TableColumn<?, ?> numberOfInfantryUnitsCol2, TableColumn<?, ?> numberOfRangedUnitsCol2, TableColumn<?, ?> numberOfCavalryUnitsCol2, TableColumn<?, ?> numberOfCommanderUnitsCol2, TableColumn<?, ?> numberOfMageUnitsCol2) {
+        setCellValueFactoryForArmy(armyNameCol1, totalNumberOfUnitsCol1, numberOfInfantryUnitsCol1, numberOfRangedUnitsCol1, numberOfCavalryUnitsCol1, numberOfCommanderUnitsCol1, numberOfMageUnitsCol1);
+
+        setCellValueFactoryForArmy(armyNameCol2, totalNumberOfUnitsCol2, numberOfInfantryUnitsCol2, numberOfRangedUnitsCol2, numberOfCavalryUnitsCol2, numberOfCommanderUnitsCol2, numberOfMageUnitsCol2);
+    }
+
+    private static void setCellValueFactoryForArmy(TableColumn<?, ?> armyNameCol, TableColumn<?, ?> totalNumberOfUnitsCol, TableColumn<?, ?> numberOfInfantryUnitsCol, TableColumn<?, ?> numberOfRangedUnitsCol, TableColumn<?, ?> numberOfCavalryUnitsCol, TableColumn<?, ?> numberOfCommanderUnitsCol, TableColumn<?, ?> numberOfMageUnitsCol) {
+        armyNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        totalNumberOfUnitsCol.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
+        numberOfInfantryUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
+        numberOfRangedUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
+        numberOfCavalryUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
+        numberOfCommanderUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
+        numberOfMageUnitsCol.setCellValueFactory(new PropertyValueFactory<>("numberOfMageUnits"));
     }
 
     /**
@@ -475,6 +492,7 @@ public class ArmiesController implements Initializable {
         unitsList.clear();
         if (unitsTableView != null) {
             unitsTableView.getItems().clear();
+
 
         ObservableList<Unit> unitsObservableList = FXCollections.observableArrayList();
 
@@ -550,13 +568,30 @@ public class ArmiesController implements Initializable {
         });
     }
 
+    /**
+     * Method to read one of the armies from a file location
+     */
+    @FXML
+    public void readArmy1FromFile(){
+        textField.setText("src/main/resources/Army1File.csv");
+        textFieldArea.setText(army1.readArmyFromFile(new File("src/main/resources/Army1File.csv")));
+    }
 
+    /**
+     * Method to read the other of the armies from a file location
+     */
+    @FXML
+    public void readArmy2FromFile(){
+
+        textField.setText("src/main/resources/Army2File.csv");
+        textFieldArea.setText(army2.readArmyFromFile(new File("src/main/resources/Army2File.csv")));
+    }
     /**
      *Method to open the file explorer and open a file that
      * the user may want to read
      */
     @FXML
-    public void readArmyFromFile() {
+    public void openArmyInFile() {
         Stage stage = WarGamesApplication.stage;
         showInformationDialog("You will now be directed to a directory with the path C:\\Users\\Bruker\\IdeaProjects\\wargames\\src\\main\\resources");
         showInformationDialog("Please remember to right click on the file you want to " +

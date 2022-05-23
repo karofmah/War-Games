@@ -106,8 +106,7 @@ public class Army {
      * @return CavalryUnitsList
      */
     public List<Unit> getCavalryUnits(){
-
-        return units.stream().filter(p->p instanceof CavalryUnit).collect(Collectors.toList());
+        return units.stream().filter(p -> p instanceof CavalryUnit).filter(p -> !(p instanceof CommanderUnit)).collect(Collectors.toList());
     }
 
     /**
@@ -255,7 +254,11 @@ public class Army {
     public int size() {
         return units.size();
     }
-//TODO:Javadoc
+
+    /**
+     * Method to write an army to a file
+     * @param file the file an army is written to
+     */
     public void writeArmyToFile( File file){
         try(PrintWriter writer=new PrintWriter(file)){
             writer.println(name);

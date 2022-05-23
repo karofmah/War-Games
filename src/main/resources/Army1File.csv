@@ -1,6 +1,16 @@
 Blue side
-InfantryUnit,Footman,100
-InfantryUnit,Footman,100
-InfantryUnit,Footman,100
-InfantryUnit,Footman,100
-InfantryUnit,Footman,100
+CommanderUnit,Mountain King,180
+CommanderUnit,Mountain King,180
+CommanderUnit,Mountain King,180
+CommanderUnit,Mountain King,180
+CommanderUnit,Mountain King,180
+MageUnit,Sorcerer,100
+MageUnit,Sorcerer,100
+MageUnit,Sorcerer,100
+MageUnit,Sorcerer,100
+MageUnit,Sorcerer,100
+MageUnit,Sorcerer,100
+MageUnit,Sorcerer,100
+MageUnit,Sorcerer,100
+MageUnit,Sorcerer,100
+MageUnit,Sorcerer,100

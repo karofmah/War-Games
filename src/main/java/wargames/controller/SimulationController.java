@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import wargames.WarGamesApplication;
@@ -311,23 +310,7 @@ public class SimulationController implements Subscriber {
                 showInformationDialog("Max 144 units are displayed per army");
         }
 
-            this.armyNameCol1.setCellValueFactory(new PropertyValueFactory<>("name"));
-            this.totalNumberOfUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
-            this.numberOfInfantryUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
-            this.numberOfRangedUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
-            this.numberOfCavalryUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
-            this.numberOfCommanderUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
-            this.numberOfMageUnitsCol1.setCellValueFactory(new PropertyValueFactory<>("numberOfMageUnits"));
-
-
-            this.armyNameCol2.setCellValueFactory(new PropertyValueFactory<>("name"));
-            this.totalNumberOfUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("totalNumberOfUnits"));
-            this.numberOfInfantryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfInfantryUnits"));
-            this.numberOfRangedUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfRangedUnits"));
-            this.numberOfCavalryUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCavalryUnits"));
-            this.numberOfCommanderUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfCommanderUnits"));
-            this.numberOfMageUnitsCol2.setCellValueFactory(new PropertyValueFactory<>("numberOfMageUnits"));
-
+            ArmiesController.setCellValueFactories(this.armyNameCol1, this.totalNumberOfUnitsCol1, this.numberOfInfantryUnitsCol1, this.numberOfRangedUnitsCol1, this.numberOfCavalryUnitsCol1, this.numberOfCommanderUnitsCol1, this.numberOfMageUnitsCol1, this.armyNameCol2, this.totalNumberOfUnitsCol2, this.numberOfInfantryUnitsCol2, this.numberOfRangedUnitsCol2, this.numberOfCavalryUnitsCol2, this.numberOfCommanderUnitsCol2, this.numberOfMageUnitsCol2);
 
 
         } catch (IllegalArgumentException e) {

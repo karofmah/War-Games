@@ -147,7 +147,6 @@ public class ArmyTest {
                 }
 
                 cavalryUnits.add(factory.unitsOfSpecificType("CavalryUnit", "Knight", 100, 1).get(0));
-                cavalryUnits.add(factory.unitsOfSpecificType("CommanderUnit", "Mountain King", 100, 1).get(0));
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
